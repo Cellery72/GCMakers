@@ -12,20 +12,14 @@ The Georgian College Makers club is a group of like minded students interested i
 
 1. - **Clone** the repository if you simply wish to run the application locally..
    - **OR** if you wish to make changes and would like to submit them to this repository, make your own personal **Fork**
-2. Open a terminal/CMD and run the commands below
-    ```sh
-    $ cd GCMakers
-    $ npm install
-    ```
+2. Open a terminal/CMD at the root of the project, run the command below:
+   - `` $ npm install ``
 3. Make directory for the db under ~/GCMakers/api/data/db
-4. Start mongod in the appropriate folder.. 
-- On Mac: ```$ mongod --dbpath api\data\db```
-- On Windows: ```C:\Program Files\MongoDB\Server\3.0\bin\mongod.exe --dbpath ~\GCMakers\api\data\db```
-5. In a Terminal/CMD run start command:
-    ```sh
-    cd GCMakers
-    npm start
-    ```
+4. Start mongod in the appropriate folder
+   - On Mac: ``$ mongod --dbpath api\data\db``
+   - On Windows: ``C:\Program Files\MongoDB\Server\3.0\bin\mongod.exe --dbpath ~\GCMakers\api\data\db``
+5. Open a Terminal/CMD at the root of the project, run start command:
+`` $ npm start``
 
 
 License

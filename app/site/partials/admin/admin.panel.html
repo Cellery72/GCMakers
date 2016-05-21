@@ -1,0 +1,66 @@
+<button class="btn btn-success" ng-click="ctrl.go('home')">
+    View Website</button>
+<button class="btn btn-danger" ng-click="ctrl.logout()">Logout</button>
+
+<div class="box">
+    <form class="form-inline">
+        <div class="form-group">
+            <label>Next Meeting Time</label>
+
+        </div>
+
+        <div ng-controller="DateTimeCtrl">
+            <p class="input-group">
+
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" ng-model="ctrl.dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+
+            </p>
+            <uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+
+            <pre class="alert alert-info"> <em>{{dt | date:'fullDate' }}</em> at {{mytime | date:'shortTime' }}</pre>
+            <input type="submit" value="Save" class="btn btn-default">
+
+        </div>
+
+    </form>
+
+</div>
+
+<div class="box">
+    <table class="table
+">
+        <tbody>
+
+            <tr>
+                <td>Home</td>
+                <td>
+                    <button ng-click="ctrl.go('home')">View</button>
+                </td>
+                <td>
+                    <button ng-click="ctrl.go('admin.home')">Edit</button>
+                </td>
+            </tr>
+            <tr>
+                <td>About</td>
+                <td>
+                    <button ng-click="ctrl.go('about')">View</button>
+                </td>
+                <td>
+                    <button ng-click="ctrl.go('admin.about')">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+<div class="box">
+    <button class="btn btn-success" ng-click="ctrl.getUploads()">
+        pix</button>
+    {{ctrl.img}}
+</div>

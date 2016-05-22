@@ -9,9 +9,9 @@ var bcrypt = require('bcryptjs');
 var transporter = nodemailer.createTransport('smtps://afield788%40gmail.com:<password>@smtp.gmail.com');
 
 var testUser = User({
-    firstName: 'Amanda',
-    lastName: 'Field',
-    email: 'afield@brainstation.io',
+    firstName: 'GC',
+    lastName: 'Makers',
+    email: 'makers@georgiancollege.ca',
     password: '1'
 });
 

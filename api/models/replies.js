@@ -12,10 +12,6 @@ var replySchema = new Schema({
         required: true,
         unique: true
     },
-    admin: {
-        type: Boolean,
-        required: true,
-    },
     replies: [],
     created_at: Date
 

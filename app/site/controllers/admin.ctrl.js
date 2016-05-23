@@ -3,28 +3,35 @@
 
     app.controller('AdminCtrl', AdminCtrl);
 
-    function AdminCtrl($state, api, jwtHelper, uploadSrv) {
+    function AdminCtrl($state, api, userSrv, jwtHelper, uploadSrv, $firebaseAuth, $rootScope) {
         var adminVm = this;
         adminVm.email;
         adminVm.password = null;
         adminVm.auth_btn = "Login";
         adminVm.img;
+        adminVm.users = userSrv.users;
+        adminVm.selected = true;
+        //        adminVm.upload = uploadSrv.upload;
 
-        if ($state.current.name == 'admin') {
-            $state.go('admin.panel');
-
-        }
-        if (localStorage.authToken) {
-            var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
-            if (decrypt_token.email) {
-                console.log('Welcome ' + decrypt_token.firstName + '!');
-            }
-        }
 
         if ($state.current.name == 'admin' || ($state.current.name !== 'admin.register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
             $state.go('admin.login');
         }
+        if (localStorage.authToken) {
+            try {
+                var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
 
+                if (decrypt_token.email && $state.current.name == 'admin.panel') {
+                    console.log('Welcome ' + decrypt_token.firstName + '!');
+                } else if (decrypt_token.email && $state.current.name == 'admin.login') {
+                    $state.go('admin.panel');
+
+                }
+            } catch (err) {
+                delete localStorage.authToken
+                console.log('Unauthorized');
+            }
+        }
 
 
 
@@ -33,7 +40,8 @@
         adminVm.login = login;
         adminVm.logout = logout;
         adminVm.go = go;
-        adminVm.getUploads = getUploads;
+        adminVm.refresh = refresh;
+        adminVm.updateUser = updateUser;
 
         //REGISTER
         function register() {
@@ -41,7 +49,8 @@
                 firstName: adminVm.firstName,
                 lastName: adminVm.lastName,
                 email: adminVm.newEmail,
-                password: adminVm.newPassword
+                admin: false,
+                password: adminVm.newPassword,
             }
             api.request('/register', payload, 'POST')
                 .then(function (res) {
@@ -64,11 +73,11 @@
 
         //LOGIN
         function login() {
-            var user = {
+            var payload = {
                 email: adminVm.email,
                 password: adminVm.password
             }
-            api.request('/authenticate', user, 'POST')
+            api.request('/authenticate', payload, 'POST')
                 .then(function (res) {
                     localStorage.loginEmail = adminVm.email;
                     if (res.status == 200) {
@@ -85,6 +94,12 @@
                 })
         }
 
+        //REFRESH
+        function refresh() {
+            $state.reload();
+        }
+
+
         //LOGOUT
         function logout() {
             localStorage.removeItem('authToken');
@@ -92,7 +107,22 @@
             $state.go('admin.login');
         }
 
+        //UPDATE USER
+        function updateUser(_id) {
 
+            var payload = {
+                firstName: adminVm.firstName,
+                lastName: adminVm.lastName,
+                email: adminVm.email,
+                admin: adminVm.admin
+
+            }
+            userSrv.updateUser();
+        }
+
+        //DELETE USER
+
+        //NAVIGATION
         function go(location) {
             switch (location) {
             case 'home':
@@ -101,20 +131,29 @@
             case 'about':
                 $state.go('about');
                 break;
+            case 'admin.panel':
+                $state.go('admin.panel');
+                break;
             case 'admin.home':
                 $state.go('admin.home');
                 break;
             case 'admin.about':
                 $state.go('admin.about');
                 break;
+            case 'admin.users':
+                $state.go('admin.users');
+                break;
+            case 'admin.uploads':
+                $state.go('admin.uploads');
+                break;
+            case 'admin.register':
+                $state.go('admin.register');
+                break;
             }
-        }
-
-        function getUploads() {
-            uploadSrv.getUpload();
-            adminVm.img = uploadSrv.uploads;
 
         }
+
+
 
 
     }

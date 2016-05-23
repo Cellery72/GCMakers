@@ -4,23 +4,22 @@
     app.service('api', ApiService)
 
     function ApiService($location, $http) {
-        this.http = $http;
-        this.BASE_URL = 'http://localhost:8080';
+        var self = this;
+        self.BASE_URL = 'http://localhost:8080';
 
+        self.request = request;
 
-
-        ApiService.prototype.request = function (endpoint, data, method) {
+        function request(endpoint, data, method) {
             if (method == 'POST') {
                 data = JSON.stringify(data);
-                return this.http.post(this.BASE_URL + endpoint, data)
+                return $http.post(this.BASE_URL + endpoint, data)
             } else if (method == 'GET') {
-                data = this.formatGetData(data);
-                return this.http.get(this.BASE_URL + endpoint + data);
+                return $http.get(this.BASE_URL + endpoint);
             } else if (method == 'PUT') {
                 data = JSON.stringify(data);
-                return this.http.put(this.BASE_URL + endpoint, data);
+                return $http.put(this.BASE_URL + endpoint, data);
             } else if (method == 'DEL') {
-                return this.http.delete(this.BASE_URL + endpoint);
+                return $http.delete(this.BASE_URL + endpoint);
             }
         };
 

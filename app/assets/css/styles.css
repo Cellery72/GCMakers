@@ -1,0 +1,147 @@
+.carousel {
+    border: 10px solid rgba(255, 255, 255, 0.9);
+}
+
+
+/*NAV*/
+
+.navbar-brand {
+    padding: 25px 15px;
+    line-height: normal;
+}
+
+.navbar-brand>img {
+    max-width: 40px;
+    display: inline-block;
+}
+
+.nav>li>a {
+    padding: 25px 5px;
+}
+
+.brand {
+    font: inherit;
+    color: #fff;
+    font-size: 17pt;
+    padding: 15px 0px 0px;
+    text-transform: uppercase;
+    background: rgba(86, 86, 86, 0.9);
+}
+
+.address-bar {
+    font-size: 10pt;
+    padding: 0px 0px 15px;
+    color: #fff;
+    background: rgba(86, 86, 86, 0.9);
+}
+
+
+/*FOOTER*/
+
+.disclaimer {
+    font-size: 85%;
+    text-transform: none;
+}
+
+footer {
+    padding-left: 10px;
+    background: rgba(86, 86, 86, 0.9);
+}
+
+footer p {
+    font-size: 10pt;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.disclaimer img {
+    margin: 0 auto;
+    display: block;
+    width: 150px;
+    height: auto;
+}
+
+
+/* HOME*/
+
+.carousel-inner > .item > img {
+    min-height: 380px;
+    max-height: 380px;
+}
+
+.carousel-box {
+    padding: 15px 0px;
+}
+
+.intro-text {
+    font-size: 19pt;
+    text-transform: uppercase;
+}
+
+.intro-pic {
+    max-width: 500px;
+}
+
+
+/*ABOUT*/
+
+.about-header {
+    background-color: rgba(255, 255, 255, 0.9)
+}
+
+.about-header img {
+    padding: 0px;
+}
+
+.about-header img1 {
+    padding-right: 10px;
+}
+
+.about-header img3 {
+    padding-left: 10px;
+}
+
+
+/*ADMIN - LOGIN*/
+
+.login-box {
+    border-radius: 10px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+}
+
+.partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+}
+
+
+/*ADMIN - PANEL*/
+
+.page-header {
+    border-bottom: none;
+}
+
+.form-inline .form-control {
+    width: 50px;
+}
+
+.form-inline .input-group>.form-control {
+    height: 33px;
+}
+
+
+/*ADMIN - EDIT*/
+
+input[type=file] {
+    display: inline-block;
+}

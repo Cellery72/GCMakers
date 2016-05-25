@@ -1,0 +1,49 @@
+<button class="btn btn-warning" ng-click="ctrl.go('admin.panel')">
+    Back</button>
+<button class="btn btn-primary pull-right" ng-click="ctrl.refresh()"><i class="fa fa-refresh fa-lg"></i></button>
+<button class="btn btn-success pull-right" ng-click="ctrl.go('admin.register')"><i class="fa fa-plus fa-lg"></i></button>
+
+
+<div class="box">
+
+    <table class="table
+">
+
+        <tbody>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email Address</th>
+            <th>Admin</th>
+
+
+            <tr ng-repeat="user in ctrl.users" class="form-group">
+                <td>
+                    {{user.firstName}}
+                </td>
+
+                <td>
+                    {{user.lastName}}
+                </td>
+
+                <td>
+                    {{user.email}}
+                </td>
+
+                <td>
+                    <select class="form-control">
+                        <option>{{user.admin | yesNo}}</option>
+                        <option>{{!user.admin | yesNo}}</option>
+                    </select>
+                </td>
+                <td>
+                    <button class="btn btn-success" ng-click="ctrl.updateUser()"><i class="fa fa-save"></i></button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" ng-click="ctrl.deleteUser()"><i class="fa fa-trash"> Delete</i></button>
+                </td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</div>

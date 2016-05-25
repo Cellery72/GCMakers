@@ -10,7 +10,7 @@
         adminVm.auth_btn = "Login";
         adminVm.img;
         adminVm.users = userSrv.users;
-        adminVm.selected = true;
+        adminVm.availableOptions = [];
         //        adminVm.upload = uploadSrv.upload;
 
 
@@ -108,16 +108,22 @@
         }
 
         //UPDATE USER
-        function updateUser(_id) {
+        function updateUser(user) {
 
+            if (user.admin == 'Yes') {
+                user.admin = true;
+            } else {
+                user.admin = false;
+            }
             var payload = {
-                firstName: adminVm.firstName,
-                lastName: adminVm.lastName,
-                email: adminVm.email,
-                admin: adminVm.admin
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                admin: user.admin
 
             }
-            userSrv.updateUser();
+            console.log(user.admin)
+            userSrv.updateUser(user._id, payload);
         }
 
         //DELETE USER

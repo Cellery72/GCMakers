@@ -130,9 +130,10 @@ router.post('/register', function (req, res) {
 });
 
 //UPDATE USER
-router.put('/:userId', function (req, res) {
-    console.log('Updating User: ' + req.params.userId);
+router.put('/update/:_id', function (req, res) {
+    console.log('Updating User: ' + req.params._id);
     var __user = req.body;
+    console.log(__user);
     var update = {
         firstName: __user.firstName,
         lastName: __user.lastName,

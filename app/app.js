@@ -1,9 +1,16 @@
 'use strict';
+<<<<<<< HEAD
+var app = angular.module('makers', ['ui.router', 'ui.bootstrap', 'angular-jwt']);
+
+app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
+
+=======
 var app = angular.module('makers', ['ui.router', 'ui.bootstrap', 'angular-jwt', 'firebase']);
 
 app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
 
 
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
     $urlRouterProvider.otherwise('/');
     $stateProvider
         .state('home', {
@@ -71,6 +78,8 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
             controller: 'AdminCtrl as ctrl',
             parent: 'admin'
         })
+<<<<<<< HEAD
+=======
         .state('admin.users', {
             url: '/users',
             templateUrl: 'site/partials/admin/admin.users.html',
@@ -95,6 +104,7 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                 //            }
 
         })
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
         .state('admin.home', {
             url: '/home',
             templateUrl: 'site/partials/admin/admin.home.html',
@@ -128,4 +138,8 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
             }
         }
     })
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383

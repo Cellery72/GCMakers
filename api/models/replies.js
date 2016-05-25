@@ -12,6 +12,13 @@ var replySchema = new Schema({
         required: true,
         unique: true
     },
+<<<<<<< HEAD
+    admin: {
+        type: Boolean,
+        required: true,
+    },
+=======
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
     replies: [],
     created_at: Date
 

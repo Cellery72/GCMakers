@@ -22,7 +22,10 @@
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
+<<<<<<< HEAD
+=======
     "firebase": "^3.0.2",
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
     "fs": "0.0.2",
     "jsonwebtoken": "^6.2.0",
     "mongod": "^1.3.0",

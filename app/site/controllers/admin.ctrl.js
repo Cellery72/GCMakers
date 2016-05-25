@@ -3,12 +3,35 @@
 
     app.controller('AdminCtrl', AdminCtrl);
 
+<<<<<<< HEAD
+    function AdminCtrl($state, api, jwtHelper, uploadSrv) {
+=======
     function AdminCtrl($state, api, userSrv, jwtHelper, uploadSrv, $firebaseAuth, $rootScope) {
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
         var adminVm = this;
         adminVm.email;
         adminVm.password = null;
         adminVm.auth_btn = "Login";
         adminVm.img;
+<<<<<<< HEAD
+
+        if ($state.current.name == 'admin') {
+            $state.go('admin.panel');
+
+        }
+        if (localStorage.authToken) {
+            var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
+            if (decrypt_token.email) {
+                console.log('Welcome ' + decrypt_token.firstName + '!');
+            }
+        }
+
+        if ($state.current.name == 'admin' || ($state.current.name !== 'admin.register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
+            $state.go('admin.login');
+        }
+
+
+=======
         adminVm.users = userSrv.users;
         adminVm.selected = true;
         //        adminVm.upload = uploadSrv.upload;
@@ -33,6 +56,7 @@
             }
         }
 
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
 
 
         //DECLARE FUNCTIONS
@@ -40,8 +64,12 @@
         adminVm.login = login;
         adminVm.logout = logout;
         adminVm.go = go;
+<<<<<<< HEAD
+        adminVm.getUploads = getUploads;
+=======
         adminVm.refresh = refresh;
         adminVm.updateUser = updateUser;
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
 
         //REGISTER
         function register() {
@@ -49,8 +77,12 @@
                 firstName: adminVm.firstName,
                 lastName: adminVm.lastName,
                 email: adminVm.newEmail,
+<<<<<<< HEAD
+                password: adminVm.newPassword
+=======
                 admin: false,
                 password: adminVm.newPassword,
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
             }
             api.request('/register', payload, 'POST')
                 .then(function (res) {
@@ -73,11 +105,19 @@
 
         //LOGIN
         function login() {
+<<<<<<< HEAD
+            var user = {
+                email: adminVm.email,
+                password: adminVm.password
+            }
+            api.request('/authenticate', user, 'POST')
+=======
             var payload = {
                 email: adminVm.email,
                 password: adminVm.password
             }
             api.request('/authenticate', payload, 'POST')
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
                 .then(function (res) {
                     localStorage.loginEmail = adminVm.email;
                     if (res.status == 200) {
@@ -94,12 +134,15 @@
                 })
         }
 
+<<<<<<< HEAD
+=======
         //REFRESH
         function refresh() {
             $state.reload();
         }
 
 
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
         //LOGOUT
         function logout() {
             localStorage.removeItem('authToken');
@@ -107,6 +150,9 @@
             $state.go('admin.login');
         }
 
+<<<<<<< HEAD
+
+=======
         //UPDATE USER
         function updateUser(_id) {
 
@@ -123,6 +169,7 @@
         //DELETE USER
 
         //NAVIGATION
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
         function go(location) {
             switch (location) {
             case 'home':
@@ -131,15 +178,28 @@
             case 'about':
                 $state.go('about');
                 break;
+<<<<<<< HEAD
+=======
             case 'admin.panel':
                 $state.go('admin.panel');
                 break;
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
             case 'admin.home':
                 $state.go('admin.home');
                 break;
             case 'admin.about':
                 $state.go('admin.about');
                 break;
+<<<<<<< HEAD
+            }
+        }
+
+        function getUploads() {
+            uploadSrv.getUpload();
+            adminVm.img = uploadSrv.uploads;
+
+        }
+=======
             case 'admin.users':
                 $state.go('admin.users');
                 break;
@@ -154,8 +214,13 @@
         }
 
 
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
 
 
     }
 
+<<<<<<< HEAD
 })();
+=======
+})();
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383

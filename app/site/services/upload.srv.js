@@ -2,6 +2,28 @@
     app.service('uploadSrv', UploadSrv);
 
     function UploadSrv($state, api, $http) {
+<<<<<<< HEAD
+        self = this
+        self.http = $http;
+        self.BASE_URL = 'http://localhost:8080';
+        self.uploads = [];
+
+        //public functions
+        self.getUpload = getUpload;
+
+        function getUpload() {
+            console.log('bno');
+
+            self.http.get(this.BASE_URL + '/uploads').then(function (res) {
+
+                console.log(res.data.contentType);
+
+            })
+        }
+    };
+
+})();
+=======
         self = this;
         self.BASE_URL = 'http://localhost:8080';
         self.upload;
@@ -25,3 +47,4 @@
     };
 
 })();
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383

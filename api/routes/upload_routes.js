@@ -2,6 +2,37 @@
 var Upload = require('../models/uploads.js');
 var express = require('express');
 var fs = require('fs');
+<<<<<<< HEAD
+var router = express();
+var imgPath = 'bg.png';
+
+Upload.remove(function (err) {
+    if (err) throw err;
+
+    console.error('removed old docs');
+
+    // store an img in binary in mongo
+    var upload = new Upload;
+    upload.img.data = fs.readFileSync(imgPath);
+    upload.img.contentType = 'image/png';
+    upload.save(function (err, upload) {
+        if (err) throw err;
+
+        console.error('saved img to mongo');
+
+        // start a demo server
+        router.get('/uploads', function (req, res, next) {
+            Upload.findById(upload, function (err, doc) {
+                if (err) return next(err);
+
+                res.contentType(doc.img.contentType);
+                //                res.send(doc.img.data);
+            });
+        });
+
+    });
+});
+=======
 var server = express();
 var imgPath = 'bg.png';
 //Upload.remove(function (err) {
@@ -45,6 +76,7 @@ server.get('/uploads', function (req, res, next) {
 //        }
 //    });
 //});
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
 //console.log(router);
 //Upload.remove(function (err) {
 //    if (err) throw err;
@@ -77,4 +109,8 @@ server.get('/uploads', function (req, res, next) {
 //
 
 
+<<<<<<< HEAD
+module.exports = router;
+=======
 module.exports = server;
+>>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383

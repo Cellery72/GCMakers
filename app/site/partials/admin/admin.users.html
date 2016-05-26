@@ -30,7 +30,7 @@
                 </td>
 
                 <td>
-                    <select class="form-control" ng-options="user.admin">
+                    <select class="form-control" ng-options="adminOption as adminOption for adminOption in ctrl.adminOptions" ng-model="user.admin">
                     </select>
                 </td>
                 <td>

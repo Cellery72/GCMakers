@@ -14,17 +14,18 @@
         //        adminVm.upload = uploadSrv.upload;
 
 
-        if ($state.current.name == 'admin' || ($state.current.name !== 'admin.register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
-            $state.go('admin.login');
+        if (($state.current.name == 'admin' || $state.current.name == 'admin.panel') && (localStorage.authToken == undefined || localStorage.authToken == null)) {
+            $state.go('user.login');
         }
         if (localStorage.authToken) {
             try {
                 var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
 
-                if (decrypt_token.email && $state.current.name == 'admin.panel') {
-                    console.log('Welcome ' + decrypt_token.firstName + '!');
-                } else if (decrypt_token.email && $state.current.name == 'admin.login') {
-                    $state.go('admin.panel');
+                if (!decrypt_token.admin && $state.current.name == 'admin.panel') {
+                    $state.go('user.panel');
+                    console.log('Not Admin');
+                } else if (decrypt_token.email && $state.current.name == 'user.login') {
+                    $state.go('user.panel');
                     console.log('Logged In')
 
                 }
@@ -36,65 +37,16 @@
 
 
 
+
+
         //DECLARE FUNCTIONS
-        adminVm.register = register;
-        adminVm.login = login;
+        //        adminVm.register = register;
+        //        adminVm.login = login;
         adminVm.logout = logout;
         adminVm.go = go;
         adminVm.refresh = refresh;
         adminVm.updateUser = updateUser;
         adminVm.deleteUser = deleteUser;
-
-        //REGISTER
-        function register() {
-            var payload = {
-                firstName: adminVm.firstName,
-                lastName: adminVm.lastName,
-                email: adminVm.newEmail,
-                admin: false,
-                password: adminVm.newPassword,
-            }
-            api.request('/register', payload, 'POST')
-                .then(function (res) {
-                    //successful response
-                    if (res.status == 200) {
-                        //user exists
-                        if (res.data.user == null) {
-                            alert('This email address is already registered!');
-                        } else {
-                            console.log('User Created!')
-                            $state.go('admin.panel');
-                        }
-                    }
-                    adminVm.auth_btn = "Error";
-                }, function () {
-                    //error
-                    adminVm.auth_btn = "Error";
-                })
-        }
-
-        //LOGIN
-        function login() {
-            var payload = {
-                email: adminVm.email,
-                password: adminVm.password
-            }
-            api.request('/authenticate', payload, 'POST')
-                .then(function (res) {
-                    localStorage.loginEmail = adminVm.email;
-                    if (res.status == 200) {
-                        adminVm.auth_btn = "Success";
-                        //user exists
-                        if (res.data.user != null) {
-                            $state.go('admin.panel');
-                        } else {
-                            alert(res.data.msg);
-                        }
-                    } else {
-                        adminVm.auth_btn = 'Invalid Password';
-                    }
-                })
-        }
 
         //REFRESH
         function refresh() {
@@ -106,7 +58,7 @@
         function logout() {
             localStorage.removeItem('authToken');
 
-            $state.go('admin.login');
+            $state.go('user.login');
         }
 
         //UPDATE USER
@@ -153,8 +105,11 @@
             case 'admin.uploads':
                 $state.go('admin.uploads');
                 break;
-            case 'admin.register':
-                $state.go('admin.register');
+            case 'user.register':
+                $state.go('user.register');
+                break;
+            case 'user.panel':
+                $state.go('user.panel');
                 break;
             }
 

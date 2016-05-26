@@ -133,36 +133,73 @@ router.post('/register', function (req, res) {
 router.put('/update/:userId', function (req, res) {
     console.log('Updating User: ' + req.params.userId);
     var __user = req.body;
-    console.log(__user);
-    var update = {
-        firstName: __user.firstName,
-        lastName: __user.lastName,
-        email: __user.email,
-        admin: __user.admin,
-        updated_at: new Date()
-    }
+    if (req.body.password) {
 
-    var query = {
-        "_id": req.params.userId
-    }
-    User.update(query, update, {}, function (err, user) {
-        if (err) {
-            console.log(err);
-            res.status(400).json({
-                err: err
-            })
 
-        } else {
-            res.json({
-                user: user
+        bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.hash(__user.password, salt, function (err, hash) {
+                // Store hash in your password DB. 
+                var update = {
+                    firstName: __user.firstName,
+                    lastName: __user.lastName,
+                    email: __user.email,
+                    admin: __user.admin,
+                    password: hash,
+                    updated_at: new Date()
+                }
+                User.update({
+                    "_id": req.params.userId
+                }, update, {}, function (err, user) {
+                    console.log(user);
+                    if (err) {
+                        console.log(err);
+                        res.status(400).json({
+                            err: err
+                        })
+
+                    } else {
+                        res.json({
+                            user: user
+                        });
+                    }
+                })
             });
+        });
+
+
+    } else {
+        var update = {
+            firstName: __user.firstName,
+            lastName: __user.lastName,
+            email: __user.email,
+            admin: __user.admin,
+            updated_at: new Date()
         }
-    })
+        User.update({
+            "_id": req.params.userId
+        }, update, {}, function (err, user) {
+            console.log(user);
+            if (err) {
+                console.log(err);
+                res.status(400).json({
+                    err: err
+                })
+
+            } else {
+                res.json({
+                    user: user
+                });
+            }
+        })
+    }
+
+
 })
 
 //DELETE USER
 router.delete('/delete/:userId', function (req, res) {
     console.log('User ' + req.params.userId + ' Deleted');
+
 
     User.findOne({
         "_id": req.params.userId
@@ -201,9 +238,12 @@ router.post('/authenticate', function (req, res) {
                         delete user.password;
                         //set web token
                         var user_obj = {
+                            _id: user._id,
                             firstName: user.firstName,
                             lastName: user.lastName,
-                            email: user.email
+                            email: user.email,
+                            password: user.password,
+                            admin: user.admin
                         };
                         var token = jwt.sign(user_obj, 'randomsalt');
                         res.set('authentication', token);

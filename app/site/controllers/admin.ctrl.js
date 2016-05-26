@@ -25,6 +25,7 @@
                     console.log('Welcome ' + decrypt_token.firstName + '!');
                 } else if (decrypt_token.email && $state.current.name == 'admin.login') {
                     $state.go('admin.panel');
+                    console.log('Logged In')
 
                 }
             } catch (err) {
@@ -42,6 +43,7 @@
         adminVm.go = go;
         adminVm.refresh = refresh;
         adminVm.updateUser = updateUser;
+        adminVm.deleteUser = deleteUser;
 
         //REGISTER
         function register() {
@@ -49,7 +51,7 @@
                 firstName: adminVm.firstName,
                 lastName: adminVm.lastName,
                 email: adminVm.newEmail,
-                admin: adminVm.admin,
+                admin: false,
                 password: adminVm.newPassword,
             }
             api.request('/register', payload, 'POST')
@@ -121,7 +123,12 @@
         }
 
         //DELETE USER
+        function deleteUser(user) {
+            userSrv.deleteUser(user._id).then(function () {
+                adminVm.refresh();
+            })
 
+        }
         //NAVIGATION
         function go(location) {
             switch (location) {

@@ -130,8 +130,8 @@ router.post('/register', function (req, res) {
 });
 
 //UPDATE USER
-router.put('/update/:_id', function (req, res) {
-    console.log('Updating User: ' + req.params._id);
+router.put('/update/:userId', function (req, res) {
+    console.log('Updating User: ' + req.params.userId);
     var __user = req.body;
     console.log(__user);
     var update = {
@@ -160,6 +160,29 @@ router.put('/update/:_id', function (req, res) {
     })
 })
 
+//DELETE USER
+router.delete('/delete/:userId', function (req, res) {
+    console.log('User ' + req.params.userId + ' Deleted');
+
+    User.findOne({
+        "_id": req.params.userId
+    }, function (err, user) {
+        user.remove(function (err) {
+            if (err) {
+                console.log(err);
+                res.status(400)
+                    .json({
+                        err: err
+                    })
+            } else {
+                res.json({
+                    deleted: true
+                })
+            }
+        })
+    });
+
+});
 
 //USER AUTHENTICATION
 router.post('/authenticate', function (req, res) {

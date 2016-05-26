@@ -11,6 +11,7 @@
         //functions
         self.getUsers = getUsers;
         self.updateUser = updateUser;
+        self.deleteUser = deleteUser;
 
         function getUsers() {
             return api.request('/users', {}, 'GET')
@@ -25,8 +26,12 @@
 
         }
 
-        function updateUser(_id) {
-            return api.request('/users/add', _id, 'PUT')
+        function updateUser(_id, payload) {
+            return api.request('/update/' + _id, payload, 'PUT');
+        }
+
+        function deleteUser(_id) {
+            return api.request('/delete/' + _id, {}, 'DEL');
         }
     };
 })();

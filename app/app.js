@@ -42,7 +42,36 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('admin', {
+        .state('user', {
+            url: '/user',
+            controller: 'UserCtrl as ctrl',
+            views: {
+                layout: {
+                    templateUrl: 'site/partials/user/user.html',
+                    controller: 'UserCtrl as ctrl'
+                }
+            }
+        })
+        .state('user.login', {
+            url: '/login',
+            templateUrl: 'site/partials/user/user.login.html',
+            controller: 'UserCtrl as ctrl',
+            parent: 'user'
+        })
+        .state('user.register', {
+            url: '/register',
+            templateUrl: 'site/partials/user/user.register.html',
+            controller: 'UserCtrl as ctrl',
+            parent: 'user'
+        })
+        .state('user.panel', {
+            url: '/panel',
+            templateUrl: 'site/partials/user/user.panel.html',
+            controller: 'UserCtrl as ctrl',
+            parent: 'user'
+        })
+
+    .state('admin', {
             url: '/admin',
             controller: 'AdminCtrl as ctrl',
             views: {

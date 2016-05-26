@@ -118,54 +118,150 @@ router.post('/register', function (req, res) {
         });
 });
 
-router.post('/authenticate', function (req, res) {
-        console.log('Authentication Endpoint');
-        var __user = req.body;
-        User.findOne({
-                'email': __user.email
-            })
-            .then(function (user) {
-                if (user) {
-                    console.log(user);
-                    //check incoming password against encrypted version
-                    bcrypt.compare(__user.password, user.password, function (err, valid) {
-                        if (valid) {
-                            //remove password from response
-                            delete user.password;
-                            //set web token
-                            var user_obj = {
-                                firstName: user.firstName,
-                                lastName: user.lastName,
-                                email: user.email
-                            };
-                            var token = jwt.sign(user_obj, 'randomsalt');
-                            res.set('authentication', token);
-                            res.json({
-                                user: user,
-                                msg: 'Authenticated'
-                            });
-                        } else {
-                            res.json({
-                                user: null,
-                                msg: 'Email/Password is incorrect'
-                            })
-                        }
-                    });
-                } else {
-                    res.json({
-                        user: null,
-                        msg: 'Email/Password is incorrect'
-                    })
-                }
-            })
+//UPDATE USER
+router.put('/update/:userId', function (req, res) {
+    console.log('Updating User: ' + req.params.userId);
+    var __user = req.body;
+    if (req.body.password) {
 
-    })
-    // send mail with defined transport object 
-    //transporter.sendMail(mailOptions, function(error, info){
-    //    if(error){
-    //        return console.log(error);
-    //    }
-    //    console.log('Message sent: ' + info.response);
-    //});
+
+        bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.hash(__user.password, salt, function (err, hash) {
+                // Store hash in your password DB. 
+                var update = {
+                    firstName: __user.firstName,
+                    lastName: __user.lastName,
+                    email: __user.email,
+                    admin: __user.admin,
+                    password: hash,
+                    updated_at: new Date()
+                }
+                User.update({
+                    "_id": req.params.userId
+                }, update, {}, function (err, user) {
+                    console.log(user);
+                    if (err) {
+                        console.log(err);
+                        res.status(400).json({
+                            err: err
+                        })
+
+                    } else {
+                        res.json({
+                            user: user
+                        });
+                    }
+                })
+            });
+        });
+
+
+    } else {
+        var update = {
+            firstName: __user.firstName,
+            lastName: __user.lastName,
+            email: __user.email,
+            admin: __user.admin,
+            updated_at: new Date()
+        }
+        User.update({
+            "_id": req.params.userId
+        }, update, {}, function (err, user) {
+            console.log(user);
+            if (err) {
+                console.log(err);
+                res.status(400).json({
+                    err: err
+                })
+
+            } else {
+                res.json({
+                    user: user
+                });
+            }
+        })
+    }
+
+
+})
+
+//DELETE USER
+router.delete('/delete/:userId', function (req, res) {
+    console.log('User ' + req.params.userId + ' Deleted');
+
+
+    User.findOne({
+        "_id": req.params.userId
+    }, function (err, user) {
+        user.remove(function (err) {
+            if (err) {
+                console.log(err);
+                res.status(400)
+                    .json({
+                        err: err
+                    })
+            } else {
+                res.json({
+                    deleted: true
+                })
+            }
+        })
+    });
+
+});
+
+//USER AUTHENTICATION
+router.post('/authenticate', function (req, res) {
+    console.log('Authentication Endpoint');
+    var __user = req.body;
+    User.findOne({
+            'email': __user.email
+        })
+        .then(function (user) {
+            if (user) {
+                console.log(user);
+                //check incoming password against encrypted version
+                bcrypt.compare(__user.password, user.password, function (err, valid) {
+                    if (valid) {
+                        //remove password from response
+                        delete user.password;
+                        //set web token
+                        var user_obj = {
+                            _id: user._id,
+                            firstName: user.firstName,
+                            lastName: user.lastName,
+                            email: user.email,
+                            password: user.password,
+                            admin: user.admin
+                        };
+                        var token = jwt.sign(user_obj, 'randomsalt');
+                        res.set('authentication', token);
+                        res.json({
+                            user: user,
+                            msg: 'Authenticated'
+                        });
+                    } else {
+                        res.json({
+                            user: null,
+                            msg: 'Email/Password is incorrect'
+                        })
+                    }
+                });
+            } else {
+                res.json({
+                    user: null,
+                    msg: 'Email/Password is incorrect'
+                })
+            }
+        })
+
+});
+// send mail with defined transport object 
+//transporter.sendMail(mailOptions, function(error, info){
+//    if(error){
+//        return console.log(error);
+//    }
+//    console.log('Message sent: ' + info.response);
+//});
 
 module.exports = router;

@@ -21,8 +21,8 @@
             case 'about':
                 $state.go('about');
                 break;
-            case 'admin.panel':
-                $state.go('admin.panel');
+            case 'user.login':
+                $state.go('user.login');
                 break;
 
             }

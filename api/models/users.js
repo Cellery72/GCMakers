@@ -20,13 +20,6 @@ var userSchema = new Schema({
         type: String,
         required: true,
     },
-<<<<<<< HEAD
-=======
-    admin: {
-        type: Boolean,
-        required: true
-    },
->>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
     created_at: Date,
     updated_at: Date
 });
@@ -52,8 +45,4 @@ userSchema.methods.summary = function () {
 
 var User = mongoose.model('userSchema', userSchema);
 
-<<<<<<< HEAD
 module.exports = User;
-=======
-module.exports = User;
->>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383

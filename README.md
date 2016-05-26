@@ -25,8 +25,4 @@ The Georgian College Makers club is a group of like minded students interested i
 License
 ----
 
-<<<<<<< HEAD
 MIT
-=======
-MIT
->>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383

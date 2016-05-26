@@ -8,15 +8,9 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 
 var testUser = User({
-<<<<<<< HEAD
     firstName: 'Amanda',
     lastName: 'Field',
     email: 'afield@brainstation.io',
-=======
-    firstName: 'GC',
-    lastName: 'Makers',
-    email: 'makers@georgiancollege.ca',
->>>>>>> a62ef02b750378e6fbcdf416595ad34befba9383
     password: '1'
 });
 //

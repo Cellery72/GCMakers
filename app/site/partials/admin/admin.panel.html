@@ -11,6 +11,7 @@
 <!--
 <button class="btn btn-info pull-right" ng-click="ctrl.go('admin.uploads')">
     Uploads</button>-->
+<button class="btn btn-danger" ng-click="ctrl.logout()">Logout</button>
 
 <div class="box">
     <form class="form-inline">
@@ -64,4 +65,13 @@
             </tr>
         </tbody>
     </table>
+</div>
+
+
+
+
+<div class="box">
+    <button class="btn btn-success" ng-click="ctrl.getUploads()">
+        pix</button>
+    {{ctrl.img}}
 </div>

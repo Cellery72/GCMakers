@@ -20,10 +20,6 @@ var userSchema = new Schema({
         type: String,
         required: true,
     },
-    admin: {
-        type: Boolean,
-        required: true
-    },
     created_at: Date,
     updated_at: Date
 });

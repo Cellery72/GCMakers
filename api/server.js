@@ -5,6 +5,7 @@ var port = 8080;
 var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+
 //Body Parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -26,8 +27,8 @@ db.once('open', function () {
 var user_routes = require('./routes/user_routes.js');
 app.use('/', user_routes);
 //
-var upload_routes = require('./routes/upload_routes.js');
-app.use('/', upload_routes);
+//var upload_routes = require('./routes/upload_routes.js');
+//app.use('/', upload_routes);
 //var message_routes = require('./routes/message_routes.js');
 //app.use('/', message_routes);
 

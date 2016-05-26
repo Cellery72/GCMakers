@@ -3,7 +3,6 @@ var app = angular.module('makers', ['ui.router', 'ui.bootstrap', 'angular-jwt'])
 
 app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
 
-
     $urlRouterProvider.otherwise('/');
     $stateProvider
         .state('home', {
@@ -99,30 +98,6 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
             templateUrl: 'site/partials/admin/admin.panel.html',
             controller: 'AdminCtrl as ctrl',
             parent: 'admin'
-        })
-        .state('admin.users', {
-            url: '/users',
-            templateUrl: 'site/partials/admin/admin.users.html',
-            controller: 'AdminCtrl as ctrl',
-            parent: 'admin',
-            resolve: {
-                users: function (userSrv) {
-                    return userSrv.getUsers();
-                }
-            }
-
-        })
-        .state('admin.uploads', {
-            url: '/uploads',
-            templateUrl: 'site/partials/admin/admin.uploads.html',
-            controller: 'AdminCtrl as ctrl',
-            parent: 'admin'
-                //            resolve: {
-                //                upload: function (uploadSrv) {
-                //                    return uploadSrv.getUploads();
-                //                }
-                //            }
-
         })
         .state('admin.home', {
             url: '/home',

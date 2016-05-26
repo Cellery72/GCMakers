@@ -1,7 +1,7 @@
 <button class="btn btn-warning" ng-click="ctrl.go('admin.panel')">
     Back</button>
 <button class="btn btn-primary pull-right" ng-click="ctrl.refresh()"><i class="fa fa-refresh fa-lg"></i></button>
-<button class="btn btn-success pull-right" ng-click="ctrl.go('user.register')"><i class="fa fa-plus fa-lg"></i></button>
+<button class="btn btn-success pull-right" ng-click="ctrl.go('admin.register')"><i class="fa fa-plus fa-lg"></i></button>
 
 
 <div class="box">
@@ -30,14 +30,16 @@
                 </td>
 
                 <td>
-                    <select class="form-control" ng-options="adminOption as adminOption for adminOption in ctrl.adminOptions" ng-model="user.admin">
+                    <select class="form-control">
+                        <option>{{user.admin | yesNo}}</option>
+                        <option>{{!user.admin | yesNo}}</option>
                     </select>
                 </td>
                 <td>
-                    <button class=" btn btn-success " ng-click="ctrl.updateUser(user) "><i class="fa fa-save "></i></button>
+                    <button class="btn btn-success" ng-click="ctrl.updateUser()"><i class="fa fa-save"></i></button>
                 </td>
                 <td>
-                    <button class="btn btn-danger " ng-click="ctrl.deleteUser(user) "><i class="fa fa-trash "> Delete</i></button>
+                    <button class="btn btn-danger" ng-click="ctrl.deleteUser()"><i class="fa fa-trash"> Delete</i></button>
                 </td>
             </tr>
 

@@ -30,16 +30,14 @@
                 </td>
 
                 <td>
-                    <select class="form-control">
-                        <option>{{user.admin | yesNo}}</option>
-                        <option>{{!user.admin | yesNo}}</option>
+                    <select class="form-control" ng-options="adminOption as adminOption for adminOption in ctrl.adminOptions" ng-model="user.admin">
                     </select>
                 </td>
                 <td>
-                    <button class="btn btn-success" ng-click="ctrl.updateUser()"><i class="fa fa-save"></i></button>
+                    <button class=" btn btn-success " ng-click="ctrl.updateUser(user) "><i class="fa fa-save "></i></button>
                 </td>
                 <td>
-                    <button class="btn btn-danger" ng-click="ctrl.deleteUser()"><i class="fa fa-trash"> Delete</i></button>
+                    <button class="btn btn-danger " ng-click="ctrl.deleteUser() "><i class="fa fa-trash "> Delete</i></button>
                 </td>
             </tr>
 

@@ -3,14 +3,14 @@
 
     app.controller('AdminCtrl', AdminCtrl);
 
-    function AdminCtrl($state, api, userSrv, jwtHelper, uploadSrv, $firebaseAuth, $rootScope) {
+    function AdminCtrl($state, api, userSrv, jwtHelper, uploadSrv, $rootScope) {
         var adminVm = this;
         adminVm.email;
         adminVm.password = null;
         adminVm.auth_btn = "Login";
         adminVm.img;
         adminVm.users = userSrv.users;
-        adminVm.selected = true;
+        adminVm.adminOptions = [true, false];
         //        adminVm.upload = uploadSrv.upload;
 
 
@@ -49,7 +49,7 @@
                 firstName: adminVm.firstName,
                 lastName: adminVm.lastName,
                 email: adminVm.newEmail,
-                admin: false,
+                admin: adminVm.admin,
                 password: adminVm.newPassword,
             }
             api.request('/register', payload, 'POST')
@@ -108,16 +108,16 @@
         }
 
         //UPDATE USER
-        function updateUser(_id) {
+        function updateUser(user) {
 
             var payload = {
-                firstName: adminVm.firstName,
-                lastName: adminVm.lastName,
-                email: adminVm.email,
-                admin: adminVm.admin
-
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                admin: user.admin
             }
-            userSrv.updateUser();
+
+            userSrv.updateUser(user._id, payload);
         }
 
         //DELETE USER

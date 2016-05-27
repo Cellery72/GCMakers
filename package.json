@@ -1,7 +1,7 @@
 {
-  "name": "makers",
-  "version": "1.0.0",
-  "description": "",
+  "name": "GCMakers",
+  "version": "0.0.2",
+  "description": "Open source web application for the GeorgianCollege Makers",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AmandaJField/Makers.git"
+    "url": "git+https://github.com/Cellery72/GCMakers.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AmandaJField/Makers/issues"
+    "url": "https://github.com/Cellery72/GCMakers/issues"
   },
-  "homepage": "https://github.com/AmandaJField/Makers#readme",
+  "homepage": "https://github.com/Cellery72/GCMakers#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.3.0",
@@ -27,7 +27,8 @@
     "mongod": "^1.3.0",
     "mongodb": "^2.1.18",
     "mongoose": "^4.4.16",
-    "nodemailer": "^2.4.1"
+    "nodemailer": "^2.4.1",
+    "nodemon": "^1.9.2"
   },
   "devDependencies": {
     "del": "^2.2.0",

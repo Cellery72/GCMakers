@@ -19,8 +19,8 @@ app.use(express.static(__dirname + './../app/'));
 mongoose.connect('mongodb://localhost/data/db/');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-    console.log("Connected to db at /data/db/")
+db.once('open', function() {
+    console.log("Connected to db at /data/db/");
 });
 
 //Routes
@@ -32,16 +32,16 @@ app.use('/', user_routes);
 //var message_routes = require('./routes/message_routes.js');
 //app.use('/', message_routes);
 
-app.on('close', function () {
+app.on('close', function() {
     console.error('dropping db');
-    db.db.dropDatabase(function () {
+    db.db.dropDatabase(function() {
         console.error('closing db connection');
         mongoose.connection.close();
     })
 })
 
 //Connection
-app.listen(port, function () {
+app.listen(port, function() {
     console.log('Listening on http://localhost:' + port);
     console.log('Stop Server with CTRL + C');
 });

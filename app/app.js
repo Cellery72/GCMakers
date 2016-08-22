@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('makers', ['ui.router', 'ui.bootstrap', 'angular-jwt']);
 
-app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/');
     $stateProvider
@@ -33,6 +33,42 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                 },
                 layout: {
                     templateUrl: 'site/partials/about.html',
+                    controller: 'MainCtrl as ctrl'
+
+                },
+                footer: {
+                    templateUrl: 'site/partials/common/footer.html',
+                    controller: 'MainCtrl as ctrl'
+                }
+            }
+        })
+        .state('contact', {
+            url: '/contact',
+            views: {
+                header: {
+                    templateUrl: 'site/partials/common/header.html',
+                    controller: 'MainCtrl as ctrl'
+                },
+                layout: {
+                    templateUrl: 'site/partials/contact.html',
+                    controller: 'MainCtrl as ctrl'
+
+                },
+                footer: {
+                    templateUrl: 'site/partials/common/footer.html',
+                    controller: 'MainCtrl as ctrl'
+                }
+            }
+        })
+        .state('messageboard', {
+            url: '/about',
+            views: {
+                header: {
+                    templateUrl: 'site/partials/common/header.html',
+                    controller: 'MainCtrl as ctrl'
+                },
+                layout: {
+                    templateUrl: 'site/partials/messageboard.html',
                     controller: 'MainCtrl as ctrl'
 
                 },
@@ -83,13 +119,13 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
             parent: 'admin'
         })
 
-    $httpProvider.interceptors.push(function (jwtHelper) {
+    $httpProvider.interceptors.push(function(jwtHelper) {
         return {
-            request: function (config) {
+            request: function(config) {
                 config.headers.authentication = localStorage.authToken;
                 return config;
             },
-            response: function (response) {
+            response: function(response) {
                 var auth_token = response.headers('authentication');
                 if (auth_token) {
                     var decrypt_token = jwtHelper.decodeToken(auth_token);

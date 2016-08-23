@@ -1,11 +1,7 @@
 ![Georgian College Logo](http://cdn.agilitycms.com/dine-on-campus/Georgian/HomeTheme/Logo2014.jpg "Georgian College")
 # GC Makers Web Application
-<<<<<<< HEAD
 
-### Version 0.0.2
-=======
-#### Version 0.0.2
->>>>>>> Development
+### Version 0.0.3
 ------------------------------------------------------------------------
 The Georgian College Makers club is a group of like minded students interested in making **'cool' stuff**. That term is purposely vague - whether it be the newest technological advancement in a developing industry, a simple desktop application, or perhaps a 3D printed robotic arm.. the Makers are interested!
 > This repository is a WIP (work in progress) and contains the most recent and ongoing changes to the application. If you don't like **risk, instability, or even uncertainty** don't use our WIP application.
@@ -22,7 +18,7 @@ The Georgian College Makers club is a group of like minded students interested i
   ><a href="https://github.com/Cellery72/GCMakers/tree/Testing">**origin/Testing**<a/>
   >- This is the UAT (User Acceptance Testing) branch to handle ongoing testing to the system, this branch is hosted on the development server.
 
-  ><a href="https://github.com/Cellery72/GCMakers/tree/master">**origin/master**<a/> 
+  ><a href="https://github.com/Cellery72/GCMakers/tree/master">**origin/master**<a/>
   >- Public branch, this is the live copy of the web application running in production.
 
 

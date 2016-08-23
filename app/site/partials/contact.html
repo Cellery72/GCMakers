@@ -1,3 +1,4 @@
+<div class="text-center alert" ng-class="ctrl.alertClass" ng-show="ctrl.showAlert" role="alert">{{ctrl.emailMessage}}</div>
 <section id="page-breadcrumb">
     <div class="vertical-center sun">
         <div class="container">
@@ -18,18 +19,18 @@
         <div class="col-md-12">
             <div class="contact-form bottom">
                 <h2>Send a message</h2>
-                <form id="main-contact-form" name="contact-form" method="post" action="sendemail.php">
+                <form id="main-contact-form" name="contact-form">
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                        <input type="text" name="name" class="form-control" required="required" ng-model="ctrl.contactName" placeholder="Name">
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control" required="required" placeholder="Email Id">
+                        <input type="email" name="email" class="form-control" required="required" placeholder="Email Address" ng-model="ctrl.contactEmail">
                     </div>
                     <div class="form-group">
-                        <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your text here"></textarea>
+                        <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your text here" ng-model="ctrl.contactMessage"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-submit" value="Submit">
+                        <input type="submit" name="submit" class="btn btn-submit" ng-click="ctrl.sendEmail(ctrl.contactName,ctrl.contactEmail,ctrl.contactMessage)" value="Submit">
                     </div>
                 </form>
             </div>

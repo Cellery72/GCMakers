@@ -19,13 +19,16 @@ app.use(express.static(__dirname + './../app/'));
 mongoose.connect('mongodb://localhost/data/db/');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.once('open', function () {
     console.log("Connected to db at /data/db/");
 });
 
 //Routes
 var user_routes = require('./routes/user_routes.js');
 app.use('/', user_routes);
+var public_routes = require('./routes/public_routes.js');
+app.use('/', public_routes);
+
 //
 //var upload_routes = require('./routes/upload_routes.js');
 //app.use('/', upload_routes);

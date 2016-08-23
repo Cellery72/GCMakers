@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport('smtps://afield788%40gmail.com:JasonField89@smtp.gmail.com');
+var transporter = nodemailer.createTransport('smtps://<email>%40gmail.com:<pass>@smtp.gmail.com');
 
 
 //register a new user

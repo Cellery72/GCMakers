@@ -30,7 +30,7 @@
                         <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your text here" ng-model="ctrl.contactMessage"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-submit" ng-click="ctrl.sendEmail(ctrl.contactName,ctrl.contactEmail,ctrl.contactMessage)" value="Submit">
+                        <input type="submit" ng-disabled="contact-form.$nvalid" name="submit" class="btn btn-submit" ng-click="ctrl.sendEmail(ctrl.contactName,ctrl.contactEmail,ctrl.contactMessage)" value="Submit">
                     </div>
                 </form>
             </div>

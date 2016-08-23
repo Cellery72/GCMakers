@@ -59,18 +59,19 @@
             }
             api.request('/sendEmail', payload, 'POST')
                 .then(function (res) {
-                    if (res.status == 200) {
+                    if (res.data.user == null) {
+                        console.log(res.data.msg);
+                        mainVm.alertClass = "alert-danger";
+
+                        mainVm.emailMessage = res.data.msg + " - Please review your information and try again.";
+
+
+                    } else {
                         console.log(res.data.msg);
                         mainVm.alertClass = "alert-success";
 
                         mainVm.emailMessage = res.data.msg + " from " +
                             res.data.user.email;
-
-                    } else {
-                        console.log(res.data.msg);
-                        mainVm.alertClass = "alert-danger";
-
-                        mainVm.emailMessage = res.data.msg + " from " + email + " - Please review your information and try again.";
 
                     }
                     mainVm.showAlert = true;

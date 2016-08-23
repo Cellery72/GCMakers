@@ -29,6 +29,9 @@
             case 'messageboard':
                 $state.go('messageboard');
                 break;
+            case 'gallery':
+                $state.go('gallery');
+                break;
             case 'admin.panel':
                 $state.go('admin.panel');
                 break;

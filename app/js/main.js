@@ -21,12 +21,12 @@ jQuery(function ($) {
 
     // portfolio filter
     $(window).load(function () {
-$('.main-slider').addClass('animate-in');
-$('.preloader').remove();
+        $('.main-slider').addClass('animate-in');
+        $('.preloader').remove();
         //End Preloader
-    if ($('.masonery_area').length) {
-        $('.masonery_area').masonry(); //Masonry
-    }
+        if ($('.masonery_area').length) {
+            $('.masonery_area').masonry(); //Masonry
+        }
         var $portfolio_selectors = $('.portfolio-filter >li>a');
 
         if ($portfolio_selectors.length) {

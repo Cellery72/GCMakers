@@ -175,6 +175,9 @@ h3 {
 
 #logo {
     padding-left: 20px;
+    margin-top: -26px;
+    max-height: 100px;
+    width: auto;
 }
 
 .search {
@@ -345,6 +348,8 @@ ul.sub-menu {
     font-variant: small-caps;
     font-size: 12pt;
     color: darkgrey;
+    display: inline-block;
+    padding: 0 10px 10px 10px;
 }
 
 .fa-angle-down {

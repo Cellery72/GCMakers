@@ -6,8 +6,11 @@
 
     function MainCtrl($state) {
         var mainVm = this;
-        mainVm.state = $state;
+        mainVm.meetingDate = "Tuesday September 6th, 2016";
+        mainVm.meetingTime = "6:00PM";
+        mainVm.meetingRoom = "E212";
 
+        mainVm.state = $state;
         mainVm.load = load;
         mainVm.go = go;
 

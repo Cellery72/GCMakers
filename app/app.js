@@ -2,8 +2,11 @@
 var app = angular.module('makers', ['ui.router', 'ui.bootstrap', 'angular-jwt']);
 
 app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
+    // defer no route to home route
+    $urlRouterProvider.when('', '/');
+    // defer all other garbage to 404
+    $urlRouterProvider.otherwise('/404');
 
-    $urlRouterProvider.otherwise('/');
     $stateProvider
         .state('home', {
             url: '/',
@@ -61,7 +64,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
             }
         })
         .state('messageboard', {
-            url: '/about',
+            url: '/messageboard',
             views: {
                 header: {
                     templateUrl: 'site/partials/common/header.html',
@@ -117,6 +120,23 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
             templateUrl: 'site/partials/admin/admin.html',
             controller: 'EditCtrl as ctrl',
             parent: 'admin'
+        })
+        .state('404', {
+          url: '/404',
+          views: {
+            header:{
+                templateUrl: 'site/partials/common/header.html',
+                controller: 'MainCtrl as ctrl'
+            },
+            layout: {
+              templateUrl: 'site/partials/404.html',
+              controller: 'MainCtrl as ctrl'
+            },
+            footer: {
+              templateUrl: 'site/partials/common/footer.html',
+              controller: 'MainCtrl as ctrl'
+            }
+          }
         })
 
     $httpProvider.interceptors.push(function(jwtHelper) {

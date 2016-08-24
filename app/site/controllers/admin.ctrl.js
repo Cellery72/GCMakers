@@ -9,21 +9,21 @@
         adminVm.password = null;
         adminVm.auth_btn = "Login";
         adminVm.img;
-
-        if ($state.current.name == 'admin') {
-            $state.go('admin.panel');
-
-        }
-        if (localStorage.authToken) {
-            var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
-            if (decrypt_token.email) {
-                console.log('Welcome ' + decrypt_token.firstName + '!');
-            }
-        }
-
-        if ($state.current.name == 'admin' || ($state.current.name !== 'admin.register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
-            $state.go('admin.login');
-        }
+        adminVm.changeTime = false;
+        // if ($state.current.name == 'admin') {
+        //     $state.go('admin.panel');
+        //
+        // }
+        // if (localStorage.authToken != null) {
+        //     var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
+        //     if (decrypt_token.email) {
+        //         console.log('Welcome ' + decrypt_token.firstName + '!');
+        //     }
+        // }
+        //
+        // if ($state.current.name == 'admin' || ($state.current.name !== 'admin.register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
+        //     $state.go('admin.login');
+        // }
 
 
 
@@ -34,6 +34,7 @@
         adminVm.logout = logout;
         adminVm.go = go;
         adminVm.getUploads = getUploads;
+        adminVm.saveTime = saveTime;
 
         //REGISTER
         function register() {
@@ -116,7 +117,11 @@
 
         }
 
+        function saveTime(date,time){
+            adminVm.changeTime = false;
+        }
 
+    
     }
 
 })();

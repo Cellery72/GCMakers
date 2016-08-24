@@ -10,20 +10,21 @@
         adminVm.auth_btn = "Login";
         adminVm.img;
         adminVm.changeTime = false;
-        // if ($state.current.name == 'admin') {
-        //     $state.go('admin.panel');
-        //
-        // }
-        // if (localStorage.authToken != null) {
-        //     var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
-        //     if (decrypt_token.email) {
-        //         console.log('Welcome ' + decrypt_token.firstName + '!');
-        //     }
-        // }
-        //
-        // if ($state.current.name == 'admin' || ($state.current.name !== 'admin.register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
-        //     $state.go('admin.login');
-        // }
+        adminVm.date;
+        if ($state.current.name == 'admin') {
+            $state.go('admin.panel');
+
+        }
+        if (localStorage.authToken != null) {
+            var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
+            if (decrypt_token.email) {
+                console.log('Welcome ' + decrypt_token.firstName + '!');
+            }
+        }
+
+        if ($state.current.name == 'admin' || ($state.current.name !== 'admin.register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
+            $state.go('admin.login');
+        }
 
 
 
@@ -34,7 +35,7 @@
         adminVm.logout = logout;
         adminVm.go = go;
         adminVm.getUploads = getUploads;
-        adminVm.saveTime = saveTime;
+        adminVm.submitTime = submitTime;
 
         //REGISTER
         function register() {
@@ -117,11 +118,33 @@
 
         }
 
-        function saveTime(date,time){
-            adminVm.changeTime = false;
-        }
+        function submitTime(date,time){
+          adminVm.changeTime = false;
+          // date = date.toDateString();
+          // time = time.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});
+          // console.log("Changed meeting time to: " + date + " at " + time);
+          console.log(time.getHours());
+          var isoDate = new Date(date.getFullYear(),date.getMonth(),date.getDate(),time.getHours(),time.getMinutes(),0).toISOString();
+console.log(isoDate);
+          var payload = {
+            date: isoDate,
+          }
 
-    
+
+          api.request('/setMeeting', payload, 'POST')
+          .then(function(res){
+            if (res.data.user == null) {
+                console.log(res.data.msg);
+
+            } else {
+                console.log(res.data.msg);
+
+
+            }
+          })
+
+
+
+
     }
-
-})();
+}})();

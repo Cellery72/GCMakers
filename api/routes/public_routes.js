@@ -55,11 +55,7 @@ router.post('/setMeeting', function(req, res) {
         time: __meeting.time
     });
     newMeeting.save(function(err,meeting){
-      if(err){
-        console.log(err);
-      }else{
-        console.log("meeting saved");
-      }
+      console.log(err || 'meeting saved');
     }).then(function(meeting) {
             res.json({
                 meeting: newMeeting,
@@ -94,7 +90,7 @@ router.post('/upcomingMeeting/', function (req, res) {
         });
         console.log(meeting);
       }
-    }).sort({"time":1}).limit(1);
+    }).sort({"date":1}).limit(1);
 });
 
 

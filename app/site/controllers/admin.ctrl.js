@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     app.controller('AdminCtrl', AdminCtrl);
@@ -46,7 +46,7 @@
                 password: adminVm.newPassword
             }
             api.request('/register', payload, 'POST')
-                .then(function (res) {
+                .then(function(res) {
                     //successful response
                     if (res.status == 200) {
                         //user exists
@@ -58,7 +58,7 @@
                         }
                     }
                     adminVm.auth_btn = "Error";
-                }, function () {
+                }, function() {
                     //error
                     adminVm.auth_btn = "Error";
                 })
@@ -71,7 +71,7 @@
                 password: adminVm.password
             }
             api.request('/authenticate', user, 'POST')
-                .then(function (res) {
+                .then(function(res) {
                     localStorage.loginEmail = adminVm.email;
                     if (res.status == 200) {
                         adminVm.auth_btn = "Success";
@@ -97,18 +97,18 @@
 
         function go(location) {
             switch (location) {
-            case 'home':
-                $state.go('home');
-                break;
-            case 'about':
-                $state.go('about');
-                break;
-            case 'admin.home':
-                $state.go('admin.home');
-                break;
-            case 'admin.about':
-                $state.go('admin.about');
-                break;
+                case 'home':
+                    $state.go('home');
+                    break;
+                case 'about':
+                    $state.go('about');
+                    break;
+                case 'admin.home':
+                    $state.go('admin.home');
+                    break;
+                case 'admin.about':
+                    $state.go('admin.about');
+                    break;
             }
         }
 
@@ -118,33 +118,25 @@
 
         }
 
-        function submitTime(date,time){
-          adminVm.changeTime = false;
-          // date = date.toDateString();
-          // time = time.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});
-          // console.log("Changed meeting time to: " + date + " at " + time);
-          console.log(time.getHours());
-          var isoDate = new Date(date.getFullYear(),date.getMonth(),date.getDate(),time.getHours(),time.getMinutes(),0).toISOString();
-console.log(isoDate);
-          var payload = {
-            date: isoDate,
-          }
-
-
-          api.request('/setMeeting', payload, 'POST')
-          .then(function(res){
-            if (res.data.user == null) {
-                console.log(res.data.msg);
-
-            } else {
-                console.log(res.data.msg);
-
-
+        function submitTime(date, time) {
+            adminVm.changeTime = false;
+            // date = date.toDateString();
+            // time = time.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});
+            // console.log("Changed meeting time to: " + date + " at " + time);
+            var isoDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), time.getHours(), time.getMinutes(), 0).toISOString();
+            var payload = {
+                date: isoDate,
             }
-          })
-
-
+            api.request('/setMeeting', payload, 'POST')
+                .then(function(res) {
+                    if (res.data.user == null) {
+                        console.log(res.data.msg);
+                    } else {
+                        console.log(res.data.msg);
+                    }
+                })
+        }
 
 
     }
-}})();
+})();

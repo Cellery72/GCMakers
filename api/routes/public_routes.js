@@ -82,16 +82,22 @@ router.get('/meetings/', function (req, res) {
 
 
 //get next meeting
-router.get('/meeting/', function (req, res) {
+router.post('/upcomingMeeting/', function (req, res) {
 
     Meeting.find({"date":{$gte: new Date().toISOString()}},function(err,meeting){
       if(err){
         console.log(err);
       }else{
-        res.json(meeting);
+        res.json({
+          meeting: meeting,
+          msg: "Meeting retrieved successfully"
+        });
         console.log(meeting);
       }
     }).sort({"time":1}).limit(1);
 });
+
+
+
 
 module.exports = router;

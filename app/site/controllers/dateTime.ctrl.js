@@ -4,6 +4,7 @@
     app.controller('DateTimeCtrl', DateTimeCtrl);
 
     function DateTimeCtrl($scope, $log) {
+
         $scope.today = function () {
             $scope.dt = new Date();
         };

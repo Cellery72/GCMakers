@@ -104,7 +104,6 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
             views: {
                 layout: {
                     templateUrl: 'site/partials/admin/admin.html',
-                    controller: 'AdminCtrl as ctrl'
                 }
             }
         })

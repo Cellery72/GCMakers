@@ -26,7 +26,7 @@
         }
 
         function updateUser(_id) {
-            return api.request('/users/add', _id, 'PUT')
+            return api.request('/users/add', _id, 'PUT');
         }
     };
 })();

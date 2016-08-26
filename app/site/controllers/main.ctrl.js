@@ -49,8 +49,9 @@
         function load() {
             $('.main-slider').addClass('animate-in');
             $('.preloader').remove();
+
             //update meeting time to most upcoming
-            api.request('/upcomingMeeting', {}, 'POST')
+            api.request('/upcomingMeeting', '', 'GET')
                 .then(function(res) {
                     if (res.data.msg == null) {
                         console.log(res.data.msg);
@@ -58,10 +59,12 @@
                         console.log(res.data.meeting[0]);
                         var date = new Date(Date.parse(res.data.meeting[0].date));
                         mainVm.meetingDate = date.toDateString();
-                        mainVm.meetingTime = date.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});
-
+                        mainVm.meetingTime = date.toLocaleTimeString(navigator.language, {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
                     }
-                })
+                });
         }
 
         function sendEmail(name, email, message) {
@@ -94,16 +97,10 @@
                 })
         }
 
-
-
-
-
         function clearForm() {
             mainVm.contactName = "";
             mainVm.contactEmail = "";
             mainVm.contactMessage = "";
         }
-
-
     }
 })();

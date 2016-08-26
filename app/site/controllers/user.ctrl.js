@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     app.controller('UserCtrl', UserCtrl);
@@ -68,9 +68,10 @@
                     password: userVm.newPassword,
                 }
                 api.request('/register', payload, 'POST')
-                    .then(function (res) {
+                    .then(function(res) {
                         //successful response
                         if (res.status == 200) {
+
                             //user exists
                             if (res.data.user == null) {
                                 alert('This email address is already registered!');
@@ -79,10 +80,10 @@
                             }
                         }
                         userVm.auth_btn = "Error";
-                    }, function () {
+                    }, function() {
                         //error
                         userVm.auth_btn = "Error";
-                    })
+                    });
             }
         }
 
@@ -93,8 +94,9 @@
                 password: userVm.password
             }
             api.request('/authenticate', payload, 'POST')
-                .then(function (res) {
+                .then(function(res) {
                     localStorage.loginEmail = userVm.email;
+
                     if (res.status == 200) {
                         userVm.auth_btn = "Success";
                         //user exists
@@ -122,7 +124,7 @@
             $state.go('user.login');
         }
 
-        //UPDATE USER 
+        //UPDATE USER
         function updateUser() {
             var payload = {
                 firstName: userVm.user.firstName,
@@ -135,7 +137,7 @@
         }
         //DELETE USER
         function deleteUser() {
-            userSrv.deleteUser(userVm.user._id).then(function () {
+            userSrv.deleteUser(userVm.user._id).then(function() {
                 adminVm.refresh();
             })
         }
@@ -143,15 +145,15 @@
         //NAVIGATION
         function go(location) {
             switch (location) {
-            case 'home':
-                $state.go('home');
-                break;
-            case 'about':
-                $state.go('about');
-                break;
-            case 'admin.panel':
-                $state.go('admin.panel');
-                break;
+                case 'home':
+                    $state.go('home');
+                    break;
+                case 'about':
+                    $state.go('about');
+                    break;
+                case 'admin.panel':
+                    $state.go('admin.panel');
+                    break;
             }
 
         }

@@ -5,6 +5,7 @@
 
     function MainCtrl($state, api) {
         var mainVm = this;
+        mainVm.meetingInfo = "";
         mainVm.meetingDate = "September 6th";
         mainVm.meetingTime = "6:00PM";
         mainVm.meetingRoom = "E212";
@@ -56,13 +57,15 @@
                     if (res.data.msg == null) {
                         console.log(res.data.msg);
                     } else {
-                        console.log(res.data.meeting[0]);
-                        var date = new Date(Date.parse(res.data.meeting[0].date));
-                        mainVm.meetingDate = date.toDateString();
-                        mainVm.meetingTime = date.toLocaleTimeString(navigator.language, {
-                            hour: '2-digit',
-                            minute: '2-digit'
-                        });
+                        if (res.data.meeting.length > 0) {
+                            var date = new Date(Date.parse(res.data.meeting[0].date));
+                            mainVm.meetingDate = date.toDateString();
+                            mainVm.meetingTime = date.toLocaleTimeString(navigator.language, {
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            });
+                            mainVm.meetingInfo = "Next Meeting: " + mainVm.meetingDate + ' | ' + mainVm.meetingTime + ' | ' + mainVm.meetingRoom;
+                        }
                     }
                 });
         }

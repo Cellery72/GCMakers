@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('makers', ['ui.router', 'ui.bootstrap', 'angular-jwt']);
 
-app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
     // defer no route to home route
     $urlRouterProvider.when('', '/');
     // defer all other garbage to 404
@@ -155,13 +155,13 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
             }
         })
 
-    $httpProvider.interceptors.push(function (jwtHelper) {
+    $httpProvider.interceptors.push(function(jwtHelper) {
         return {
-            request: function (config) {
+            request: function(config) {
                 config.headers.authentication = localStorage.authToken;
                 return config;
             },
-            response: function (response) {
+            response: function(response) {
                 var auth_token = response.headers('authentication');
                 if (auth_token) {
                     var decrypt_token = jwtHelper.decodeToken(auth_token);

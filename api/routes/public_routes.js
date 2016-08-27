@@ -77,26 +77,6 @@ router.get('/meetings/', function(req, res) {
         }
     });
 });
-//get next meeting
-router.post('/upcomingMeeting/', function(req, res) {
-    Meeting.find({
-        "date": {
-            $gte: new Date().toISOString()
-        }
-    }, function(err, meeting) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json({
-                meeting: meeting,
-                msg: "Meeting retrieved successfully"
-            });
-            console.log(meeting);
-        }
-    }).sort({
-        "date": 1
-    }).limit(1);
-});
 
 router.get('/upcomingMeeting', function(req, res) {
     Meeting.find({

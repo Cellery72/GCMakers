@@ -7,19 +7,19 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 
-var testUser = User({
-    firstName: 'Amanda',
-    lastName: 'Field',
-    email: 'afield@brainstation.io',
-    password: '1'
-});
+// var testUser = User({
+//     firstName: 'Amanda',
+//     lastName: 'Field',
+//     email: 'afield@brainstation.io',
+//     password: '1'
+// });
 //
-var testComment = Comment({
-    creator: testUser,
-    title: 'First Commsent Title',
-    message: 'First Tester message',
-    admin: true
-});
+// var testComment = Comment({
+//     creator: testUser,
+//     title: 'First Commsent Title',
+//     message: 'First Tester message',
+//     admin: true
+// });
 
 //console.log(testComment);
 //testComment.save(function (err) {

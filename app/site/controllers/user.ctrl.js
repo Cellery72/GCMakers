@@ -7,7 +7,6 @@
         var userVm = this;
         userVm.email;
         userVm.admin;
-        userVm.user;
         userVm.newPassword = null;
 
         function isValidMail(str) {
@@ -91,17 +90,26 @@
         function login() {
             var payload = {
                 email: userVm.email,
-                password: userVm.password
+                password: userVm.password,
             }
             api.request('/authenticate', payload, 'POST')
                 .then(function(res) {
                     localStorage.loginEmail = userVm.email;
-
                     if (res.status == 200) {
                         userVm.auth_btn = "Success";
                         //user exists
                         if (res.data.user != null) {
+                            userVm.user = {
+                                firstName: res.data.user.firstName,
+                                lastName: res.data.user.lastName,
+                                email: res.data.user.email,
+                                pass: res.data.user.password
+                            }
+                            if(res.data.user.admin){
+                                $state.go('admin.panel');
+                            }else{
                             $state.go('user.panel');
+                        }
                         } else {
                             alert(res.data.msg);
                         }
@@ -120,7 +128,7 @@
         //LOGOUT
         function logout() {
             localStorage.removeItem('authToken');
-
+            userVm.user = {};
             $state.go('user.login');
         }
 
@@ -138,7 +146,7 @@
         //DELETE USER
         function deleteUser() {
             userSrv.deleteUser(userVm.user._id).then(function() {
-                adminVm.refresh();
+                userVm.refresh();
             })
         }
 

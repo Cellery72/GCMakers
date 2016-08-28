@@ -91,7 +91,6 @@ router.get('/upcomingMeeting', function(req, res) {
                 meeting: meeting,
                 msg: "Meeting retrieved successfully"
             });
-            console.log(meeting);
         }
     }).sort({
         "date": 1

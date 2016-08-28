@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     app.controller('UserCtrl', UserCtrl);
@@ -7,7 +7,6 @@
         var userVm = this;
         userVm.email;
         userVm.admin;
-        userVm.user;
         userVm.newPassword = null;
 
         function isValidMail(str) {
@@ -68,9 +67,10 @@
                     password: userVm.newPassword,
                 }
                 api.request('/register', payload, 'POST')
-                    .then(function (res) {
+                    .then(function(res) {
                         //successful response
                         if (res.status == 200) {
+
                             //user exists
                             if (res.data.user == null) {
                                 alert('This email address is already registered!');
@@ -79,10 +79,10 @@
                             }
                         }
                         userVm.auth_btn = "Error";
-                    }, function () {
+                    }, function() {
                         //error
                         userVm.auth_btn = "Error";
-                    })
+                    });
             }
         }
 
@@ -90,16 +90,26 @@
         function login() {
             var payload = {
                 email: userVm.email,
-                password: userVm.password
+                password: userVm.password,
             }
             api.request('/authenticate', payload, 'POST')
-                .then(function (res) {
+                .then(function(res) {
                     localStorage.loginEmail = userVm.email;
                     if (res.status == 200) {
                         userVm.auth_btn = "Success";
                         //user exists
                         if (res.data.user != null) {
+                            userVm.user = {
+                                firstName: res.data.user.firstName,
+                                lastName: res.data.user.lastName,
+                                email: res.data.user.email,
+                                pass: res.data.user.password
+                            }
+                            if(res.data.user.admin){
+                                $state.go('admin.panel');
+                            }else{
                             $state.go('user.panel');
+                        }
                         } else {
                             alert(res.data.msg);
                         }
@@ -118,11 +128,11 @@
         //LOGOUT
         function logout() {
             localStorage.removeItem('authToken');
-
+            userVm.user = {};
             $state.go('user.login');
         }
 
-        //UPDATE USER 
+        //UPDATE USER
         function updateUser() {
             var payload = {
                 firstName: userVm.user.firstName,
@@ -135,23 +145,23 @@
         }
         //DELETE USER
         function deleteUser() {
-            userSrv.deleteUser(userVm.user._id).then(function () {
-                adminVm.refresh();
+            userSrv.deleteUser(userVm.user._id).then(function() {
+                userVm.refresh();
             })
         }
 
         //NAVIGATION
         function go(location) {
             switch (location) {
-            case 'home':
-                $state.go('home');
-                break;
-            case 'about':
-                $state.go('about');
-                break;
-            case 'admin.panel':
-                $state.go('admin.panel');
-                break;
+                case 'home':
+                    $state.go('home');
+                    break;
+                case 'about':
+                    $state.go('about');
+                    break;
+                case 'admin.panel':
+                    $state.go('admin.panel');
+                    break;
             }
 
         }

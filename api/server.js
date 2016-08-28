@@ -26,8 +26,9 @@ db.once('open', function () {
 //Routes
 var user_routes = require('./routes/user_routes.js');
 app.use('/', user_routes);
-var public_routes = require('./routes/public_routes.js');
-app.use('/', public_routes);
+
+var public_routes = require('./routes/public_routes');
+app.use('/',public_routes);
 
 //
 //var upload_routes = require('./routes/upload_routes.js');

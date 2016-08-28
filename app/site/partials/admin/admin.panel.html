@@ -1,18 +1,18 @@
 <button class="btn btn-success" ng-click="ctrl.go('home')">
     View Website</button>
 <button class="btn btn-danger" ng-click="ctrl.logout()">Logout</button>
+<div ng-controller="DateTimeCtrl">
 
-<div class="box">
+<h3>Next Meeting Time : <em>{{dt | date:'fullDate' }}</em> at <em>{{mytime | date:'shortTime' }}</em>
+<a href ng-hide="ctrl.changeTime" ng-click="ctrl.changeTime=true">Change Time</a></h3>
+
+<div class="jumbotron" ng-show="ctrl.changeTime">
+<div class="box col-md-12">
     <form class="form-inline">
-        <div class="form-group">
-            <label>Next Meeting Time</label>
 
-        </div>
-
-        <div ng-controller="DateTimeCtrl">
             <p class="input-group">
 
-                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" ng-model="ctrl.dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                 <span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -20,15 +20,14 @@
             </p>
             <uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
 
-            <pre class="alert alert-info"> <em>{{dt | date:'fullDate' }}</em> at {{mytime | date:'shortTime' }}</pre>
-            <input type="submit" value="Save" class="btn btn-default">
+            <input type="submit" value="Save" ng-click="ctrl.submitTime(dt,mytime)" class="btn btn-default">
 
         </div>
 
     </form>
-
 </div>
-
+</div>
+</div>
 <div class="box">
     <table class="table
 ">

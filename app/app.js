@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('makers', ['ui.router', 'ui.bootstrap', 'angular-jwt']);
 
-app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
     // defer no route to home route
     $urlRouterProvider.when('', '/');
     // defer all other garbage to 404
@@ -98,44 +98,51 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('user', {
+            url: '/user',
+            views: {
+                layout: {
+                    templateUrl: 'site/partials/user/user.html',
+                    controller: 'UserCtrl as ctrl'
+
+                }
+            }
+        })
+        .state('user.login', {
+            url: '/login',
+            templateUrl: 'site/partials/user/user.login.html',
+            parent: 'user'
+        })
+        .state('user.register', {
+            url: '/register',
+            templateUrl: 'site/partials/user/user.register.html',
+            parent: 'user'
+        })
+        .state('user.panel', {
+            url: '/panel',
+            templateUrl: 'site/partials/user/user.panel.html',
+            parent: 'user'
+        })
         .state('admin', {
             url: '/admin',
-            controller: 'AdminCtrl as ctrl',
+
             views: {
                 layout: {
                     templateUrl: 'site/partials/admin/admin.html',
                     controller: 'AdminCtrl as ctrl'
+
+
                 }
             }
-        })
-        .state('admin.login', {
-            url: '/login',
-            templateUrl: 'site/partials/admin/admin.login.html',
-            controller: 'AdminCtrl as ctrl',
-            parent: 'admin'
-        })
-        .state('admin.register', {
-            url: '/register',
-            templateUrl: 'site/partials/admin/admin.register.html',
-            controller: 'AdminCtrl as ctrl',
-            parent: 'admin'
         })
         .state('admin.panel', {
             url: '/panel',
             templateUrl: 'site/partials/admin/admin.panel.html',
-            controller: 'AdminCtrl as ctrl',
             parent: 'admin'
         })
-        .state('admin.home', {
-            url: '/home',
-            templateUrl: 'site/partials/admin/admin.home.html',
-            controller: 'EditCtrl as ctrl',
-            parent: 'admin'
-        })
-        .state('admin.about', {
-            url: '/about',
-            templateUrl: 'site/partials/admin/admin.html',
-            controller: 'EditCtrl as ctrl',
+        .state('admin.users', {
+            url: '/users',
+            templateUrl: 'site/partials/admin/admin.users.html',
             parent: 'admin'
         })
         .state('404', {
@@ -154,15 +161,15 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                     controller: 'MainCtrl as ctrl'
                 }
             }
-        })
+        });
 
-    $httpProvider.interceptors.push(function (jwtHelper) {
+    $httpProvider.interceptors.push(function(jwtHelper) {
         return {
-            request: function (config) {
+            request: function(config) {
                 config.headers.authentication = localStorage.authToken;
                 return config;
             },
-            response: function (response) {
+            response: function(response) {
                 var auth_token = response.headers('authentication');
                 if (auth_token) {
                     var decrypt_token = jwtHelper.decodeToken(auth_token);
@@ -174,6 +181,6 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                 }
                 return response;
             }
-        }
-    })
+        };
+    });
 });

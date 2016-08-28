@@ -6,7 +6,7 @@
 
             <div class="social-icons pull-right">
                 <ul class="nav nav-pills">
-                    <li class="meeting">Next Meeting: {{ctrl.meetingDate}} | {{ctrl.meetingTime}} | {{ctrl.meetingRoom}}
+                    <li class="meeting"> {{ctrl.meetingInfo}}
                     </li>
                 </ul>
 
@@ -25,7 +25,7 @@
                 </button>
 
                 <a class="navbar-brand" href="/">
-                    <h1><img src="images/fullLogo6.png" id="logo"  alt="logo"></h1>
+                    <h1><img src="assets/images/fullLogo6.png" id="logo"  alt="logo"></h1>
                 </a>
 
             </div>
@@ -36,6 +36,7 @@
                     <li><a href ng-click="ctrl.go('messageboard')">Message Board</a></li>
                     <li><a href ng-click="ctrl.go('contact')">Contact</a></li>
                     <li><a href="https://www.facebook.com/gcmakers/?fref=ts" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href ng-click="ctrl.go('admin.panel')" target="_blank"><i class="fa fa-user"></i></a></li>
 
                 </ul>
             </div>

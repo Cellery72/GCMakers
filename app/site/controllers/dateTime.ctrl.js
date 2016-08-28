@@ -4,6 +4,7 @@
     app.controller('DateTimeCtrl', DateTimeCtrl);
 
     function DateTimeCtrl($scope, $log) {
+
         $scope.today = function () {
             $scope.dt = new Date();
         };
@@ -121,7 +122,7 @@
 
 
         $scope.changed = function () {
-            $log.log('Time changed to: ' + $scope.mytime);
+            // $log.log('Time changed to: ' + $scope.mytime);
         };
 
         $scope.clear = function () {

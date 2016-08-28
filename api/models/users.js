@@ -18,7 +18,11 @@ var userSchema = new Schema({
     },
     password: {
         type: String,
-        required: true,
+        required: true
+    },
+    admin: {
+        type: Boolean,
+        required: true
     },
     created_at: Date,
     updated_at: Date
@@ -38,7 +42,7 @@ userSchema.pre('save', function (next) {
 });
 
 userSchema.methods.summary = function () {
-    var summary = "\nName: " + this.name + "\nUsername: " + this.username + "\nEmail: " + this.email + "\Password: " + this.password + "\n";
+    var summary = "\nName: " + this.name + "\nUsername: " + this.username + "\nEmail: " + this.email + "\nPassword: " + this.password + "\n";
     console.log("Summary: \n" + summary);
     return summary;
 };

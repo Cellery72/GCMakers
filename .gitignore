@@ -35,3 +35,5 @@ node_modules
 /node_modules/
 /api/data/
 .vscode/
+*.DS_Store
+*.txt

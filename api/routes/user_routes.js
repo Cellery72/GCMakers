@@ -6,6 +6,26 @@ var jwt = require('jsonwebtoken');
 var nodemailer = require('nodemailer');
 var bcrypt = require('bcryptjs');
 var transporter = nodemailer.createTransport('smtps://afield788%40gmail.com:<password>@smtp.gmail.com');
+// //Admin Test User
+// bcrypt.genSalt(12, function(err, salt){
+//     bcrypt.hash("1", salt, function(err,hash){
+//         var testUser = User({
+//             firstName: 'Makers',
+//             lastName: 'Admin',
+//             email: 'admin@georgiancollege.ca',
+//             password: hash,
+//             admin: 'true'
+//         });
+//
+//         testUser.save(function(err, user){
+//             if(err){
+//                 console.log(err);
+//             }else{
+//                 console.log('User ' + user + 'created');
+//             }
+//         })
+//     });
+// });
 
 // GET all Users
 router.get('/users/', function(req, res) {
@@ -29,18 +49,19 @@ router.post('/register', function(req, res) {
                     firstName: __user.firstName,
                     lastName: __user.lastName,
                     email: __user.email,
-                    password: __user.password
+                    password: __user.password,
+                    admin: false
                 });
                 //encrypt password
                 bcrypt.genSalt(12, function(err, salt) {
                     bcrypt.hash(__user.password, salt, function(err, hash) {
                         // Store hash in your password DB.
-                        console.log(hash);
                         newUser.password = hash;
                         newUser.save(newUser)
                             .then(function(user) {
                                 //remove password from response
                                 delete user.password;
+                                console.log(user);
                                 res.json({
                                     user: user,
                                     msg: 'Account Created'
@@ -52,6 +73,7 @@ router.post('/register', function(req, res) {
                     err ? console.log(err) : console.log('User Created!');
                 });
             } else {
+                console.log('Email already exists');
                 res.json({
                     user: null,
                     msg: 'Email is already registered'
@@ -70,7 +92,6 @@ router.post('/authenticate', function(req, res) {
         })
         .then(function(user) {
             if (user) {
-                console.log(user);
                 //check incoming password against encrypted version
                 bcrypt.compare(__user.password, user.password, function(err, valid) {
                     if (valid) {
@@ -80,12 +101,13 @@ router.post('/authenticate', function(req, res) {
                         var user_obj = {
                             firstName: user.firstName,
                             lastName: user.lastName,
-                            email: user.email
+                            email: user.email,
+                            admin: user.admin
                         };
                         var token = jwt.sign(user_obj, 'randomsalt');
                         res.set('authentication', token);
                         res.json({
-                            user: user,
+                            user: user_obj,
                             msg: 'Authenticated'
                         });
                     } else {

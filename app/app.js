@@ -98,43 +98,51 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('admin', {
-            url: '/admin',
-            controller: 'AdminCtrl as ctrl',
+        .state('user', {
+            url: '/user',
             views: {
                 layout: {
-                    templateUrl: 'site/partials/admin/admin.html',
+                    templateUrl: 'site/partials/user/user.html',
+                    controller: 'UserCtrl as ctrl'
+
                 }
             }
         })
-        .state('admin.login', {
+        .state('user.login', {
             url: '/login',
-            templateUrl: 'site/partials/admin/admin.login.html',
-            controller: 'AdminCtrl as ctrl',
-            parent: 'admin'
+            templateUrl: 'site/partials/user/user.login.html',
+            parent: 'user'
         })
-        .state('admin.register', {
+        .state('user.register', {
             url: '/register',
-            templateUrl: 'site/partials/admin/admin.register.html',
-            controller: 'AdminCtrl as ctrl',
-            parent: 'admin'
+            templateUrl: 'site/partials/user/user.register.html',
+            parent: 'user'
+        })
+        .state('user.panel', {
+            url: '/panel',
+            templateUrl: 'site/partials/user/user.panel.html',
+            parent: 'user'
+        })
+        .state('admin', {
+            url: '/admin',
+
+            views: {
+                layout: {
+                    templateUrl: 'site/partials/admin/admin.html',
+                    controller: 'AdminCtrl as ctrl'
+
+
+                }
+            }
         })
         .state('admin.panel', {
             url: '/panel',
             templateUrl: 'site/partials/admin/admin.panel.html',
-            controller: 'AdminCtrl as ctrl',
             parent: 'admin'
         })
-        .state('admin.home', {
-            url: '/home',
-            templateUrl: 'site/partials/admin/admin.home.html',
-            controller: 'EditCtrl as ctrl',
-            parent: 'admin'
-        })
-        .state('admin.about', {
-            url: '/about',
-            templateUrl: 'site/partials/admin/admin.html',
-            controller: 'EditCtrl as ctrl',
+        .state('admin.users', {
+            url: '/users',
+            templateUrl: 'site/partials/admin/admin.users.html',
             parent: 'admin'
         })
         .state('404', {
@@ -153,7 +161,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     controller: 'MainCtrl as ctrl'
                 }
             }
-        })
+        });
 
     $httpProvider.interceptors.push(function(jwtHelper) {
         return {
@@ -173,6 +181,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                 }
                 return response;
             }
-        }
-    })
+        };
+    });
 });

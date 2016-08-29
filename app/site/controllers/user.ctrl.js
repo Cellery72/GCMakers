@@ -37,10 +37,7 @@
             }
         }
 
-        if ($state.current.name == 'user')
-            $state.go('login');
-
-        if ($state.current.name == 'user' || ($state.current.name !== 'user.register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
+        if ($state.current.name == 'panel' || ($state.current.name !== 'register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
             $state.go('login');
         }
 
@@ -155,15 +152,19 @@
                 case 'about':
                     $state.go('about');
                     break;
-                case 'admin.panel':
-                    $state.go('admin.panel');
+                case 'register':
+                    $state.go('register');
                     break;
-                case 'user.login':
-                    $state.go('user.login');
+                case 'login':
+                    $state.go('login');
                     break;
                 case 'panel':
                     $state.go('panel');
                     break;
+                case 'admin.panel':
+                    $state.go('admin.panel');
+                    break;
+
             }
         }
     }

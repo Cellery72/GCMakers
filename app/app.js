@@ -106,7 +106,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                         controller: 'MainCtrl as ctrl'
                     },
                     layout: {
-                        templateUrl: 'site/partials/common/login.html',
+                        templateUrl: 'site/partials/user/login.html',
                         controller: 'UserCtrl as ctrl'
                     },
                     footer: {
@@ -124,7 +124,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                         controller: 'MainCtrl as ctrl'
                     },
                     layout: {
-                        templateUrl: 'site/partials/common/register.html',
+                        templateUrl: 'site/partials/user/register.html',
                         controller: 'UserCtrl as ctrl'
                     },
                     footer: {
@@ -142,7 +142,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     controller: 'MainCtrl as ctrl'
                 },
                 layout: {
-                    templateUrl: 'site/partials/common/panel.html',
+                    templateUrl: 'site/partials/user/panel.html',
                     controller: 'UserCtrl as ctrl'
 
                 },

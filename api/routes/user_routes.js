@@ -85,7 +85,7 @@ router.post('/register', function(req, res) {
 
 // Authenticate (POST) a current User
 router.post('/authenticate', function(req, res) {
-    console.log('<-- --- --- Authentication Endpoint BEGIN--- --- -->');
+    console.log('<-- --- --- Authentication Endpoint BEGIN --- --- -->');
     var __user = req.body;
     User.findOne({
             'email': __user.email
@@ -124,7 +124,7 @@ router.post('/authenticate', function(req, res) {
                 })
             }
         });
-    console.log('<-- --- --- Authentication Endpoint BEGIN--- --- -->');
+    console.log('<-- --- --- Authentication Endpoint END --- --- -->');
 })
 
 module.exports = router;

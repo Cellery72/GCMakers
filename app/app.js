@@ -99,12 +99,10 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
             }
         })
         .state('user', {
-            url: '/user',
             views: {
                 layout: {
                     templateUrl: 'site/partials/user/user.html',
                     controller: 'UserCtrl as ctrl'
-
                 }
             }
         })
@@ -119,19 +117,16 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
             parent: 'user'
         })
         .state('user.panel', {
-            url: '/panel',
+            url: '/user_panel',
             templateUrl: 'site/partials/user/user.panel.html',
             parent: 'user'
         })
         .state('admin', {
             url: '/admin',
-
             views: {
                 layout: {
                     templateUrl: 'site/partials/admin/admin.html',
                     controller: 'AdminCtrl as ctrl'
-
-
                 }
             }
         })

@@ -1,9 +1,8 @@
 (function() {
     'use strict';
-
     app.controller('UserCtrl', UserCtrl);
 
-    function UserCtrl($state, api, userSrv, jwtHelper, uploadSrv, $rootScope) {
+    function UserCtrl($state, api, userSrv, jwtHelper, uploadSrv, $rootScope, $location) {
         var userVm = this;
         userVm.email;
         userVm.admin;
@@ -15,18 +14,12 @@
             return mailPattern.test(str) || mailPattern2.test(str);
         }
 
-        if ($state.current.name == 'user') {
-            $state.go('user.login');
-        } else if (($state.current.name == 'user' || $state.current.name !== 'user.register') && (localStorage.authToken == undefined || localStorage.authToken == null)) {
-            $state.go('user.login');
-        }
 
-        if (localStorage.authToken) {
+        if ($state.current.name == 'user.panel' && localStorage.authToken != null) {
             try {
                 var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
 
                 if (decrypt_token.email && $state.current.name == 'user.panel') {
-
                     userVm.user = decrypt_token;
                     if (decrypt_token.admin) {
                         console.log('Welcome Admin');
@@ -37,13 +30,18 @@
                 } else if (decrypt_token.email && $state.current.name == 'user.login') {
                     $state.go('user.panel');
                     console.log('Logged In');
-                    userVm.admin = false;
-
                 }
             } catch (err) {
                 delete localStorage.authToken
                 console.log('Unauthorized');
             }
+        }
+
+        if ($state.current.name == 'user')
+            $state.go('user.panel');
+
+        if ($state.current.name == 'user' || ($state.current.name !== 'user.register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
+            $state.go('user.login');
         }
 
         //DECLARE FUNCTIONS
@@ -98,6 +96,7 @@
                     localStorage.loginEmail = userVm.email;
                     if (res.status == 200) {
                         userVm.auth_btn = "Success";
+
                         //user exists
                         if (res.data.user != null) {
                             userVm.user = {
@@ -106,18 +105,19 @@
                                 email: res.data.user.email,
                                 pass: res.data.user.password
                             }
-                            if(res.data.user.admin){
+
+                            // check if user is admin... will need to bcrypt the admin bool so we can't just change the js
+                            if (res.data.user.admin) {
                                 $state.go('admin.panel');
-                            }else{
-                            $state.go('user.panel');
-                        }
+                            } else {
+                                $state.go('user.panel');
+                            }
                         } else {
                             alert(res.data.msg);
                         }
-                    } else {
+                    } else
                         alert('Invalid Password');
-                    }
-                })
+                });
         }
 
         //REFRESH
@@ -125,11 +125,11 @@
             $state.reload();
         }
 
-
         //LOGOUT
         function logout() {
             localStorage.removeItem('authToken');
             userVm.user = {};
+            userVm.admin = false;
             $state.go('user.login');
         }
 
@@ -163,10 +163,13 @@
                 case 'admin.panel':
                     $state.go('admin.panel');
                     break;
+                case 'user.login':
+                    $state.go('user.login');
+                    break;
+                case 'user.panel':
+                    $state.go('user.panel');
+                    break;
             }
-
         }
-
-
     }
 })();

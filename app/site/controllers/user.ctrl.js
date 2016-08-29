@@ -164,7 +164,6 @@
                 case 'admin.panel':
                     $state.go('admin.panel');
                     break;
-
             }
         }
     }

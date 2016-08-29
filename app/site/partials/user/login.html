@@ -1,3 +1,4 @@
+<div class="container">
 <div class="box login-box">
     <form class="form-login">
         <h2 class="form-signin-heading">Please Login</h2>
@@ -7,7 +8,7 @@
         </fieldset>
         <fieldset class="form-group">
             <label>Password:</label>
-            <input type="password" class="form-control loginForm" name="password" ng-model="ctrl.password" required/> or <a ui-sref="user.register">Register</a>
+            <input type="password" class="form-control loginForm" name="password" ng-model="ctrl.password" required/> or <button href ng-click="ctrl.go(register)">Register</a>
         </fieldset>
         <fieldset class="form-group ">
             <input type="submit" class="btn btn-primary" ng-click="ctrl.login()" value="Login" />
@@ -17,3 +18,4 @@
     </form>
 
 </div>
+</div

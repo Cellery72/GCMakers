@@ -38,8 +38,8 @@
                 case 'gallery':
                     $state.go('gallery');
                     break;
-                case 'user.panel':
-                    $state.go('user.panel');
+                case 'panel':
+                    $state.go('panel');
                     break;
                 case '404':
                     $state.go('404');

@@ -98,28 +98,59 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('user', {
+        .state('login', {
+                url: '/login',
+                views: {
+                    header: {
+                        templateUrl: 'site/partials/common/header.html',
+                        controller: 'MainCtrl as ctrl'
+                    },
+                    layout: {
+                        templateUrl: 'site/partials/user/login.html',
+                        controller: 'UserCtrl as ctrl'
+                    },
+                    footer: {
+                        templateUrl: 'site/partials/common/footer.html',
+                        controller: 'MainCtrl as ctrl'
+                    }
+
+                }
+        })
+        .state('register', {
+                url: '/register',
+                views: {
+                    header: {
+                        templateUrl: 'site/partials/common/header.html',
+                        controller: 'MainCtrl as ctrl'
+                    },
+                    layout: {
+                        templateUrl: 'site/partials/user/register.html',
+                        controller: 'UserCtrl as ctrl'
+                    },
+                    footer: {
+                        templateUrl: 'site/partials/common/footer.html',
+                        controller: 'MainCtrl as ctrl'
+                    }
+
+                }
+        })
+        .state('panel', {
+            url: '/panel',
             views: {
+                header: {
+                    templateUrl: 'site/partials/common/header.html',
+                    controller: 'MainCtrl as ctrl'
+                },
                 layout: {
-                    templateUrl: 'site/partials/user/user.html',
+                    templateUrl: 'site/partials/user/panel.html',
                     controller: 'UserCtrl as ctrl'
+
+                },
+                footer: {
+                    templateUrl: 'site/partials/common/footer.html',
+                    controller: 'MainCtrl as ctrl'
                 }
             }
-        })
-        .state('user.login', {
-            url: '/login',
-            templateUrl: 'site/partials/user/user.login.html',
-            parent: 'user'
-        })
-        .state('user.register', {
-            url: '/register',
-            templateUrl: 'site/partials/user/user.register.html',
-            parent: 'user'
-        })
-        .state('user.panel', {
-            url: '/user_panel',
-            templateUrl: 'site/partials/user/user.panel.html',
-            parent: 'user'
         })
         .state('admin', {
             url: '/admin',

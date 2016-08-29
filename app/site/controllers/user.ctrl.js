@@ -10,8 +10,9 @@
         userVm.newPassword = null;
 
         function isValidMail(str) {
-            var mailPattern = /^[a-zA-Z0-9._-]+@georgiancollege.ca$/;
-            return mailPattern.test(str)
+            var mailPattern = /^[a-zA-Z0-9._-]+@mygeorgian.ca$/;
+            var mailPattern2 = /^[a-zA-Z0-9._-]+@student.georgianc.on.ca$/;
+            return mailPattern.test(str) || mailPattern2.test(str);
         }
 
         if ($state.current.name == 'user') {

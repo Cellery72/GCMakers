@@ -30,7 +30,7 @@ var transporter = nodemailer.createTransport('smtps://afield788%40gmail.com:<pas
 // GET all Users
 router.get('/users/', function(req, res) {
     User.find({}, function(err, users) {
-        err ? console.log(err + " boops") : res.json(users);
+        err ? console.log(err) : res.json(users);
     });
 });
 

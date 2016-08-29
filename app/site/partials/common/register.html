@@ -1,5 +1,5 @@
 <div class="box">
-    <form class="form-register" name="myForm">
+    <form class="form-register">
         <h2>Please Register</h2>
         <fieldset class="form-group">
             <label>First Name:</label>
@@ -15,7 +15,7 @@
         </fieldset>
         <fieldset class="form-group">
             <label>Password:</label>
-            <input type="password" class="form-control loginForm" name="password" ng-model="ctrl.newPassword" required/> or <a ui-sref="user.login">Login</a>
+            <input type="password" class="form-control loginForm" name="password" ng-model="ctrl.newPassword" required/> or <a ui-sref="admin.login">Login</a>
         </fieldset>
         <fieldset class="form-group ">
             <input type="submit" class="btn btn-primary" ng-click="ctrl.register()" value="Submit" />

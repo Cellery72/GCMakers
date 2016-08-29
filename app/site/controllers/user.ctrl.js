@@ -15,11 +15,11 @@
         }
 
 
-        if ($state.current.name == 'user.panel' && localStorage.authToken != null) {
+        if ($state.current.name == 'panel' && localStorage.authToken != null) {
             try {
                 var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
 
-                if (decrypt_token.email && $state.current.name == 'user.panel') {
+                if (decrypt_token.email && $state.current.name == 'panel') {
                     userVm.user = decrypt_token;
                     if (decrypt_token.admin) {
                         console.log('Welcome Admin');
@@ -27,8 +27,8 @@
                     } else {
                         userVm.admin = false;
                     }
-                } else if (decrypt_token.email && $state.current.name == 'user.login') {
-                    $state.go('user.panel');
+                } else if (decrypt_token.email && $state.current.name == 'login') {
+                    $state.go('panel');
                     console.log('Logged In');
                 }
             } catch (err) {
@@ -38,10 +38,10 @@
         }
 
         if ($state.current.name == 'user')
-            $state.go('user.panel');
+            $state.go('login');
 
         if ($state.current.name == 'user' || ($state.current.name !== 'user.register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
-            $state.go('user.login');
+            $state.go('login');
         }
 
         //DECLARE FUNCTIONS
@@ -74,7 +74,7 @@
                             if (res.data.user == null) {
                                 alert('This email address is already registered!');
                             } else {
-                                $state.go('user.panel');
+                                $state.go('panel');
                             }
                         }
                         userVm.auth_btn = "Error";
@@ -106,12 +106,7 @@
                                 pass: res.data.user.password
                             }
 
-                            // check if user is admin... will need to bcrypt the admin bool so we can't just change the js
-                            if (res.data.user.admin) {
-                                $state.go('admin.panel');
-                            } else {
-                                $state.go('user.panel');
-                            }
+                                $state.go('panel');
                         } else {
                             alert(res.data.msg);
                         }
@@ -130,7 +125,7 @@
             localStorage.removeItem('authToken');
             userVm.user = {};
             userVm.admin = false;
-            $state.go('user.login');
+            $state.go('login');
         }
 
         //UPDATE USER
@@ -166,8 +161,8 @@
                 case 'user.login':
                     $state.go('user.login');
                     break;
-                case 'user.panel':
-                    $state.go('user.panel');
+                case 'panel':
+                    $state.go('panel');
                     break;
             }
         }

@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="page-header">
+        <button class="btn btn-danger pull-right" ng-click="ctrl.logout()">Logout</button>
+        <button class="btn btn-primary pull-right" ng-click="ctrl.go('admin.panel')" ng-show="ctrl.admin">Admin Panel</button>
+        <div class="box">
+            <form class="form-register">
+                <h2>Edit Your Account</h2>
+                <fieldset class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" class="form-control" id="firstName" ng-model="ctrl.user.firstName" required autofocus/>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" class="form-control" id="lastName" ng-model="ctrl.user.lastName" required autofocus/>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" class="form-control" id="email" ng-model="ctrl.user.email" required autofocus/>
+
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="newPassword">Password:</label>
+                    <input type="password" class="form-control loginForm" id="newPassword" ng-model="ctrl.user.password" required/>
+                </fieldset>
+                <fieldset class="form-group ">
+                    <button class=" btn btn-success " ng-click="ctrl.updateUser() "><i class="fa fa-save "> Save</i></button>
+                    <button class="btn btn-danger pull-right" ng-click="ctrl.deleteUser() "><i class="fa fa-trash "> Delete Account</i></button>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div ui-view></div>
+</div>

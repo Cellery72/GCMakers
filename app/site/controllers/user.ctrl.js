@@ -37,7 +37,7 @@
             }
         }
 
-        if ($state.current.name == 'panel' || ($state.current.name !== 'register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
+        if ($state.current.name !== 'register' && (localStorage.authToken == undefined || localStorage.authToken == null)) {
             $state.go('login');
         }
 

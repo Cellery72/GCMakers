@@ -2,22 +2,44 @@
     'use strict';
     app.controller('UserCtrl', UserCtrl);
 
-    function UserCtrl($state, auth, userSrv, jwtHelper, uploadSrv, $rootScope, $location) {
+    function UserCtrl($state, api, userSrv, jwtHelper, uploadSrv, $rootScope, $location) {
         var userVm = this;
         userVm.email;
         userVm.admin;
         userVm.newPassword = null;
 
         function isValidMail(str) {
-          //student
             var mailPattern = /^[a-zA-Z0-9._-]+@mygeorgian.ca$/;
             var mailPattern2 = /^[a-zA-Z0-9._-]+@student.georgianc.on.ca$/;
-          //admin
-            var mailPattern3 = /^[a-zA-Z0-9._-]+@georgiancollege.ca$/;
-            return mailPattern.test(str) || mailPattern2.test(str) || mailPattern3.test(str);
+            return mailPattern.test(str) || mailPattern2.test(str);
         }
 
-        
+
+        if ($state.current.name == 'panel' && localStorage.authToken != null) {
+            try {
+                var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
+
+                if (decrypt_token.email && $state.current.name == 'panel') {
+                    userVm.user = decrypt_token;
+                    if (decrypt_token.admin) {
+                        console.log('Welcome Admin');
+                        userVm.admin = true;
+                    } else {
+                        userVm.admin = false;
+                    }
+                } else if (decrypt_token.email && $state.current.name == 'login') {
+                    $state.go('panel');
+                    console.log('Logged In');
+                }
+            } catch (err) {
+                delete localStorage.authToken
+                console.log('Unauthorized');
+            }
+        }
+
+        if ($state.current.name !== 'register' && (localStorage.authToken == undefined || localStorage.authToken == null)) {
+            $state.go('login');
+        }
 
         //DECLARE FUNCTIONS
         userVm.register = register;
@@ -40,7 +62,23 @@
                     admin: false,
                     password: userVm.newPassword,
                 }
-            auth.register(payload);
+                api.request('/register', payload, 'POST')
+                    .then(function(res) {
+                        //successful response
+                        if (res.status == 200) {
+
+                            //user exists
+                            if (res.data.user == null) {
+                                alert('This email address is already registered!');
+                            } else {
+                                $state.go('panel');
+                            }
+                        }
+                        userVm.auth_btn = "Error";
+                    }, function() {
+                        //error
+                        userVm.auth_btn = "Error";
+                    });
             }
         }
 
@@ -50,7 +88,28 @@
                 email: userVm.email,
                 password: userVm.password,
             }
-            userVm.user = auth.login(payload);
+            api.request('/authenticate', payload, 'POST')
+                .then(function(res) {
+                    localStorage.loginEmail = userVm.email;
+                    if (res.status == 200) {
+                        userVm.auth_btn = "Success";
+
+                        //user exists
+                        if (res.data.user != null) {
+                            userVm.user = {
+                                firstName: res.data.user.firstName,
+                                lastName: res.data.user.lastName,
+                                email: res.data.user.email,
+                                pass: res.data.user.password
+                            }
+
+                                $state.go('panel');
+                        } else {
+                            alert(res.data.msg);
+                        }
+                    } else
+                        alert('Invalid Password');
+                });
         }
 
         //REFRESH

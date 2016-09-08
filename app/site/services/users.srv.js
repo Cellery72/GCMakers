@@ -17,7 +17,7 @@
                 .then(function (res) {
                     self.users = res.data.users;
                     return res.data.users;
-                }, function (res) {
+                }, function (res) {``
                     console.log(res);
                     return;
                 })

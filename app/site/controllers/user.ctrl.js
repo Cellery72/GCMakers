@@ -11,7 +11,8 @@
         function isValidMail(str) {
             var mailPattern = /^[a-zA-Z0-9._-]+@mygeorgian.ca$/;
             var mailPattern2 = /^[a-zA-Z0-9._-]+@student.georgianc.on.ca$/;
-            return mailPattern.test(str) || mailPattern2.test(str);
+            var mailPattern3 = /^[a-zA-Z0-9._-]+@georgiancollege.ca$/;
+            return mailPattern.test(str) || mailPattern2.test(str) || mailPattern3.test(str);
         }
 
 
@@ -71,7 +72,28 @@
                             if (res.data.user == null) {
                                 alert('This email address is already registered!');
                             } else {
-                                $state.go('panel');
+                                api.request('/authenticate', payload, 'POST')
+                                    .then(function(res) {
+                                        localStorage.loginEmail = userVm.email;
+                                        if (res.status == 200) {
+                                            userVm.auth_btn = "Success";
+
+                                            //user exists
+                                            if (res.data.user != null) {
+                                                userVm.user = {
+                                                    firstName: res.data.user.firstName,
+                                                    lastName: res.data.user.lastName,
+                                                    email: res.data.user.email,
+                                                    pass: res.data.user.password
+                                                }
+
+                                                    $state.go('panel');
+                                            } else {
+                                                alert(res.data.msg);
+                                            }
+                                        } else
+                                            alert('Invalid Password');
+                                    });
                             }
                         }
                         userVm.auth_btn = "Error";

@@ -2,7 +2,7 @@
     'use strict';
     app.controller('UserCtrl', UserCtrl);
 
-    function UserCtrl($state, api, userSrv, jwtHelper, uploadSrv, $rootScope, $location) {
+    function UserCtrl($state, userSrv, api, auth, jwtHelper) {
         var userVm = this;
         userVm.email;
         userVm.admin;
@@ -12,6 +12,7 @@
             var mailPattern = /^[a-zA-Z0-9._-]+@mygeorgian.ca$/;
             var mailPattern2 = /^[a-zA-Z0-9._-]+@student.georgianc.on.ca$/;
             var mailPattern3 = /^[a-zA-Z0-9._-]+@georgiancollege.ca$/;
+
             return mailPattern.test(str) || mailPattern2.test(str) || mailPattern3.test(str);
         }
 
@@ -56,82 +57,24 @@
             if (isValid == false) {
                 alert('Please register with a Georgian College email address');
             } else {
-                var payload = {
+                var user = {
                     firstName: userVm.firstName,
                     lastName: userVm.lastName,
                     email: userVm.newEmail,
                     admin: false,
                     password: userVm.newPassword,
                 }
-                api.request('/register', payload, 'POST')
-                    .then(function(res) {
-                        //successful response
-                        if (res.status == 200) {
-
-                            //user exists
-                            if (res.data.user == null) {
-                                alert('This email address is already registered!');
-                            } else {
-                                api.request('/authenticate', payload, 'POST')
-                                    .then(function(res) {
-                                        localStorage.loginEmail = userVm.email;
-                                        if (res.status == 200) {
-                                            userVm.auth_btn = "Success";
-
-                                            //user exists
-                                            if (res.data.user != null) {
-                                                userVm.user = {
-                                                    firstName: res.data.user.firstName,
-                                                    lastName: res.data.user.lastName,
-                                                    email: res.data.user.email,
-                                                    pass: res.data.user.password
-                                                }
-
-                                                    $state.go('panel');
-                                            } else {
-                                                alert(res.data.msg);
-                                            }
-                                        } else
-                                            alert('Invalid Password');
-                                    });
-                            }
-                        }
-                        userVm.auth_btn = "Error";
-                    }, function() {
-                        //error
-                        userVm.auth_btn = "Error";
-                    });
+                auth.register(user);
             }
         }
 
         //LOGIN
         function login() {
-            var payload = {
+            var user = {
                 email: userVm.email,
                 password: userVm.password,
             }
-            api.request('/authenticate', payload, 'POST')
-                .then(function(res) {
-                    localStorage.loginEmail = userVm.email;
-                    if (res.status == 200) {
-                        userVm.auth_btn = "Success";
-
-                        //user exists
-                        if (res.data.user != null) {
-                            userVm.user = {
-                                firstName: res.data.user.firstName,
-                                lastName: res.data.user.lastName,
-                                email: res.data.user.email,
-                                pass: res.data.user.password
-                            }
-
-                                $state.go('panel');
-                        } else {
-                            alert(res.data.msg);
-                        }
-                    } else
-                        alert('Invalid Password');
-                });
+            auth.login(user);
         }
 
         //REFRESH
@@ -141,10 +84,8 @@
 
         //LOGOUT
         function logout() {
-            localStorage.removeItem('authToken');
-            userVm.user = {};
-            userVm.admin = false;
-            $state.go('login');
+            auth.logout();
+
         }
 
         //UPDATE USER

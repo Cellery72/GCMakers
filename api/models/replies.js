@@ -18,8 +18,6 @@ var replySchema = new Schema({
     },
     replies: [],
     created_at: Date
-
-
 });
 
 

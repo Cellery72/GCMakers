@@ -7,6 +7,7 @@
         userVm.email;
         userVm.admin;
         userVm.newPassword = null;
+        userVm.user = auth.currentUser;
 
         function isValidMail(str) {
             var mailPattern = /^[a-zA-Z0-9._-]+@mygeorgian.ca$/;
@@ -14,33 +15,6 @@
             var mailPattern3 = /^[a-zA-Z0-9._-]+@georgiancollege.ca$/;
 
             return mailPattern.test(str) || mailPattern2.test(str) || mailPattern3.test(str);
-        }
-
-
-        if ($state.current.name == 'panel' && localStorage.authToken != null) {
-            try {
-                var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
-
-                if (decrypt_token.email && $state.current.name == 'panel') {
-                    userVm.user = decrypt_token;
-                    if (decrypt_token.admin) {
-                        console.log('Welcome Admin');
-                        userVm.admin = true;
-                    } else {
-                        userVm.admin = false;
-                    }
-                } else if (decrypt_token.email && $state.current.name == 'login') {
-                    $state.go('panel');
-                    console.log('Logged In');
-                }
-            } catch (err) {
-                delete localStorage.authToken
-                console.log('Unauthorized');
-            }
-        }
-
-        if ($state.current.name !== 'register' && (localStorage.authToken == undefined || localStorage.authToken == null)) {
-            $state.go('login');
         }
 
         //DECLARE FUNCTIONS

@@ -12,22 +12,6 @@
         adminVm.date;
         adminVm.users;
 
-        // check if we're at the admin panel and the auth token is good
-        if ($state.current.name == 'admin.panel' && localStorage.authToken != null) {
-            var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
-            // check that decrypted token represents an admin not a user
-            decrypt_token.admin ? console.log('Welcome Admin: ' + decrypt_token.firstName + '!') : $state.go('panel');
-        }
-
-        // redirect to admin panel
-        if ($state.current.name == 'admin') {
-            $state.go('admin.panel');
-        }
-
-        if ($state.current.name == 'admin' || ($state.current.name !== 'register' && (localStorage.authToken == undefined || localStorage.authToken == null))) {
-            $state.go('login');
-        }
-
         //DECLARE FUNCTIONS
         adminVm.logout = logout;
         adminVm.go = go;

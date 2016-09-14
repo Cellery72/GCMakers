@@ -1,7 +1,7 @@
 <div class="container">
     <div class="page-header">
         <button class="btn btn-danger pull-right" ng-click="ctrl.logout()">Logout</button>
-        <button class="btn btn-primary pull-right" ng-click="ctrl.go('admin.panel')" ng-show="ctrl.admin">Admin Panel</button>
+        <button class="btn btn-primary pull-right" ng-click="ctrl.go('admin')" ng-show="ctrl.user.admin">Admin Panel</button>
         <div class="box">
             <form class="form-register">
                 <h2>Edit Your Account</h2>

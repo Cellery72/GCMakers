@@ -86,10 +86,10 @@
             }catch(err){
                 delete localStorage.authToken;
                 console.log('Unable to Authorize User Access');
-                if($state.current.name == 'panel'){
-                    $state.go('login');
-                }else{
+                if($state.current.name == 'login' || $state.current.name == 'admin' || $state.current.name == 'register'){
                     $state.go($rootScope.previousState());
+                }else{
+                    $state.go('login');
             }
             }
         }
@@ -109,10 +109,10 @@
             }catch(err){
                 delete localStorage.authToken;
                 console.log('Unable to Authorize Admin Access');
-                if($state.current.name == 'admin'){
-                    $state.go('login');
+                if($state.current.name == 'login' || $state.current.name == 'panel' || $state.current.name == 'register'){
+                    $state.go($rootScope.previousState());
                 }else{
-                $state.go($rootScope.previousState());
+                    $state.go('login');
             }
             }
         }

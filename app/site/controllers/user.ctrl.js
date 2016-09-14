@@ -98,8 +98,8 @@
                 case 'panel':
                     $state.go('panel');
                     break;
-                case 'admin.panel':
-                    $state.go('admin.panel');
+                case 'admin':
+                    $state.go('admin');
                     break;
             }
         }

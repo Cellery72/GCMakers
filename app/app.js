@@ -148,6 +148,9 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     resolve: {
                         authenticated: function(auth){
                             return auth.isAuthenticated();
+                        },
+                        user: function(auth){
+                            return auth.resolveUser();
                         }
 
                     }

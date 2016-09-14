@@ -143,8 +143,14 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                 },
                 layout: {
                     templateUrl: 'site/partials/user/panel.html',
-                    controller: 'UserCtrl as ctrl'
+                    controller: 'UserCtrl as ctrl',
+                    //do not run until function to check authentication is successful
+                    resolve: {
+                        authenticated: function(auth){
+                            return auth.isAuthenticated();
+                        }
 
+                    }
                 },
                 footer: {
                     templateUrl: 'site/partials/common/footer.html',
@@ -157,20 +163,16 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
             views: {
                 layout: {
                     templateUrl: 'site/partials/admin/admin.html',
-                    controller: 'AdminCtrl as ctrl'
+                    controller: 'AdminCtrl as ctrl',
+                    //do not load until successfully check if admin
+                    resolve: {
+                        admin: function(auth){
+                            return auth.isAdmin()
+                        }
+                    }
+                    }
                 }
-            }
-        })
-        .state('admin.panel', {
-            url: '/panel',
-            templateUrl: 'site/partials/admin/admin.panel.html',
-            parent: 'admin'
-        })
-        .state('admin.users', {
-            url: '/users',
-            templateUrl: 'site/partials/admin/admin.users.html',
-            parent: 'admin'
-        })
+            })
         .state('404', {
             url: '/404',
             views: {

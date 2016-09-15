@@ -6,6 +6,7 @@
     function AuthService(api, $state, jwtHelper, $rootScope) {
         var self = this;
         self.currentUser;
+        
         //initialize functions
         self.register = register;
         self.update = update;

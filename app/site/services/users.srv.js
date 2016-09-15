@@ -4,25 +4,17 @@
     app.service('userSrv', UserService);
 
     function UserService($state, api) {
-
         var self = this;
-        self.users = [];
-
+        self.users;
         //functions
         self.getUsers = getUsers;
         self.updateUser = updateUser;
 
         function getUsers() {
-            return api.request('/users', {}, 'GET')
+            api.request('/users', {}, 'GET')
                 .then(function (res) {
-                    self.users = res.data.users;
-                    return res.data.users;
-                }, function (res) {
-                    console.log(res);
-                    return;
+                    self.users = res.data;
                 })
-
-
         }
         function updateUser(_id) {
             return api.request('/users/add', _id, 'PUT');

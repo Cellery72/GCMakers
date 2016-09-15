@@ -176,6 +176,25 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     }
                 }
             })
+        .state('users', {
+            url: '/users',
+            views: {
+                layout:{
+                    templateUrl: 'site/partials/admin/admin.users.html',
+                    controller: 'AdminCtrl as ctrl',
+                    //populate user list before loading page
+                    resolve: {
+                        users: function(api){
+                            api.request('/users', {}, 'GET')
+                                .then(function (res) {
+                                    return res.data
+                        })
+                     }
+
+                    }
+                }
+            }
+        })
         .state('404', {
             url: '/404',
             views: {

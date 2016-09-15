@@ -2,7 +2,7 @@
     'use strict';
     app.controller('AdminCtrl', AdminCtrl);
 
-    function AdminCtrl($state, api, jwtHelper, uploadSrv) {
+    function AdminCtrl($state, api, jwtHelper, userSrv) {
         var adminVm = this;
         adminVm.email;
         adminVm.password = null;
@@ -10,13 +10,12 @@
         adminVm.img;
         adminVm.changeTime = false;
         adminVm.date;
-        adminVm.users;
+        adminVm.users = userSrv.users;
 
         //DECLARE FUNCTIONS
         adminVm.logout = logout;
         adminVm.go = go;
         adminVm.submitTime = submitTime;
-
 
         // Logout user
         function logout() {
@@ -33,6 +32,11 @@
                 case 'about':
                     $state.go('about');
                     break;
+                case 'panel':
+                    $state.go('panel');
+                    break;
+                case 'users':
+                    $state.go('users');
             }
         }
 

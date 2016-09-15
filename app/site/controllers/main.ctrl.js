@@ -5,9 +5,6 @@
 
     function MainCtrl($state, api) {
         var mainVm = this;
-        mainVm.meetingInfo = "";
-        mainVm.meetingDate = "September 6th";
-        mainVm.meetingTime = "6:00PM";
         mainVm.meetingRoom = "E212";
 
         //for alert box when email is sent

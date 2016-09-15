@@ -22,7 +22,14 @@
             })
         }
         function updateUser(_id) {
-            return api.request('/users/add', _id, 'PUT');
+         api.request('/update', _id, 'POST')
+            .then(function(res,err){
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log(res);
+                }
+            });
         }
     };
 })();

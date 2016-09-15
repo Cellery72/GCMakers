@@ -127,4 +127,35 @@ router.post('/login', function(req, res) {
     console.log('<-- --- --- Login Endpoint END --- --- -->');
 })
 
+//UPDATE USER
+router.post('/update', function (req, res) {
+    console.log('ay');
+    // console.log('Updating User: ' + req.params.userId);
+    // var __user = req.body;
+    // var update = {
+    //     firstName: __user.firstName,
+    //     lastName: __user.lastName,
+    //     email: __user.email,
+    //     admin: __user.admin,
+    //     updated_at: new Date()
+    // }
+    //
+    // var query = {
+    //     "_id": req.params.userId
+    // }
+    // User.update(query, update, {}, function (err, user) {
+    //     if (err) {
+    //         console.log(err);
+    //         res.status(400).json({
+    //             err: err
+    //         })
+    //
+    //     } else {
+    //         res.json({
+    //             user: user
+    //         });
+    //     }
+    // })
+})
+
 module.exports = router;

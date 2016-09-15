@@ -4,19 +4,13 @@
 
     function AdminCtrl($state, api, jwtHelper, userSrv) {
         var adminVm = this;
-        adminVm.email;
-        adminVm.password = null;
-        adminVm.auth_btn = "Login";
-        adminVm.img;
-        adminVm.changeTime = false;
-        adminVm.date;
-        adminVm.users;
 
         //DECLARE FUNCTIONS
+        adminVm.resolveUsers = resolveUsers();
         adminVm.logout = logout;
         adminVm.go = go;
         adminVm.submitTime = submitTime;
-        adminVm.resolveUsers = resolveUsers();
+        adminVm.updateUser = updateUser;
 
         function resolveUsers() {
             api.request('/users', {}, 'GET')
@@ -72,6 +66,14 @@
                 })
         }
 
+        //REFRESH
+        function refresh() {
+            $state.reload();
+        }
 
+        //UPDATE user
+        function updateUser(_id){
+            userSrv.updateUser(_id);
+        }
     }
 })();

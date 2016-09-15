@@ -10,13 +10,25 @@
         adminVm.img;
         adminVm.changeTime = false;
         adminVm.date;
-        adminVm.users = userSrv.users;
+        adminVm.users;
 
         //DECLARE FUNCTIONS
         adminVm.logout = logout;
         adminVm.go = go;
         adminVm.submitTime = submitTime;
+        adminVm.resolveUsers = resolveUsers();
 
+        function resolveUsers() {
+            api.request('/users', {}, 'GET')
+                .then(function(res, err) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        adminVm.users = res.data;
+                        return res.data;
+                    }
+                })
+        }
         // Logout user
         function logout() {
             localStorage.removeItem('authToken');
@@ -34,6 +46,9 @@
                     break;
                 case 'panel':
                     $state.go('panel');
+                    break;
+                case 'admin':
+                    $state.go('admin');
                     break;
                 case 'users':
                     $state.go('users');

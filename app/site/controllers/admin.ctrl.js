@@ -4,19 +4,25 @@
 
     function AdminCtrl($state, api, jwtHelper, userSrv) {
         var adminVm = this;
-        adminVm.email;
-        adminVm.password = null;
-        adminVm.auth_btn = "Login";
-        adminVm.img;
-        adminVm.changeTime = false;
-        adminVm.date;
-        adminVm.users = userSrv.users;
 
         //DECLARE FUNCTIONS
+        adminVm.resolveUsers = resolveUsers();
         adminVm.logout = logout;
         adminVm.go = go;
         adminVm.submitTime = submitTime;
+        adminVm.updateUser = updateUser;
 
+        function resolveUsers() {
+            api.request('/users', {}, 'GET')
+                .then(function(res, err) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        adminVm.users = res.data;
+                        return res.data;
+                    }
+                })
+        }
         // Logout user
         function logout() {
             localStorage.removeItem('authToken');
@@ -34,6 +40,9 @@
                     break;
                 case 'panel':
                     $state.go('panel');
+                    break;
+                case 'admin':
+                    $state.go('admin');
                     break;
                 case 'users':
                     $state.go('users');
@@ -57,6 +66,14 @@
                 })
         }
 
+        //REFRESH
+        function refresh() {
+            $state.reload();
+        }
 
+        //UPDATE user
+        function updateUser(_id){
+            userSrv.updateUser(_id);
+        }
     }
 })();

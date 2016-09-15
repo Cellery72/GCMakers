@@ -5,19 +5,31 @@
 
     function UserService($state, api) {
         var self = this;
-        self.users;
+        self.users = [];
         //functions
         self.getUsers = getUsers;
         self.updateUser = updateUser;
 
-        function getUsers() {
-            api.request('/users', {}, 'GET')
-                .then(function (res) {
+        function getUsers(){
+            api.request('/users',{},'GET')
+            .then(function(res,err){
+                if(err){
+                    console.log(err);
+                }else{
                     self.users = res.data;
-                })
+                    return res.data;
+            }
+            })
         }
         function updateUser(_id) {
-            return api.request('/users/add', _id, 'PUT');
+         api.request('/update', _id, 'POST')
+            .then(function(res,err){
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log(res);
+                }
+            });
         }
     };
 })();

@@ -26,6 +26,16 @@ gulp.task('dev', function() {
     })
 });
 
+gulp.task('prod', function() {
+    nodemon({
+        script: 'api/temp-server.js',
+        ext: 'js html',
+        env: {
+            'NODE_ENV': 'production'
+        }
+    })
+});
+
 gulp.task('build', function() {
- 
+
 });

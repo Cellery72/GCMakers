@@ -1,1 +1,28 @@
-Hello World
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+            <h2>Welcum to futur home of gcmakers of georgian collegec on ca @student.georgianc.ca lolz....</h2>
+            <br/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="row">
+                <form>
+                    <div class="form-group text-center">
+                        <label for="name">What's your name?</label>
+                        <input type="name" class="form-control" id="name" ng-model="ctrl.maker.name">
+                    </div>
+                    <div class="form-group text-center">
+                        <label for="email">What's your Georgian Email?</label>
+                        <input type="email" class="form-control" id="email" ng-model="ctrl.maker.email">
+                    </div>
+                    <div class="checkbox text-center">
+                        <label><input type="checkbox" ng-model="ctrl.maker.notifications">Notify me when the site goes live!</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary center-block" ng-submit="ctrl.submitForm()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,6 @@
 
     function UserCtrl($state, userSrv, api, auth, jwtHelper) {
         var userVm = this;
-
         userVm.user = auth.currentUser;
 
         function isValidMail(str) {

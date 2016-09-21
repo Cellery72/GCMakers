@@ -99,6 +99,7 @@ router.post('/login', function(req, res) {
                         delete user.password;
                         //set web token
                         var user_obj = {
+                            _id: user._id,
                             firstName: user.firstName,
                             lastName: user.lastName,
                             email: user.email,
@@ -131,7 +132,6 @@ router.post('/login', function(req, res) {
 router.post('/users/:userId', function (req, res) {
     console.log('Updating User: ' + req.params.userId);
     var __user = req.body;
-    console.log(__user);
     var update = {
         firstName: __user.firstName,
         lastName: __user.lastName,
@@ -153,6 +153,29 @@ router.post('/users/:userId', function (req, res) {
         } else {
             res.json({
                 user: update
+            });
+        }
+    })
+})
+
+//DELETE user
+router.delete('/users/:userId', function (req, res) {
+    console.log('Deleting User: ' + req.params.userId);
+
+
+    var query = {
+        "_id": req.params.userId
+    }
+    User.remove(query, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(400).json({
+                err: err
+            })
+
+        } else {
+            res.json({
+                msg: 'User Deleted'
             });
         }
     })

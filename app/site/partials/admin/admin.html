@@ -61,11 +61,11 @@
                     </td>
 
                     <td>
-                        <input type="checkbox" ng-model="user.admin" ng-change="ctrl.updateUser(user)">
+                        <input type="checkbox" ng-model="user.admin" ng-hide="user._id == ctrl.currentUser._id" ng-change="ctrl.updateUser(user)">
                     </td>
 
                     <td>
-                        <button class="btn btn-danger" ng-click="ctrl.deleteUser()"><i class="fa fa-trash"></i></button>
+                        <button class="btn btn-danger" ng-click="ctrl.deleteUser(user)" ng-hide="user._id == ctrl.currentUser._id"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
 

@@ -9,6 +9,7 @@
         //functions
         self.getUsers = getUsers;
         self.updateUser = updateUser;
+        self.deleteUser = deleteUser;
 
         function getUsers(){
             api.request('/users',{},'GET')
@@ -27,9 +28,20 @@
                 if(err){
                     console.log(err);
                 }else{
-                    console.log(res);
+                    console.log('User: ' + user.firstName + ' ' + user.lastName + ' Updated');
                 }
             });
+        }
+
+        function deleteUser(_id){
+            api.request('/users/'+_id, {}, 'DEL')
+               .then(function(res,err){
+                   if(err){
+                       console.log(err);
+                   }else{
+                       console.log(res.data.msg);
+                   }
+               });
         }
     };
 })();

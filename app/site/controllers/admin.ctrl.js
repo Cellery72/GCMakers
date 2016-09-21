@@ -2,18 +2,16 @@
     'use strict';
     app.controller('AdminCtrl', AdminCtrl);
 
-    function AdminCtrl($state, api, jwtHelper, userSrv) {
+    function AdminCtrl($state, api, jwtHelper, userSrv, auth) {
         var adminVm = this;
-        adminVm.users = [];
-        console.log(adminVm.users);
+        adminVm.currentUser = auth.currentUser;
         //DECLARE FUNCTIONS
         adminVm.resolveUsers = resolveUsers();
-
-
         adminVm.logout = logout;
         adminVm.go = go;
         adminVm.submitTime = submitTime;
         adminVm.updateUser = updateUser;
+        adminVm.deleteUser = deleteUser;
 
         function resolveUsers() {
             api.request('/users', {}, 'GET')
@@ -26,6 +24,7 @@
                     }
                 })
         }
+
         // Logout user
         function logout() {
             localStorage.removeItem('authToken');
@@ -77,6 +76,12 @@
         //UPDATE user
         function updateUser(user){
             userSrv.updateUser(user._id, user);
+        }
+
+        //DELETE user
+        function deleteUser(user){
+            userSrv.deleteUser(user._id);
+            resolveUsers();
         }
     }
 })();

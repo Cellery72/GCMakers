@@ -64,24 +64,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('messageboard', {
-            url: '/messageboard',
-            views: {
-                header: {
-                    templateUrl: 'site/partials/common/header.html',
-                    controller: 'MainCtrl as ctrl'
-                },
-                layout: {
-                    templateUrl: 'site/partials/messageboard.html',
-                    controller: 'MainCtrl as ctrl'
-
-                },
-                footer: {
-                    templateUrl: 'site/partials/common/footer.html',
-                    controller: 'MainCtrl as ctrl'
-                }
-            }
-        })
         .state('gallery', {
             url: '/gallery',
             views: {
@@ -99,41 +81,22 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('login', {
-                url: '/login',
-                views: {
-                    header: {
-                        templateUrl: 'site/partials/common/header.html',
-                        controller: 'MainCtrl as ctrl'
-                    },
-                    layout: {
-                        templateUrl: 'site/partials/user/login.html',
-                        controller: 'UserCtrl as ctrl'
-                    },
-                    footer: {
-                        templateUrl: 'site/partials/common/footer.html',
-                        controller: 'MainCtrl as ctrl'
-                    }
-
+        .state('login', {   
+            url: '/login',
+            views: {
+                header: {
+                    templateUrl: 'site/partials/common/header.html',
+                    controller: 'MainCtrl as ctrl'
+                },
+                layout: {
+                    templateUrl: 'site/partials/user/login.html',
+                    controller: 'UserCtrl as ctrl'
+                },
+                footer: {
+                    templateUrl: 'site/partials/common/footer.html',
+                    controller: 'MainCtrl as ctrl'
                 }
-        })
-        .state('register', {
-                url: '/register',
-                views: {
-                    header: {
-                        templateUrl: 'site/partials/common/header.html',
-                        controller: 'MainCtrl as ctrl'
-                    },
-                    layout: {
-                        templateUrl: 'site/partials/user/register.html',
-                        controller: 'UserCtrl as ctrl'
-                    },
-                    footer: {
-                        templateUrl: 'site/partials/common/footer.html',
-                        controller: 'MainCtrl as ctrl'
-                    }
-
-                }
+            }
         })
         .state('panel', {
             url: '/panel',
@@ -147,7 +110,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     controller: 'UserCtrl as ctrl',
                     //do not run until function to check authentication is successful
                     resolve: {
-                        authenticated: function(auth){
+                        authenticated: function(auth) {
                             return auth.isAuthenticated();
                         },
                         user: function(auth){
@@ -170,13 +133,13 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     controller: 'AdminCtrl as ctrl',
                     //do not load until successfully check if admin
                     resolve: {
-                        admin: function(auth){
-                            return auth.isAdmin()
+                        admin: function(auth) {
+                            return auth.isAdmin();
                         }
                     }
-                    }
                 }
-            })
+            }
+        })
         .state('404', {
             url: '/404',
             views: {

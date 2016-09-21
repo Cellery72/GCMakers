@@ -4,9 +4,12 @@
 
     function AdminCtrl($state, api, jwtHelper, userSrv) {
         var adminVm = this;
-        adminVm.users = []
+        adminVm.users = [];
+        console.log(adminVm.users);
         //DECLARE FUNCTIONS
         adminVm.resolveUsers = resolveUsers();
+
+
         adminVm.logout = logout;
         adminVm.go = go;
         adminVm.submitTime = submitTime;
@@ -73,7 +76,6 @@
 
         //UPDATE user
         function updateUser(user){
-            console.log(user._id)
             userSrv.updateUser(user._id, user);
         }
     }

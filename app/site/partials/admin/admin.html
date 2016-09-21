@@ -61,24 +61,18 @@
                     </td>
 
                     <td>
-                        <select class="form-control">
-                                <option>{{user.admin}}</option>
-                                <option>{{!user.admin}}</option>
-                        </select>
+                        <input type="checkbox" ng-model="user.admin" ng-change="ctrl.updateUser(user)">
                     </td>
+
                     <td>
-                        <button class="btn btn-success" ng-click="ctrl.updateUser(user)"><i class="fa fa-save"></i></button>
-                    </td>
-                    <td>
-                        <button class="btn btn-danger" ng-click="ctrl.deleteUser()"><i class="fa fa-trash"> Delete</i></button>
+                        <button class="btn btn-danger" ng-click="ctrl.deleteUser()"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
 
 
             </tbody>
         </table>
-        <button class="btn btn-primary pull-right" ng-click="ctrl.resolveUsers()"><i class="fa fa-refresh fa-lg"></i></button>
-        <button class="btn btn-success pull-right" ng-click="ctrl.go('admin.register')"><i class="fa fa-plus fa-lg"></i></button>
+        <!-- <button class="btn btn-success pull-right" ng-click="ctrl.go('admin.register')"><i class="fa fa-plus fa-lg"></i></button> -->
 
 
     </div>

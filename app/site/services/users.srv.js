@@ -21,8 +21,8 @@
             }
             })
         }
-        function updateUser(_id) {
-         api.request('/update', _id, 'POST')
+        function updateUser(_id, user) {
+         api.request('/users/'+_id, user, 'POST')
             .then(function(res,err){
                 if(err){
                     console.log(err);

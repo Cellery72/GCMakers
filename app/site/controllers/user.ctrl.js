@@ -66,9 +66,8 @@
                 firstName: userVm.user.firstName,
                 lastName: userVm.user.lastName,
                 email: userVm.user.email,
-                password: userVm.newPassword
+                password: userVm.newPassword,
             }
-
             userSrv.updateUser(userVm.user._id, payload);
         }
         //DELETE USER

@@ -4,7 +4,7 @@
 
     function AdminCtrl($state, api, jwtHelper, userSrv) {
         var adminVm = this;
-
+        adminVm.users = []
         //DECLARE FUNCTIONS
         adminVm.resolveUsers = resolveUsers();
         adminVm.logout = logout;
@@ -56,7 +56,7 @@
             var payload = {
                 date: isoDate,
             }
-            api.request('/setMeeting', payload, 'POST')
+            api.request('/setMeeting', payload, 'PUT')
                 .then(function(res) {
                     if (res.data.user == null) {
                         console.log(res.data.msg);
@@ -72,8 +72,9 @@
         }
 
         //UPDATE user
-        function updateUser(_id){
-            userSrv.updateUser(_id);
+        function updateUser(user){
+            console.log(user._id)
+            userSrv.updateUser(user._id, user);
         }
     }
 })();

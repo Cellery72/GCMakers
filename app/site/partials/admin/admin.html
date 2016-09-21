@@ -62,12 +62,12 @@
 
                     <td>
                         <select class="form-control">
-                                <option>{{user.admin | yesNo}}</option>
-                                <option>{{!user.admin | yesNo}}</option>
-                            </select>
+                                <option>{{user.admin}}</option>
+                                <option>{{!user.admin}}</option>
+                        </select>
                     </td>
                     <td>
-                        <button class="btn btn-success" ng-click="ctrl.updateUser(user._id)"><i class="fa fa-save"></i></button>
+                        <button class="btn btn-success" ng-click="ctrl.updateUser(user)"><i class="fa fa-save"></i></button>
                     </td>
                     <td>
                         <button class="btn btn-danger" ng-click="ctrl.deleteUser()"><i class="fa fa-trash"> Delete</i></button>

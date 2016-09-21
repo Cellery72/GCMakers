@@ -151,6 +151,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                             return auth.isAuthenticated();
                         },
                         user: function(auth){
+                            console.log(auth.resolveUser())
                             return auth.resolveUser();
                         }
 
@@ -172,6 +173,9 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     resolve: {
                         admin: function(auth){
                             return auth.isAdmin()
+                        },
+                        user: function(auth){
+                            return auth.resolveUser();
                         }
                     }
                     }

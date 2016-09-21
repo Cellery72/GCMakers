@@ -6,7 +6,7 @@
     function AuthService(api, $state, jwtHelper, $rootScope) {
         var self = this;
         self.currentUser;
-        
+
         //initialize functions
         self.register = register;
         self.update = update;
@@ -19,7 +19,7 @@
 
         //register
         function register(payload) {
-            api.request('/register', payload, 'POST')
+            api.request('/register', payload, 'PUT')
                 .then(function(res) {
                     //successful response
                     if (res.status == 200) {

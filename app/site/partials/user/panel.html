@@ -20,11 +20,11 @@
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="newPassword">Password:</label>
-                    <input type="password" class="form-control loginForm" id="newPassword" ng-model="ctrl.user.password" required/>
+                    <input type="password" class="form-control loginForm" id="newPassword" ng-model="ctrl.user.password" placeholder="***************" required/>
                 </fieldset>
                 <fieldset class="form-group ">
                     <button class=" btn btn-success " ng-click="ctrl.updateUser() "><i class="fa fa-save "> Save</i></button>
-                    <button class="btn btn-danger pull-right" ng-click="ctrl.deleteUser() "><i class="fa fa-trash "> Delete Account</i></button>
+                    <button class="btn btn-danger pull-right" ng-click="ctrl.deleteUser()"><i class="fa fa-trash "> Delete Account</i></button>
 
                 </fieldset>
             </form>

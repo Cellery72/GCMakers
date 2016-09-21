@@ -2,15 +2,16 @@
     'use strict';
     app.controller('AdminCtrl', AdminCtrl);
 
-    function AdminCtrl($state, api, jwtHelper, userSrv) {
+    function AdminCtrl($state, api, jwtHelper, userSrv, auth) {
         var adminVm = this;
-
+        adminVm.currentUser = auth.currentUser;
         //DECLARE FUNCTIONS
         adminVm.resolveUsers = resolveUsers();
         adminVm.logout = logout;
         adminVm.go = go;
         adminVm.submitTime = submitTime;
         adminVm.updateUser = updateUser;
+        adminVm.deleteUser = deleteUser;
 
         function resolveUsers() {
             api.request('/users', {}, 'GET')
@@ -23,6 +24,7 @@
                     }
                 })
         }
+
         // Logout user
         function logout() {
             localStorage.removeItem('authToken');
@@ -56,7 +58,7 @@
             var payload = {
                 date: isoDate,
             }
-            api.request('/setMeeting', payload, 'POST')
+            api.request('/setMeeting', payload, 'PUT')
                 .then(function(res) {
                     if (res.data.user == null) {
                         console.log(res.data.msg);
@@ -72,8 +74,14 @@
         }
 
         //UPDATE user
-        function updateUser(_id){
-            userSrv.updateUser(_id);
+        function updateUser(user){
+            userSrv.updateUser(user._id, user);
+        }
+
+        //DELETE user
+        function deleteUser(user){
+            userSrv.deleteUser(user._id);
+            resolveUsers();
         }
     }
 })();

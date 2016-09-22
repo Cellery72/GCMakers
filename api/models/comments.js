@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var commentSchema = new Schema({
-    creator: {
+    author: {
         type: Object,
         required: true,
     },
@@ -15,10 +15,6 @@ var commentSchema = new Schema({
     message: {
         type: String,
         required: true
-    },
-    admin: {
-        type: Boolean,
-        required: true,
     },
     replies: [],
     created_at: Date

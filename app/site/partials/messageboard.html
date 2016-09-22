@@ -5,7 +5,30 @@
                     <div class="action">
                         <div class="col-sm-12">
                             <h1 class="title">Message Board</h1>
-                            <table></table>
+                            <div class="form-group">
+                              <p class="help-block">Add a new comment</p>
+                            <textarea name="comment" id="comment" cols="60" rows="3"></textarea>
+                         </div>
+
+                            <table class="table">
+                        <tbody ng-repeat="comment in ctrl.comments">
+                               <tr>
+                                  <td>Author: {{comment.author.firstName + " " + comment.author.lastName}}
+</td>
+                              </tr>
+                              <tr class="form-group">
+                                 <td>Comment: {{comment.message}}</td>
+                  
+                                 </tr>
+
+                                 <tr>
+                                    <button class="btn btn-success pull-right">replies</button>
+                                 <td ng-repeat="reply in comment.replies">{{reply}}</td>
+
+                              </tr>
+
+                           </tbody>
+                            </table>
                         </div>
                      </div>
                 </div>

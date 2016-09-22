@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var replySchema = new Schema({
-    creator: {
+    author: {
         type: Object,
         required: true,
     },
@@ -11,10 +11,6 @@ var replySchema = new Schema({
         type: String,
         required: true,
         unique: true
-    },
-    admin: {
-        type: Boolean,
-        required: true,
     },
     replies: [],
     created_at: Date

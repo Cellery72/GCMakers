@@ -7,69 +7,68 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 
-// var testUser = User({
-//     firstName: 'Amanda',
-//     lastName: 'Field',
-//     email: 'afield@brainstation.io',
-//     password: '1'
-// });
-//
-// var testComment = Comment({
-//     creator: testUser,
-//     title: 'First Commsent Title',
-//     message: 'First Tester message',
-//     admin: true
-// });
+var testUser = User({
+    firstName: 'Amanda',
+    lastName: 'Field',
+    email: 'afield@brainstation.io',
+    password: '1',
+    admin: true
+});
 
-//console.log(testComment);
-//testComment.save(function (err) {
+var testComment = Comment({
+    author: testUser,
+    message: 'First Tester message',
+});
+//
+// console.log(testComment);
+// testComment.save(function (err) {
 //    if (err) {
 //        console.log(err)
 //    } else {
 //        console.log('Comment Saved!');
 //    }
-//});
+// });
 var testReply = Reply({
-    creator: testUser,
+    author: testUser,
     message: 'This 33issss sthssssse firssssdt reply',
     admin: true
 });
-//////console.log(testComment.replies);
-////
-testReply.save(function (err, reply) {
-    if (err) {
-        console.log(err);
-    } else {
-
-        console.log('reply saved');
-        Reply.find({}, function (err, replies) {
-            if (err) {
-
-                console.log(err + " boops");
-            } else {
-
-                //res.json(comments);
-                replies[0].replies.push(reply);
-                console.log(replies[0]);
-                replies[0].save(function (err) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log('Reply added to reply');
-                    }
-                })
-            }
-        });
-    }
-});
-
-//var testReply2 = Reply({
-//    creator: testUser,
+// ////console.log(testComment.replies);
+// //
+// testReply.save(function (err, reply) {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//
+//         console.log('reply saved');
+//         Reply.find({}, function (err, replies) {
+//             if (err) {
+//
+//                 console.log(err);
+//             } else {
+//
+//                 //res.json(comments);
+//                 replies[0].replies.push(reply);
+//                 console.log(replies[0]);
+//                 replies[0].save(function (err) {
+//                     if (err) {
+//                         console.log(err);
+//                     } else {
+//                         console.log('Reply added to reply');
+//                     }
+//                 })
+//             }
+//         });
+//     }
+// });
+//
+// var testReply2 = Reply({
+//    author: testUser,
 //    message: 'This is a replies reply',
 //    admin: false
-//});
+// });
 //
-//testReply2.save(function (err, reply) {
+// testReply2.save(function (err, reply) {
 //    if (err) {
 //        console.log(err);
 //    } else {
@@ -84,11 +83,31 @@ testReply.save(function (err, reply) {
 //            }
 //        })
 //    }
-//});
+// });
+
+// testComment.save();
+// console.log(testComment)
+
+// testComment.replies.push(testReply);
+// testComment.save(function(err, comment){
+//     if(err){
+//         console.log(err);
+//     }else{
+//         console.log(comment)
+//     }
+// })
 //
-//testComment.replies.push('hopefully');
+
+// console.log
+// Comment.findOne({
+//    _id: "57e4a9a9ffa4581aae462590"
+// }).then(function(comment){
+//     comment.replies.push(testReply);
+//     comment.save();
+// })
 //
-//
+
+//View all comments
 router.get('/comments/', function (req, res) {
 
     Comment.find({}, function (err, comments) {
@@ -103,10 +122,7 @@ router.get('/comments/', function (req, res) {
     });
 });
 
-
-
-console.log(Comment);
-
+//View all Replies
 router.get('/replies/', function (req, res) {
 
     Reply.find({}, function (err, replies) {
@@ -121,5 +137,21 @@ router.get('/replies/', function (req, res) {
     });
 });
 
+// Register (PUT) a new User
+router.put('/addComment', function(req, res) {
+    console.log('<-- --- --- Add Comment Endpoint BEGIN--- --- -->');
+    var __comment = req.body;
+                //user does not exist
+                var newComment = Comment({
+                    author: __comment.author,
+                    message: __comment.message
+                });
+                newComment.save(function(err) {
+                    err ? console.log(err) : console.log('Comment Added!');
+                });
+                res.json({
+                    comment: newComment
+                })
+});
 
 module.exports = router;

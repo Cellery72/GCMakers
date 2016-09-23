@@ -1,14 +1,38 @@
-    <section id="page-breadcrumb">
-        <div class="vertical-center sun">
-             <div class="container">
-                <div class="row">
-                    <div class="action">
-                        <div class="col-sm-12">
-                            <h1 class="title">Message Board</h1>
-                            <table></table>
+<section id="page-breadcrumb">
+    <div class="vertical-center sun">
+        <div class="container">
+            <div class="row">
+                <div class="action">
+                    <div class="col-sm-12">
+                        <h1 class="title">Message Board</h1>
+                        <div class="form-group">
+                            <p class="help-block">Add a new comment</p>
+                            <textarea ng-model="ctrl.newComment" name="comment" id="comment" cols="60" rows="3"></textarea>
+                            <button class="btn btn-success" ng-click="ctrl.addComment()">Submit</button>
                         </div>
-                     </div>
+
+                        <table class="table">
+                            <tbody class="jumbotron" ng-repeat="comment in ctrl.comments">
+                                <tr class="form-group">
+                                    <td>Comment: {{comment.message}}
+                                    </td>
+                                    <td>
+                                        <textarea ng-model="ctrl.message" name="reply" id="reply" cols="30" rows="2"></textarea>
+                                        <button ng-click="ctrl.addReply(ctrl.message, comment)">Reply</button>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Author: {{comment.author.firstName + " " + comment.author.lastName}}</strong>
+                                    </td>
+                                </tr>
+                                    <td ng-repeat="reply in comment.replies">Replies: {{reply.message}}</td>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-   </section>
+    </div>
+</section>

@@ -38,8 +38,8 @@ app.use('/',public_routes);
 //
 //var upload_routes = require('./routes/upload_routes.js');
 //app.use('/', upload_routes);
-//var message_routes = require('./routes/message_routes.js');
-//app.use('/', message_routes);
+var message_routes = require('./routes/message_routes.js');
+app.use('/', message_routes);
 
 app.on('close', function() {
     console.error('dropping db');

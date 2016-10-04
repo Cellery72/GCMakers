@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('makers', ['ui.router', 'ui.bootstrap', 'angular-jwt']);
 
-app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
     // defer no route to home route
     $urlRouterProvider.when('', '/');
     // defer all other garbage to 404
@@ -80,7 +80,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('login', {   
+        .state('login', {
             url: '/login',
             views: {
                 header: {
@@ -109,7 +109,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     controller: 'UserCtrl as ctrl',
                     //do not run until function to check authentication is successful
                     resolve: {
-                        authenticated: function(auth) {
+                        authenticated: function (auth) {
                             return auth.isAuthenticated();
                         }
 
@@ -129,7 +129,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                     controller: 'AdminCtrl as ctrl',
                     //do not load until successfully check if admin
                     resolve: {
-                        admin: function(auth) {
+                        admin: function (auth) {
                             return auth.isAdmin();
                         }
                     }
@@ -154,13 +154,13 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
             }
         });
 
-    $httpProvider.interceptors.push(function(jwtHelper) {
+    $httpProvider.interceptors.push(function (jwtHelper) {
         return {
-            request: function(config) {
+            request: function (config) {
                 config.headers.authentication = localStorage.authToken;
                 return config;
             },
-            response: function(response) {
+            response: function (response) {
                 var auth_token = response.headers('authentication');
                 if (auth_token) {
                     var decrypt_token = jwtHelper.decodeToken(auth_token);

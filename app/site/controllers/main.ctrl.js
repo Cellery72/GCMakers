@@ -1,14 +1,15 @@
-(function() {
+(function () {
     'use strict';
 
     app.controller('MainCtrl', MainCtrl);
 
-    function MainCtrl($state, api) {
+    function MainCtrl($state, api, $timeout) {
         var mainVm = this;
         mainVm.meetingInfo = "";
         mainVm.meetingDate = "September 6th";
         mainVm.meetingTime = "6:00PM";
         mainVm.meetingRoom = "E212";
+        mainVm.newUser = null;
 
         //for alert box when email is sent
         mainVm.showAlert = false;
@@ -53,7 +54,7 @@
 
             //update meeting time to most upcoming
             api.request('/upcomingMeeting', '', 'GET')
-                .then(function(res) {
+                .then(function (res) {
                     if (res.data.msg == null) {
                         console.log(res.data.msg);
                     } else {
@@ -70,40 +71,51 @@
                 });
         }
 
-        function sendEmail(name, email, message) {
-            var payload = {
-                name: name,
-                email: email,
-                message: message
-            }
-            api.request('/sendEmail', payload, 'POST')
-                .then(function(res) {
-                    if (res.data.user == null) {
-                        console.log(res.data.msg);
-                        mainVm.alertClass = "alert-danger";
+        // Send Email 
+        // params - User newUser
+        // send post request to server side to send email 
+        function sendEmail(newUser) {
+            var payload = null;
 
-                        mainVm.emailMessage = res.data.msg + " - Please review your information and try again.";
-
-
-                    } else {
-                        console.log(res.data.msg);
-                        mainVm.alertClass = "alert-success";
-
-                        mainVm.emailMessage = res.data.msg + " from " +
-                            res.data.user.email;
-
+            // check everything has values
+            if (newUser.contactName != undefined && newUser.contactEmail != undefined && newUser.contactMessage != undefined && newUser.contactSubject != undefined) {
+                // create an obj to post
+                payload = {
+                        name: newUser.contactName,
+                        email: newUser.contactEmail,
+                        subject: newUser.contactSubject,
+                        message: newUser.contactMessage
                     }
-                    mainVm.showAlert = true;
+                    // send request
+                api.request('/sendEmail', payload, 'POST')
+                    .then(function (res) {
+                        if (res.data.err == null) {
+                            console.log(res.data.msg);
+                            mainVm.alertClass = "alert-success";
+                            mainVm.emailMessage = res.data.msg;
+                        } else {
+                            console.log(res.data.msg);
+                            mainVm.alertClass = "alert-danger";
+                            mainVm.emailMessage = res.data.msg + " - " + res.data.err.message;
+                        }
 
-
-                    mainVm.clearForm();
-                })
+                        // change value to show the alert
+                        mainVm.showAlert = true;
+                        // timeout function to change it back
+                        $timeout(function(){
+                            mainVm.showAlert = false;
+                        }, 5000);
+                        // clear it cause we don't want a mess
+                        mainVm.clearForm();
+                    });
+            }
         }
 
         function clearForm() {
-            mainVm.contactName = "";
-            mainVm.contactEmail = "";
-            mainVm.contactMessage = "";
+            mainVm.newUser.contactName = "";
+            mainVm.newUser.contactEmail = "";
+            mainVm.newUser.contactSubject = "";
+            mainVm.newUser.contactMessage = "";
         }
     }
 })();

@@ -13,7 +13,7 @@ gulp.task('clean', function(done) {
 
 gulp.task('del-node', function(done) {
     del(['node_modules'], done);
-    console.log('DONE');
+    console.log('Done deleting nodes.. uh oh');
 });
 
 gulp.task('dev', function() {
@@ -24,4 +24,18 @@ gulp.task('dev', function() {
             'NODE_ENV': 'development'
         }
     })
+});
+
+gulp.task('prod', function() {
+    nodemon({
+        script: 'api/temp-server.js',
+        ext: 'js html',
+        env: {
+            'NODE_ENV': 'production'
+        }
+    })
+});
+
+gulp.task('build', function() {
+
 });

@@ -12,7 +12,7 @@ var theGenerator = require('xoauth2').createXOAuth2Generator({
     clientSecret: "y1_ieZw-Kk2Qh2e1-PnDYRZS",
     refreshToken: "1/qlJj6JVkL6dOOtc7A6i9nzc5m26SISMgdR0QQFRrXHA"
 });
-theGenerator.on('token', function(token) {
+theGenerator.on('token', function (token) {
     console.log('New token for %s', token.user);
 });
 // theTransporter will be used to send mail
@@ -26,29 +26,53 @@ var theTransporter = nodemailer.createTransport(({
 /* EMAIL */
 
 //Registration Email sent to a new user
-router.post('/sendEmail', function(req, res) {
+router.post('/sendEmail', function (req, res) {
     console.log('<-- --- --- Message Send Endpoint BEGIN--- --- -->');
+
+
+    // Get the contact info from request
     var newContact = req.body;
 
     // setup e-mail data with unicode symbols
     var mailOptions = {
-        from: 'georgianmakers@gmail.com', // sender address
-        to: newContact.email, // reciever address
-        subject: 'Welcome to the Makers Club ' + newContact.name + '!', // Subject line
+        sent: newContact.email, // sender address
+        to: 'georgianmakers@gmail.com', // reciever address
+        subject: newContact.name + ' - ' + newContact.subject, // Subject line
         text: newContact.message // plaintext body
     };
 
-    theTransporter.sendMail(mailOptions, function(err, info) {
-        err ? console.log(err) : console.log('Email sent succesfully to ' + mailOptions.to);
-        console.log('<-- --- --- Message Send Endpoint END--- --- -->');
+    // 'Send' the actual mail..
+    theTransporter.sendMail(mailOptions, function (err, info) {
+        if (err) {
+            // there's an error, better tell an adult
+            res.json({
+                error: err,
+                msg: "Email not sent"
+            });
+            console.log("Email Not Sent");
+            console.log(err);
+        }
+        else{
+            // keep calm carry on
+            res.json({
+                error: null,
+                msg: "Email sent succesfully"
+            });
+            console.log("Email sent!");
+        }
+
+        // close the transporter and be done with it
         theTransporter.close();
     });
+
+
+    console.log('<-- --- --- Message Send Endpoint END--- --- -->');
 });
 
 /* MEETING TIME */
 
 //CREATE new meeting
-router.post('/setMeeting', function(req, res) {
+router.post('/setMeeting', function (req, res) {
     console.log('<-- --- --- Change Meeting Endpoint BEGIN --- --- -->');
     var __meeting = req.body;
     //new Meeting
@@ -56,9 +80,9 @@ router.post('/setMeeting', function(req, res) {
         date: __meeting.date,
         time: __meeting.time
     });
-    newMeeting.save(function(err, meeting) {
+    newMeeting.save(function (err, meeting) {
         console.log(err || 'meeting saved');
-    }).then(function(meeting) {
+    }).then(function (meeting) {
         res.json({
             meeting: newMeeting,
             msg: "Meeting set to: " + __meeting.date
@@ -67,8 +91,8 @@ router.post('/setMeeting', function(req, res) {
     console.log('<-- --- --- Change Meeting Endpoint END --- --- -->');
 });
 // GET all meetings
-router.get('/meetings/', function(req, res) {
-    Meeting.find({}, function(err, meetings) {
+router.get('/meetings/', function (req, res) {
+    Meeting.find({}, function (err, meetings) {
         if (err) {
             console.log(err + " boops");
         } else {
@@ -78,12 +102,12 @@ router.get('/meetings/', function(req, res) {
     });
 });
 
-router.get('/upcomingMeeting', function(req, res) {
+router.get('/upcomingMeeting', function (req, res) {
     Meeting.find({
         "date": {
             $gte: new Date().toISOString()
         }
-    }, function(err, meeting) {
+    }, function (err, meeting) {
         if (err) {
             console.log(err);
         } else {

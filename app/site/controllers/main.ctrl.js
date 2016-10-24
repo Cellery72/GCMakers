@@ -6,10 +6,15 @@
     function MainCtrl($state, api, $timeout) {
         var mainVm = this;
         mainVm.meetingRoom = "E212";
+        mainVm.meetingDate = "Monday, November 7th, 2016";
+        mainVm.meetingTime = "10:00AM"
+        mainVm.meetingInfo = "Next Meeting: " + mainVm.meetingDate + ' | ' + mainVm.meetingTime + ' | ' + mainVm.meetingRoom;
+
         mainVm.newUser = null;
 
         //for alert box when email is sent
         mainVm.showAlert = false;
+
 
         mainVm.state = $state;
         mainVm.load = load;
@@ -36,9 +41,6 @@
                 case 'gallery':
                     $state.go('gallery');
                     break;
-                case 'panel':
-                    $state.go('panel');
-                    break;
                 case '404':
                     $state.go('404');
                     break;
@@ -49,28 +51,11 @@
             $('.main-slider').addClass('animate-in');
             $('.preloader').remove();
 
-            //update meeting time to most upcoming
-            api.request('/upcomingMeeting', '', 'GET')
-                .then(function (res) {
-                    if (res.data.msg == null) {
-                        console.log(res.data.msg);
-                    } else {
-                        if (res.data.meeting.length > 0) {
-                            var date = new Date(Date.parse(res.data.meeting[0].date));
-                            mainVm.meetingDate = date.toDateString();
-                            mainVm.meetingTime = date.toLocaleTimeString(navigator.language, {
-                                hour: '2-digit',
-                                minute: '2-digit'
-                            });
-                            mainVm.meetingInfo = "Next Meeting: " + mainVm.meetingDate + ' | ' + mainVm.meetingTime + ' | ' + mainVm.meetingRoom;
-                        }
-                    }
-                });
         }
 
-        // Send Email 
+        // Send Email
         // params - User newUser
-        // send post request to server side to send email 
+        // send post request to server side to send email
         function sendEmail(newUser) {
             var payload = null;
 

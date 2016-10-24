@@ -74,7 +74,7 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                 layout: {
 
                     templateUrl: 'site/partials/gallery.html',
-                    controller: 'MainCtrl as ctrl'
+                    controller: 'GalleryCtrl as ctrl'
                 },
                 footer: {
                     templateUrl: 'site/partials/common/footer.html',

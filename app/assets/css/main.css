@@ -1354,7 +1354,6 @@ Portfolio with right sidebar
     margin: 0;
     padding: 0;
     list-style: none;
-    margin: 10px -8px;
 }
 
 .popular ul.gallery li {
@@ -1378,18 +1377,24 @@ Portfolio with right sidebar
     border-radius: 60px;
 }
 
-.thumbnails img {
+.thumbnails {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.thumbnails div img {
     height: 80px;
     border: 4px solid #555;
     padding: 1px;
     margin: 0 10px 10px 0;
+    display: inline;
 }
 
-.thumbnails img:hover {
+.thumbnails div img:hover {
     border: 4px solid #00ccff;
     cursor: pointer;
 }
-
 .preview img {
     border: 4px solid #444;
     padding: 1px;

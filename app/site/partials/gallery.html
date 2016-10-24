@@ -12,19 +12,16 @@
     </div>
 </section>
 
-<div class="gallery" align="center">
-    <div class="thumbnails">
-        <img onmouseover="preview.src=img1.src" name="img1" src="assets/images/gallery/img1.jpg" alt="" />
-        <img onmouseover="preview.src=img2.src" name="img2" src="assets/images/gallery/img2.jpg" alt="" />
-        <img onmouseover="preview.src=img3.src" name="img3" src="assets/images/gallery/img3.jpg" alt="" />
-        <img onmouseover="preview.src=img4.src" name="img4" src="assets/images/gallery/img4.jpg" alt="" />
-        <img onmouseover="preview.src=img5.src" name="img5" src="assets/images/gallery/img6.jpg" alt="" />
-
+<ul class="gallery" align="center" >
+    <li class="thumbnails">
+        <div  ng-repeat="image in ctrl.images">
+        <img ng-mouseover="ctrl.preview(image)" name="{{image.name}}" src="{{image.src}}" alt="" />
     </div>
-</div>
+</li>
+</ul>
 
 <div class="preview" align="center">
-    <img name="preview" src="assets/images/gallery/img6.jpg" alt="" />
+    <img name="preview" src="{{ctrl.previewSrc}}" alt="" />
 </div>
 
 </div>

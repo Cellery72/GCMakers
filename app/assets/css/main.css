@@ -14,7 +14,7 @@ body {
     margin-top: 20px;
 }
 
-.stick-footer{    
+.stick-footer{
     position: absolute;
     bottom: 0;
     left: 0;
@@ -376,8 +376,6 @@ ul.sub-menu {
         transform: scale(1);
     }
 }
-
-
 /*************************
 *******Footer******
 **************************/

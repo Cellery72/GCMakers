@@ -11,18 +11,18 @@
         </div>
     </div>
 </section>
-
-<ul class="gallery" align="center" >
-    <li class="thumbnails">
-        <div  ng-repeat="image in ctrl.images">
-        <img ng-mouseover="ctrl.preview(image)" name="{{image.name}}" src="{{image.src}}" alt="" />
+<section class="gallery-section">
+    <ul class="gallery" align="center" >
+        <li class="thumbnails">
+            <div  ng-repeat="image in ctrl.images">
+            <img ng-click="ctrl.preview(image)" name="{{image.name}}" src="{{image.src}}" alt="" />
+        </div>
+    </li>
+    </ul>
+    <div class="preview" align="center">
+        <img name="preview" src="{{ctrl.previewSrc}}" alt="" />
     </div>
-</li>
-</ul>
-
-<div class="preview" align="center">
-    <img name="preview" src="{{ctrl.previewSrc}}" alt="" />
-</div>
+</section>
 
 </div>
 <!-- Close the gallery div -->

@@ -72,14 +72,14 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                     controller: 'MainCtrl as ctrl'
                 },
                 layout: {
-
                     templateUrl: 'site/partials/gallery.html',
-                    controller: 'GalleryCtrl as ctrl'
+                    controller: 'GalleryCtrl as ctrl',
                 },
                 footer: {
                     templateUrl: 'site/partials/common/footer.html',
                     controller: 'MainCtrl as ctrl'
                 }
             }
+
         })
 });

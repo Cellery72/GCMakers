@@ -35,6 +35,7 @@
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.0.7",
     "gulp-htmlmin": "^2.0.0",
+    "gulp-imagemin": "^3.0.3",
     "gulp-jsmin": "^0.1.5",
     "gulp-nodemon": "^2.1.0",
     "xoauth2": "^1.2.0"

@@ -1,7 +1,8 @@
 'use strict';
 var app = angular.module('makers', ['ui.router', 'ui.bootstrap', 'angular-jwt']);
 
-app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
+
+app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
     // defer no route to home route
     $urlRouterProvider.when('', '/');
     // defer all other garbage to 404
@@ -13,7 +14,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
             views: {
                 header: {
                     templateUrl: 'site/partials/common/header.html',
-                    controller: 'MainCtrl as ctrl'
+                    controller: 'NavCtrl as ctrl'
                 },
                 layout: {
                     templateUrl: 'site/partials/home.html',
@@ -22,7 +23,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                 },
                 footer: {
                     templateUrl: 'site/partials/common/footer.html',
-                    controller: 'MainCtrl as ctrl'
                 }
             }
 
@@ -32,7 +32,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
             views: {
                 header: {
                     templateUrl: 'site/partials/common/header.html',
-                    controller: 'MainCtrl as ctrl'
+                    controller: 'NavCtrl as ctrl'
                 },
                 layout: {
                     templateUrl: 'site/partials/about.html',
@@ -41,7 +41,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
                 },
                 footer: {
                     templateUrl: 'site/partials/common/footer.html',
-                    controller: 'MainCtrl as ctrl'
                 }
             }
         })
@@ -50,34 +49,15 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
             views: {
                 header: {
                     templateUrl: 'site/partials/common/header.html',
-                    controller: 'MainCtrl as ctrl'
+                    controller: 'NavCtrl as ctrl'
                 },
                 layout: {
                     templateUrl: 'site/partials/contact.html',
-                    controller: 'MainCtrl as ctrl'
+                    controller: 'ContactCtrl as ctrl'
 
                 },
                 footer: {
                     templateUrl: 'site/partials/common/footer.html',
-                    controller: 'MainCtrl as ctrl'
-                }
-            }
-        })
-        .state('messageboard', {
-            url: '/messageboard',
-            views: {
-                header: {
-                    templateUrl: 'site/partials/common/header.html',
-                    controller: 'MainCtrl as ctrl'
-                },
-                layout: {
-                    templateUrl: 'site/partials/messageboard.html',
-                    controller: 'MainCtrl as ctrl'
-
-                },
-                footer: {
-                    templateUrl: 'site/partials/common/footer.html',
-                    controller: 'MainCtrl as ctrl'
                 }
             }
         })
@@ -86,101 +66,16 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider) {
             views: {
                 header: {
                     templateUrl: 'site/partials/common/header.html',
-                    controller: 'MainCtrl as ctrl'
+                    controller: 'NavCtrl as ctrl'
                 },
                 layout: {
                     templateUrl: 'site/partials/gallery.html',
-                    controller: 'MainCtrl as ctrl'
+                    controller: 'GalleryCtrl as ctrl',
                 },
                 footer: {
                     templateUrl: 'site/partials/common/footer.html',
-                    controller: 'MainCtrl as ctrl'
                 }
             }
-        })
-        .state('user', {
-            url: '/user',
-            views: {
-                layout: {
-                    templateUrl: 'site/partials/user/user.html',
-                    controller: 'UserCtrl as ctrl'
 
-                }
-            }
         })
-        .state('user.login', {
-            url: '/login',
-            templateUrl: 'site/partials/user/user.login.html',
-            parent: 'user'
-        })
-        .state('user.register', {
-            url: '/register',
-            templateUrl: 'site/partials/user/user.register.html',
-            parent: 'user'
-        })
-        .state('user.panel', {
-            url: '/panel',
-            templateUrl: 'site/partials/user/user.panel.html',
-            parent: 'user'
-        })
-        .state('admin', {
-            url: '/admin',
-
-            views: {
-                layout: {
-                    templateUrl: 'site/partials/admin/admin.html',
-                    controller: 'AdminCtrl as ctrl'
-
-
-                }
-            }
-        })
-        .state('admin.panel', {
-            url: '/panel',
-            templateUrl: 'site/partials/admin/admin.panel.html',
-            parent: 'admin'
-        })
-        .state('admin.users', {
-            url: '/users',
-            templateUrl: 'site/partials/admin/admin.users.html',
-            parent: 'admin'
-        })
-        .state('404', {
-            url: '/404',
-            views: {
-                header: {
-                    templateUrl: 'site/partials/common/header.html',
-                    controller: 'MainCtrl as ctrl'
-                },
-                layout: {
-                    templateUrl: 'site/partials/404.html',
-                    controller: 'MainCtrl as ctrl'
-                },
-                footer: {
-                    templateUrl: 'site/partials/common/footer.html',
-                    controller: 'MainCtrl as ctrl'
-                }
-            }
-        });
-
-    $httpProvider.interceptors.push(function(jwtHelper) {
-        return {
-            request: function(config) {
-                config.headers.authentication = localStorage.authToken;
-                return config;
-            },
-            response: function(response) {
-                var auth_token = response.headers('authentication');
-                if (auth_token) {
-                    var decrypt_token = jwtHelper.decodeToken(auth_token);
-                    if (decrypt_token.email) {
-                        localStorage.authToken = auth_token;
-                    } else {
-                        localStorage.authToken = null;
-                    }
-                }
-                return response;
-            }
-        };
-    });
 });

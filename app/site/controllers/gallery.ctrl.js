@@ -5,7 +5,7 @@
 
     function GalleryCtrl($state, img) {
         var galleryVm = this;
-        galleryVm.previewSrc = 'assets/images/gallery/img1.jpg';
+        galleryVm.previewSrc = 'assets/dist/images/img1.jpg';
         galleryVm.images = [];
 
         galleryVm.preview = preview;

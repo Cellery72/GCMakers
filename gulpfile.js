@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     jsmin = require('gulp-jsmin'),
     del = require('del'),
     nodemon = require('gulp-nodemon');
-
+    imagemin = require('gulp-imagemin');
 var PATHS = {};
 
 gulp.task('clean', function(done) {
@@ -39,3 +39,9 @@ gulp.task('prod', function() {
 gulp.task('build', function() {
 
 });
+
+gulp.task('default', () =>
+    gulp.src('app/assets/images/gallery/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('dist/images'))
+);

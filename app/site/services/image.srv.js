@@ -14,7 +14,7 @@
             var image = {
                 index: i,
                 name: 'img'+i,
-                src: 'assets/images/gallery/img'+i+'.jpg'
+                src: 'assets/dist/images/img'+i+'.jpg'
             }
             imgVm.images.push(image);
 

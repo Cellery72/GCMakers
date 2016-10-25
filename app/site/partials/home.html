@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-sm-5 text-center wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
                         <div class="tour-button">
-                            <a ng-click="ctrl.go('about')" class="btn btn-common">ABOUT</a>
+                            <a ng-click="ctrl.$state.go('about')" class="btn btn-common">ABOUT</a>
                         </div>
                     </div>
                 </div>
@@ -120,23 +120,8 @@
                         <br> and fun events that have come through the Makers Space. </p>
                 </div>
                 <div class="clients-logo wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
-                    <div class="col-xs-3 col-sm-2">
-                        <a href="#"><img src="assets/images/gallery/img5.jpg" class="img-responsive" alt=""></a>
-                    </div>
-                    <div class="col-xs-3 col-sm-2">
-                        <a href="#"><img src="assets/images/gallery/img5.jpg" class="img-responsive" alt=""></a>
-                    </div>
-                    <div class="col-xs-3 col-sm-2">
-                        <a href="#"><img src="assets/images/gallery/img5.jpg" class="img-responsive" alt=""></a>
-                    </div>
-                    <div class="col-xs-3 col-sm-2">
-                        <a href="#"><img src="assets/images/gallery/img5.jpg" class="img-responsive" alt=""></a>
-                    </div>
-                    <div class="col-xs-3 col-sm-2">
-                        <a href="#"><img src="assets/images/gallery/img5.jpg" class="img-responsive" alt=""></a>
-                    </div>
-                    <div class="col-xs-3 col-sm-2">
-                        <a href="#"><img src="assets/images/gallery/img5.jpg" class="img-responsive" alt=""></a>
+                    <div class="col-xs-3 col-sm-2" ng-repeat="image in ctrl.images">
+                        <a ng-click="ctrl.$state.go('gallery')"><img src="{{image.src}}" class="img-responsive" alt=""></a>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
             views: {
                 header: {
                     templateUrl: 'site/partials/common/header.html',
-                    controller: 'MainCtrl as ctrl'
+                    controller: 'NavCtrl as ctrl'
                 },
                 layout: {
                     templateUrl: 'site/partials/home.html',
@@ -23,7 +23,6 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                 },
                 footer: {
                     templateUrl: 'site/partials/common/footer.html',
-                    controller: 'MainCtrl as ctrl'
                 }
             }
 
@@ -33,7 +32,7 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
             views: {
                 header: {
                     templateUrl: 'site/partials/common/header.html',
-                    controller: 'MainCtrl as ctrl'
+                    controller: 'NavCtrl as ctrl'
                 },
                 layout: {
                     templateUrl: 'site/partials/about.html',
@@ -42,7 +41,6 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                 },
                 footer: {
                     templateUrl: 'site/partials/common/footer.html',
-                    controller: 'MainCtrl as ctrl'
                 }
             }
         })
@@ -51,16 +49,15 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
             views: {
                 header: {
                     templateUrl: 'site/partials/common/header.html',
-                    controller: 'MainCtrl as ctrl'
+                    controller: 'NavCtrl as ctrl'
                 },
                 layout: {
                     templateUrl: 'site/partials/contact.html',
-                    controller: 'MainCtrl as ctrl'
+                    controller: 'ContactCtrl as ctrl'
 
                 },
                 footer: {
                     templateUrl: 'site/partials/common/footer.html',
-                    controller: 'MainCtrl as ctrl'
                 }
             }
         })
@@ -69,7 +66,7 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
             views: {
                 header: {
                     templateUrl: 'site/partials/common/header.html',
-                    controller: 'MainCtrl as ctrl'
+                    controller: 'NavCtrl as ctrl'
                 },
                 layout: {
                     templateUrl: 'site/partials/gallery.html',
@@ -77,7 +74,6 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                 },
                 footer: {
                     templateUrl: 'site/partials/common/footer.html',
-                    controller: 'MainCtrl as ctrl'
                 }
             }
 

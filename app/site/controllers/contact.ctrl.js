@@ -1,34 +1,19 @@
 (function () {
     'use strict';
 
-    app.controller('MainCtrl', MainCtrl);
+    app.controller('ContactCtrl', ContactCtrl);
 
-    function MainCtrl($state, api, $timeout, img) {
-        var mainVm = this;
-        mainVm.$state = $state;
-        mainVm.images = [];
-        mainVm.newUser = null;
+    function ContactCtrl(api) {
+        var contactVm = this;
+        contactVm.newUser = null;
 
         //for alert box when email is sent
-        mainVm.showAlert = false;
+        contactVm.showAlert = false;
+contactVm
+        contactVm.sendEmail = sendEmail;
+        contactVm.clearForm = clearForm;
 
-        mainVm.load = load();
-        mainVm.getImages = getImages();
 
-        mainVm.sendEmail = sendEmail;
-        mainVm.clearForm = clearForm;
-
-        function load() {
-            $('.main-slider').addClass('animate-in');
-            $('.preloader').remove();
-
-        }
-
-        function getImages() {
-
-            mainVm.images = img.resolveImages().slice(0,6);
-            console.log(mainVm.images)
-        }
         // Send Email
         // params - User newUser
         // send post request to server side to send email
@@ -49,19 +34,19 @@
                     .then(function (res) {
                         if (res.data.err == null) {
                             console.log(res.data.msg);
-                            mainVm.alertClass = "alert-success";
-                            mainVm.emailMessage = res.data.msg;
+                            contactVm.alertClass = "alert-success";
+                            contactVm.emailMessage = res.data.msg;
                         } else {
                             console.log(res.data.msg);
-                            mainVm.alertClass = "alert-danger";
-                            mainVm.emailMessage = res.data.msg + " - " + res.data.err.message;
+                            contactVm.alertClass = "alert-danger";
+                            contactVm.emailMessage = res.data.msg + " - " + res.data.err.message;
                         }
 
                         // change value to show the alert
-                        mainVm.showAlert = true;
+                        contactVm.showAlert = true;
                         // timeout function to change it back
                         $timeout(function(){
-                            mainVm.showAlert = false;
+                            contactVm.showAlert = false;
                         }, 5000);
                         // clear it cause we don't want a mess
                         mainVm.clearForm();
@@ -69,10 +54,10 @@
             }
         }
         function clearForm() {
-            mainVm.newUser.contactName = "";
-            mainVm.newUser.contactEmail = "";
-            mainVm.newUser.contactSubject = "";
-            mainVm.newUser.contactMessage = "";
+            contactVm.newUser.contactName = "";
+            contactVm.newUser.contactEmail = "";
+            contactVm.newUser.contactSubject = "";
+            contactVm.newUser.contactMessage = "";
         }
 
     }

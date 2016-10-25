@@ -38,4 +38,4 @@ node_modules
 *.DS_Store
 *.txt
 
-/assets/images/gallery/*
+/app/assets/images/gallery/

@@ -1405,6 +1405,14 @@ Portfolio with right sidebar
     width: 800px;
 }
 
+.home-preview img {
+    border: 4px solid black;
+    padding: 1px;
+    width: 700px;
+}
+}
+
+
 
 /* Start: Recommended Isotope styles */
 
@@ -2705,4 +2713,32 @@ span.stButton_gradient,
     -webkit-box-shadow: 0 0 0 5px rgba(0, 0, 0, .1) inset;
     border-radius: 100%;
     margin: 10px 0;
+}
+
+
+/*Slideshow*/
+
+.slider {
+	width: 1024px;
+	margin: 2em auto;
+
+}
+
+.slider-wrapper {
+	width: 100%;
+	height: 400px;
+	position: relative;
+}
+
+.slide {
+	float: left;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 3s linear;
+}
+
+.slider-wrapper > .slide:first-child {
+	opacity: 1;
 }

@@ -16,7 +16,7 @@
         }
         function getImages(){
 
-            galleryVm.images = img.images;
+            galleryVm.images = img.resolveImages();
         }
     }
 })();

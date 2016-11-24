@@ -18,11 +18,9 @@
 
 <div class="slider" id="main-slider"><!-- outermost container element -->
 	<div class="slider-wrapper"><!-- innermost wrapper element -->
-		<img src="http://lorempixel.com/1024/400/animals" alt="First" class="slide" /><!-- slides -->
-		<img src="http://lorempixel.com/1024/400/business" alt="Second" class="slide" />
-		<img src="http://lorempixel.com/1024/400/city" alt="Third" class="slide" />
+        <img class="slider-img" name="{{ctrl.images[ctrl.sliderIndex]}}" ng-src="{{ctrl.images[ctrl.sliderIndex].src}}" alt="" />
 	</div>
-</div>	
+</div>
 
 <section id="services">
     <div class="container">

@@ -4,22 +4,48 @@
 
     function ImageSrv() {
         var imgVm = this;
-        imgVm.images = [];
+        imgVm.images = [
+            {
+                name: 'img1',
+                src: 'assets/images/gallery/img1.jpg'
+            },
+            {
+                name: 'img2',
+                src: 'assets/images/gallery/img2.jpg'
+            },
+            {
+                name: 'img3',
+                src: 'assets/images/gallery/img3.jpg'
+            },
+            {
+                name: 'img4',
+                src: 'assets/images/gallery/img4.jpg'
+            },
+            {
+                name: 'img5',
+                src: 'assets/images/gallery/img5.jpg'
+            },
+            {
+                name: 'img6',
+                src: 'assets/images/gallery/img6.jpg'
+            },
+            {
+                name: 'img7',
+                src: 'assets/images/gallery/img7.jpg'
+            },
+            {
+                name: 'img8',
+                src: 'assets/images/gallery/img8.jpg'
+            },
+            {
+                name: 'img9',
+                src: 'assets/images/gallery/img9.jpg'
+            },
+            {
+                name: 'img10',
+                src: 'assets/images/gallery/img10.jpg'
+            },
+        ];
 
-        this.resolveImages = resolveImages;
-
-        function resolveImages(){
-
-        for(var i=1; i<36; i++){
-            var image = {
-                index: i,
-                name: 'img'+i,
-                src: 'assets/dist/images/img'+i+'.jpg'
-            }
-            imgVm.images.push(image);
-
-        }
-        return imgVm.images;
-    }
     };
 })();

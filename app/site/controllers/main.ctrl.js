@@ -26,8 +26,7 @@
 
         function getImages() {
 
-            mainVm.images = img.resolveImages().slice(0,6);
-            console.log(mainVm.images)
+            mainVm.images = img.images.slice(0,6);
         }
         // Send Email
         // params - User newUser

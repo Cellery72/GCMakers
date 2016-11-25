@@ -43,5 +43,5 @@ gulp.task('build', function() {
 gulp.task('default', () =>
     gulp.src('app/assets/images/gallery/*')
         .pipe(imagemin())
-        .pipe(gulp.dest('app/assets/dist/images'))
+        .pipe(gulp.dest('app/assets/images/gallery'))
 );

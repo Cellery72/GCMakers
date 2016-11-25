@@ -37,5 +37,3 @@ node_modules
 .vscode/
 *.DS_Store
 *.txt
-
-/app/assets/images/gallery/

@@ -18,8 +18,6 @@
             }
             }
 
-            console.log(imgVm.images)
-
             return imgVm.images;
         }
     };

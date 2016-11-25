@@ -16,12 +16,17 @@
 </section> -->
 <!--/#home-slider-->
 
-<div class="slider" id="main-slider"><!-- outermost container element -->
-	<div class="slider-wrapper"><!-- innermost wrapper element -->
-        <img class="slider-img" name="{{ctrl.images[ctrl.sliderIndex]}}" ng-src="{{ctrl.images[ctrl.sliderIndex].src}}" alt="" />
-	</div>
-</div>
 
+<div class="slider-wrapper row">
+    <div class="col-md-6">
+        <img class="slider-img" name="{{ctrl.images[ctrl.sliderIndex]}}" ng-src="{{ctrl.images[ctrl.sliderIndex].src}}" alt="" />
+
+    </div>
+    <div class="col-md-6">
+
+        <img class="siler-caption" name="makers-club" src="assets/images/makerstitle.png"></img>
+</div>
+</div>
 <section id="services">
     <div class="container">
         <div class="row">

@@ -46,8 +46,6 @@
             });
 
                 $('.slider-img').fadeIn("slow", function(){
-
-                console.log(mainVm.images[mainVm.sliderIndex])
             });
 
 

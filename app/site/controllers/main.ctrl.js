@@ -8,14 +8,12 @@
         mainVm.$state = $state;
         mainVm.images = [];
         mainVm.newUser = null;
-        mainVm.sliderIndex = 0;
 
         //for alert box when email is sent
         mainVm.showAlert = false;
 
         mainVm.load = load();
         mainVm.getImages = getImages();
-        mainVm.slider = setInterval(slider,5000);
 
         mainVm.sendEmail = sendEmail;
         mainVm.clearForm = clearForm;
@@ -29,26 +27,7 @@
         function getImages() {
 
             mainVm.images = img.resolveImages().slice(0,6);
-        }
-
-        function slider() {
-
-
-            if(mainVm.sliderIndex == 5){
-                mainVm.sliderIndex = 0;
-            }else{
-                mainVm.sliderIndex++;
-
-            }
-            $('.slider-img').fadeOut("slow",function(){
-                $('.slider-img').attr("src", mainVm.images[mainVm.sliderIndex].src);
-
-            });
-
-                $('.slider-img').fadeIn("slow", function(){
-            });
-
-
+            console.log(mainVm.images)
         }
         // Send Email
         // params - User newUser

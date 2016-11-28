@@ -5,20 +5,21 @@
     function ImageSrv() {
         var imgVm = this;
         imgVm.images = [];
-        imgVm.resolveImages = resolveImages;
+
+        this.resolveImages = resolveImages;
 
         function resolveImages(){
-            for(var i=0;i<9;i++){
-                var image = {
-                    name: 'img'+i,
-                    src: 'assets/images/gallery/img'+i+'.jpg'
-                }
-                if(imgVm.images.length !== 9){
-                imgVm.images.push(image);
-            }
-            }
 
-            return imgVm.images;
+        for(var i=1; i<36; i++){
+            var image = {
+                index: i,
+                name: 'img'+i,
+                src: 'assets/dist/images/img'+i+'.jpg'
+            }
+            imgVm.images.push(image);
+
         }
+        return imgVm.images;
+    }
     };
 })();

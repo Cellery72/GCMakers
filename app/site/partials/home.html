@@ -1,22 +1,3 @@
-<!-- <section id="home-slider">
-    <div class="container">
-        <div class="row">
-            <div class="main-slider">
-                <div class="slide-text">
-                    <h1>We Are Creative Nerds</h1>
-                    <p>Boudin doner frankfurter pig. Cow shank bresaola pork loin tri-tip tongue venison pork belly meatloaf short loin landjaeger biltong beef ribs shankle chicken andouille.</p>
-                </div>
-                <div class="home-preview">
-                    <img src="assets/images/gallery/img0.jpg" width="500px" class="slider-hill" alt="slider image">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="preloader"><i class="fa fa-sun-o fa-spin"></i></div>
-</section> -->
-<!--/#home-slider-->
-
-
 <div class="slider-wrapper row">
     <div class="col-md-6">
         <img class="slider-img" name="{{ctrl.images[ctrl.sliderIndex]}}" ng-src="{{ctrl.images[ctrl.sliderIndex].src}}" alt="" />
@@ -117,24 +98,3 @@
     </div>
 </section>
 <!--/#features-->
-
-<section id="clients">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="clients text-center wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <p><img src="assets/images/home/clients.png" class="img-responsive" alt=""></p>
-                    <h1 class="title">Featured Gallery Images</h1>
-                    <p>Just a few select images from the gallery featuring cool projects
-                        <br> and fun events that have come through the Makers Space. </p>
-                </div>
-                <div class="clients-logo wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
-                    <div class="col-xs-3 col-sm-2" ng-repeat="image in ctrl.images">
-                        <a ng-click="ctrl.$state.go('gallery')"><img src="{{image.src}}" class="img-responsive" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--/#clients-->

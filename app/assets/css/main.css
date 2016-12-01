@@ -2719,6 +2719,15 @@ span.stButton_gradient,
 }
 
 .slider-img {
-    max-height: 100%;
-    max-width: 70%;
+    max-height: 90%;
+}
+
+
+.printer {
+    margin-left: 20%;
+}
+
+.whiteboard, .projects {
+    max-width: 300px;
+    margin-left: 20%;
 }

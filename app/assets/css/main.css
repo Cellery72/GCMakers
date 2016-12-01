@@ -168,7 +168,8 @@ h3 {
 
 
 #logo {
-    width: 150px;
+    width: 60px;
+    margin-left: 80px;
 }
 
 .search {
@@ -2707,11 +2708,17 @@ span.stButton_gradient,
 
 /*Slideshow*/
 .slider-wrapper {
-    height: 100%;
+    width: 100%;
+    height: 40em;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding-top: 30px;
+    justify-content: center;
+
 }
 
-
 .slider-img {
-    max-width: 60%;
-    max-height: 50%
+    max-height: 100%;
+    max-width: 70%;
 }

@@ -1,6 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,700);
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
 body {
     background: #fff;
     font-family: 'Lato', sans-serif;
@@ -168,7 +171,8 @@ h3 {
 
 
 #logo {
-    width: 150px;
+    width: 60px;
+    margin-left: 80px;
 }
 
 .search {
@@ -521,6 +525,7 @@ ul.sub-menu {
 **************************/
 
 #home-slider {
+    height: 40em;
     background: url(../images/home/slider-bg.png) 0 100% repeat-x;
     position: relative;
 }
@@ -531,11 +536,29 @@ ul.sub-menu {
 }
 
 #home-slider .slide-text {
+    text-align:center;
+    font-size: 40pt;
     position: absolute;
     top: 50px;
     left: 0;
     width: 450px;
 }
+#home-slider .slide-text>h1{
+    font-family: 'Anton', sans-serif;
+    color: #4fcccd;
+    font-size: 50pt;
+    text-transform: uppercase;
+    text-shadow: 2px 2px navy;
+}
+#home-slider .slide-text>h2{
+    font-family: 'Oswald', sans-serif;
+    color: grey;
+    font-size: 30pt;
+    text-shadow: 2px 2px black;
+
+}
+
+
 
 .animate-in .slide-text {
     -webkit-animation: fadeInLeftBig 700ms cubic-bezier(0.190, 1.000, 0.220, 1.000) 200ms both;
@@ -544,13 +567,15 @@ ul.sub-menu {
 
 #home-slider .slider-hill {
     position: absolute;
-    right: 0;
+    right:0;
     bottom: 0;
 }
 
 .animate-in .slider-hill {
-    -webkit-animation: bounceInDown 1000ms ease-in-out 200ms both;
-    animation: bounceInDown 1000ms ease-in-out 200ms both;
+    -webkit-animation: fadeInRightBig 700ms cubic-bezier(0.190, 1.000, 0.220, 1.000) 200ms both;
+    animation: fadeInRightBig 700ms cubic-bezier(0.190, 1.000, 0.220, 1.000) 200ms both;
+    /*-webkit-animation: bounceInDown 1000ms ease-in-out 200ms both;
+    animation: bounceInDown 1000ms ease-in-out 200ms both;*/
 }
 
 #home-slider .slider-house {
@@ -2707,11 +2732,28 @@ span.stButton_gradient,
 
 /*Slideshow*/
 .slider-wrapper {
-    height: 100%;
+    top: 2em;
+    width: 100%;
+    height: 40em;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+    padding-top: 30px;
+    justify-content: center;
+
+}
+
+.slider-img {
+    max-height: 90%;
+    max-width: 60%;
 }
 
 
-.slider-img {
-    max-width: 60%;
-    max-height: 50%
+.printer {
+    margin-left: 20%;
+}
+
+.whiteboard, .projects {
+    max-width: 300px;
+    margin-left: 20%;
 }

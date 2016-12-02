@@ -3,13 +3,12 @@
 
     app.controller('ContactCtrl', ContactCtrl);
 
-    function ContactCtrl(api) {
+    function ContactCtrl(api, $timeout) {
         var contactVm = this;
         contactVm.newUser = null;
 
         //for alert box when email is sent
         contactVm.showAlert = false;
-contactVm
         contactVm.sendEmail = sendEmail;
         contactVm.clearForm = clearForm;
 
@@ -21,12 +20,11 @@ contactVm
             var payload = null;
 
             // check everything has values
-            if (newUser.contactName != undefined && newUser.contactEmail != undefined && newUser.contactMessage != undefined && newUser.contactSubject != undefined) {
+
                 // create an obj to post
                 payload = {
                         name: newUser.contactName,
                         email: newUser.contactEmail,
-                        subject: newUser.contactSubject,
                         message: newUser.contactMessage
                     }
                     // send request
@@ -49,9 +47,8 @@ contactVm
                             contactVm.showAlert = false;
                         }, 5000);
                         // clear it cause we don't want a mess
-                        mainVm.clearForm();
+                        contactVm.clearForm();
                     });
-            }
         }
         function clearForm() {
             contactVm.newUser.contactName = "";

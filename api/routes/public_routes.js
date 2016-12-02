@@ -28,16 +28,15 @@ var theTransporter = nodemailer.createTransport(({
 router.post('/sendEmail', function (req, res) {
     console.log('<-- --- --- Message Send Endpoint BEGIN--- --- -->');
 
-
     // Get the contact info from request
     var newContact = req.body;
 
     // setup e-mail data with unicode symbols
     var mailOptions = {
-        sent: newContact.email, // sender address
+        from: newContact.email, // sender address
         to: 'georgianmakers@gmail.com', // reciever address
-        subject: newContact.name + ' - ' + newContact.subject, // Subject line
-        text: newContact.message // plaintext body
+        subject: newContact.name, // Subject line
+        text: newContact.message + '\n\n Sent From: '+ newContact.email // plaintext body
     };
 
     // 'Send' the actual mail..

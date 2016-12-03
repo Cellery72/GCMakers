@@ -3,9 +3,8 @@
 
     app.controller('MainCtrl', MainCtrl);
 
-    function MainCtrl($state, api, $timeout, img) {
+    function MainCtrl(api, $timeout, img ) {
         var mainVm = this;
-        mainVm.$state = $state;
         mainVm.images = [];
         mainVm.newUser = null;
         mainVm.sliderIndex = 0;
@@ -13,42 +12,38 @@
         //for alert box when email is sent
         mainVm.showAlert = false;
 
-        mainVm.load = load();
-        mainVm.getImages = getImages();
-        mainVm.slider = setInterval(slider,5000);
-
+        mainVm.load = load;
+        mainVm.getImages = getImages;
         mainVm.sendEmail = sendEmail;
         mainVm.clearForm = clearForm;
+
+        mainVm.load();
 
         function load() {
             $('.main-slider').addClass('animate-in');
             $('.preloader').remove();
-
+            mainVm.getImages();
+            if(img.count == 0){
+                setInterval(slider,5000);
+            }
         }
 
         function getImages() {
+                mainVm.images = img.resolveImages().slice(0,6);
 
-            mainVm.images = img.resolveImages().slice(0,6);
         }
 
         function slider() {
 
+            img.slider();
 
-            if(mainVm.sliderIndex == 5){
-                mainVm.sliderIndex = 0;
-            }else{
-                mainVm.sliderIndex++;
-
-            }
             $('.slider-img').fadeOut("slow",function(){
-                $('.slider-img').attr("src", mainVm.images[mainVm.sliderIndex].src);
+                $('.slider-img').attr("src", mainVm.images[img.sliderIndex].src);
 
             });
 
                 $('.slider-img').fadeIn("slow", function(){
             });
-
-
         }
         // Send Email
         // params - User newUser

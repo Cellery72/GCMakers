@@ -3,7 +3,7 @@
 
     app.controller('NavCtrl', NavCtrl);
 
-    function NavCtrl($state) {
+    function NavCtrl($state, img) {
         var navVm = this;
         navVm.meetingRoom = "E212";
         navVm.meetingDate = "Monday, November 7th, 2016";
@@ -16,6 +16,7 @@
         function go(location) {
             switch (location) {
                 case 'home':
+                    img.sliderIndex = 0;
                     $state.go('home');
                     break;
                 case 'about':
@@ -34,7 +35,7 @@
                     $state.go('404');
                     break;
             }
-        
+
 
 
         }

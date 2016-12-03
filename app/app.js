@@ -36,8 +36,6 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                 },
                 layout: {
                     templateUrl: 'site/partials/about.html',
-                    controller: 'MainCtrl as ctrl'
-
                 },
                 footer: {
                     templateUrl: 'site/partials/common/footer.html',

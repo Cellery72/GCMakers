@@ -8,8 +8,8 @@
         navVm.meetingRoom = "E212";
         navVm.meetingDate = "Monday, November 7th, 2016";
         navVm.meetingTime = "10:00AM"
-        navVm.meetingInfo = "Next Meeting: " + navVm.meetingDate + ' | ' + navVm.meetingTime + ' | ' + navVm.meetingRoom;
-
+        // navVm.meetingInfo = "Next Meeting: " + navVm.meetingDate + ' | ' + navVm.meetingTime + ' | ' + navVm.meetingRoom;
+        navVm.meetingInfo = "Next Meeting: There are currently no meetings scheduled"
 
         navVm.go = go;
 

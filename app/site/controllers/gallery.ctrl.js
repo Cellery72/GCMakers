@@ -6,17 +6,18 @@
     function GalleryCtrl($state, img) {
         var galleryVm = this;
         galleryVm.previewSrc = 'assets/images/gallery/img0.jpg';
-        galleryVm.images = [];
+        galleryVm.images = img.images;
 
-        galleryVm.preview = preview;
         galleryVm.getImages = getImages();
+        galleryVm.preview = preview;
 
-        function preview(image){
-            galleryVm.previewSrc = image.src;
-        }
         function getImages(){
 
             galleryVm.images = img.resolveImages();
         }
+        function preview(image){
+            galleryVm.previewSrc = image.src;
+        }
+
     }
 })();

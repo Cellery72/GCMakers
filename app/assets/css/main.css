@@ -525,55 +525,48 @@ ul.sub-menu {
 **************************/
 
 #home-slider {
-    height: 40em;
+    height: 45em;
     background: url(../images/home/slider-bg.png) 0 100% repeat-x;
     position: relative;
 }
 
 #home-slider .main-slider {
     position: relative;
-    height: 450px;
+    height: 500px;
 }
 
 #home-slider .slide-text {
-    text-align:center;
+    text-align: right;
     font-size: 40pt;
     position: absolute;
-    top: 50px;
-    left: 0;
+    top: 150px;
+    right: 0;
     width: 450px;
 }
-#home-slider .slide-text>h1{
-    font-family: 'Anton', sans-serif;
-    color: #4fcccd;
-    font-size: 50pt;
-    text-transform: uppercase;
-    text-shadow: 2px 2px navy;
-}
+
 #home-slider .slide-text>h2{
     font-family: 'Oswald', sans-serif;
-    color: grey;
-    font-size: 30pt;
-    text-shadow: 2px 2px black;
+    color: #005D99;
+    font-size: 20pt;
 
 }
 
 
 
 .animate-in .slide-text {
-    -webkit-animation: fadeInLeftBig 700ms cubic-bezier(0.190, 1.000, 0.220, 1.000) 200ms both;
-    animation: fadeInLeftBig 700ms cubic-bezier(0.190, 1.000, 0.220, 1.000) 200ms both;
+    -webkit-animation: fadeInRightBig 700ms cubic-bezier(0.190, 1.000, 0.220, 1.000) 200ms both;
+    animation: fadeInRightBig 700ms cubic-bezier(0.190, 1.000, 0.220, 1.000) 200ms both;
 }
 
 #home-slider .slider-hill {
     position: absolute;
-    right:0;
+    left:0;
     bottom: 0;
 }
 
 .animate-in .slider-hill {
-    -webkit-animation: fadeInRightBig 700ms cubic-bezier(0.190, 1.000, 0.220, 1.000) 200ms both;
-    animation: fadeInRightBig 700ms cubic-bezier(0.190, 1.000, 0.220, 1.000) 200ms both;
+    -webkit-animation: fadeInLeftBig 700ms cubic-bezier(0.190, 1.000, 0.220, 1.000) 200ms both;
+    animation: fadeInLeftBig 700ms cubic-bezier(0.190, 1.000, 0.220, 1.000) 200ms both;
     /*-webkit-animation: bounceInDown 1000ms ease-in-out 200ms both;
     animation: bounceInDown 1000ms ease-in-out 200ms both;*/
 }
@@ -2756,4 +2749,8 @@ span.stButton_gradient,
 .whiteboard, .projects {
     max-width: 300px;
     margin-left: 20%;
+}
+
+#nav {
+    height: 5em;
 }

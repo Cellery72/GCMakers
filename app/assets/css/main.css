@@ -29,7 +29,7 @@ html {
 }
 
 a {
-    color: #C03035;
+    color: #105C9A;
 }
 
 a:hover {
@@ -539,7 +539,7 @@ ul.sub-menu {
     text-align: right;
     font-size: 40pt;
     position: absolute;
-    top: 150px;
+    top: 170px;
     right: 10px;
     width: 450px;
 }
@@ -776,7 +776,7 @@ ul.sub-menu {
 }
 
 .single-service img {
-    height: 85px;
+    height: 150px;
 }
 
 .tour-button {
@@ -997,7 +997,6 @@ ul.elements li {
 }
 
 ul.elements li>i {
-    color: #C03035;
     display: inline-block;
     margin-right: 10px;
 }
@@ -1206,8 +1205,8 @@ ul.elements li>i {
 .pagination .active a:focus,
 .pagination a:focus {
     background: transparent;
-    border-color: #C03035;
-    color: #C03035;
+    border-color: navy;
+    color: #2361E0;
 }
 
 
@@ -1388,10 +1387,23 @@ Portfolio with right sidebar
     display: flex;
     width: 100%;
     max-height: 160px;
-    overflow: scroll;
+    overflow-x: scroll;
     justify-content: center;
     margin: 0 auto;
     padding: 15px;
+}
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 .thumbnails div img {
@@ -1855,7 +1867,7 @@ span.stButton_gradient,
 }
 
 .author-profile span a {
-    color: #C03035;
+    color: #2361E0;
 }
 
 .response-area {
@@ -1891,12 +1903,12 @@ span.stButton_gradient,
 }
 
 .post-comment .media-body span i {
-    color: #C03035;
+    color: #2361E0;
     margin-right: 10px;
 }
 
 .post-comment .media-body span a {
-    color: #C03035;
+    color: #2361E0;
     font-weight: 700;
 }
 

@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
+var Meeting = require('../models/meetings.js');
 var xoauth2 = require('xoauth2');
 
 // theGenerator will create new access tokens to send mail from our account settings
@@ -21,6 +22,9 @@ var theTransporter = nodemailer.createTransport(({
         xoauth2: theGenerator
     }
 }));
+
+
+
 
 /* EMAIL */
 
@@ -66,6 +70,57 @@ router.post('/sendEmail', function (req, res) {
 
     console.log('<-- --- --- Message Send Endpoint END--- --- -->');
 });
+
+//CREATE new meeting
+router.put('/setMeeting', function(req, res) {
+    console.log('<-- --- --- New Meeting Endpoint BEGIN --- --- -->');
+    var __meeting = req.body;
+    //new Meeting
+    var newMeeting = Meeting({
+        date: __meeting.date,
+        time: __meeting.time
+    });
+    newMeeting.save(function(err, meeting) {
+        console.log(err || 'meeting saved');
+    }).then(function(meeting) {
+        res.json({
+            meeting: newMeeting,
+            msg: "Meeting set to: " + __meeting.date
+        });
+    });
+    console.log('<-- --- --- Change Meeting Endpoint END --- --- -->');
+});
+// GET all meetings
+router.get('/meetings', function(req, res) {
+    Meeting.find({}, function(err, meetings) {
+        if (err) {
+            console.log(err + " boops");
+        } else {
+            res.json(meetings);
+            console.log(meetings);
+        }
+    });
+});
+
+router.get('/upcomingMeeting', function(req, res) {
+    Meeting.find({
+        "date": {
+            $gte: new Date().toISOString()
+        }
+    }, function(err, meeting) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json({
+                meeting: meeting,
+                msg: "Meeting retrieved successfully"
+            });
+        }
+    }).sort({
+        "date": 1
+    }).limit(1);
+});
+
 
 
 module.exports = router;

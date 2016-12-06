@@ -17,7 +17,6 @@
                     src: 'assets/images/gallery/img'+i+'.jpg'
                 }
                 if(imgVm.images.length !== 7){
-                    console.log(image);
                 imgVm.images.push(image);
             }
             }

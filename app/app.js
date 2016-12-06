@@ -85,7 +85,7 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
             },
             layout: {
               templateUrl: 'site/partials/signup.html',
-              controller: 'GalleryCtrl as ctrl',
+              controller: 'MemberCtrl as ctrl',
             },
             footer: {
               templateUrl: 'site/partials/common/footer.html',

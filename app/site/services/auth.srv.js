@@ -17,31 +17,6 @@
         self.resolveUser = resolveUser;
 
 
-        //register
-        function register(payload) {
-            api.request('/register', payload, 'PUT')
-                .then(function(res) {
-                    //successful response
-                    if (res.status == 200) {
-                        if (res.data.user == null) {
-                            alert('This email address is already registered!');
-                        } else {
-                            login(payload);
-                            console.log(res.data.msg);
-                        }
-                    }
-                    //error
-                } , function(){
-                    console.log('error');
-                })
-        }
-
-        function update(payload){
-            api.request('/update', payload, 'PUT')
-            .then(function(res){
-
-            });
-        }
         //login
         function login(payload) {
             api.request('/login', payload, 'POST')
@@ -93,28 +68,6 @@
             }
         }
 
-        function isAdmin(){
-            try{
-                var decrypt_token;
-                if(decrypt_token == undefined){
-                    var decrypt_token = jwtHelper.decodeToken(localStorage.authToken);
-            }
-                if(decrypt_token.admin){
-                    return true;
-                }else{
-                    $state.go($rootScope.previousState())
-                    return false;
-                }
-            }catch(err){
-                delete localStorage.authToken;
-                console.log('Unable to Authorize Admin Access');
-                if($state.current.name == 'login' || $state.current.name == 'register'){
-                    $state.go($rootScope.previousState());
-                }else{
-                    $state.go('login');
-            }
-            }
-        }
         function resolveUser(){
             try{
                 var decrypt_token;

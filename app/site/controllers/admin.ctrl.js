@@ -37,24 +37,6 @@
             return mailPattern.test(str) || mailPattern2.test(str) || mailPattern3.test(str);
         }
 
-        //REGISTER
-        function register() {
-
-            var isValid = adminVm.isValidMail(adminVm.newEmail);
-            if (isValid == false) {
-                alert('Please register with a Georgian College email address');
-            } else {
-                var user = {
-                    firstName: adminVm.firstName,
-                    lastName: adminVm.lastName,
-                    email: adminVm.newEmail,
-                    admin: false,
-                    password: adminVm.newPassword,
-                }
-                auth.register(user);
-            }
-        }
-
         //LOGIN
         function login() {
             var user = {

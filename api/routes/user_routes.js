@@ -7,6 +7,7 @@ var nodemailer = require('nodemailer');
 var bcrypt = require('bcryptjs');
 var transporter = nodemailer.createTransport('smtps://afield788%40gmail.com:<password>@smtp.gmail.com');
 
+
 // GET all Users
 router.get('/users/', function(req, res) {
     User.find({}, function(err, users) {

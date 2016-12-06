@@ -1,0 +1,44 @@
+<div class="text-center alert" ng-class="ctrl.alertClass" ng-show="ctrl.showAlert" role="alert">{{ctrl.emailMessage}}</div>
+<section id="page-breadcrumb">
+    <div class="vertical-center sun">
+        <div class="container">
+            <div class="row">
+                <div class="action">
+                    <div class="col-sm-12">
+                        <h1 class="title">Join the Creative Nerds!</h1>
+
+                        <p>As long as you have a valid Georgian College email address, you can join!</p>
+                        <h2><strong><a href="https://www.facebook.com/gcmakers/?fref=ts" target="_blank">Click Here</i></a>
+                            to join our Facebook group too!</strong>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="map-section">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="contact-form bottom">
+                <h2>Please add yourself to the list!</h2>
+                <form id="main-contact-form" name="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" required="required" ng-model="ctrl.newUser.contactName" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="program" class="form-control" required="required" ng-model="ctrl.newUser.programName" placeholder="Program">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" required="required" placeholder="Georgian Email Address" ng-model="ctrl.newUser.contactEmail">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" ng-disabled="contact-form.$nvalid" name="submit" class="btn btn-submit" ng-click="ctrl.sendEmail(ctrl.newUser)" value="Submit">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>

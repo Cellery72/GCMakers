@@ -3,8 +3,7 @@ var gulp = require('gulp'),
     htmlmin = require('gulp-htmlmin'),
     jsmin = require('gulp-jsmin'),
     del = require('del'),
-    nodemon = require('gulp-nodemon'),
-    uncss = require('gulp-uncss');
+    nodemon = require('gulp-nodemon');
 
 var PATHS = {};
 

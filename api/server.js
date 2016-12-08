@@ -1,11 +1,17 @@
 'use strict';
 
 var express = require('express');
-var port = 8080;
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var config = require('./config/global');
+
+//production or development environment depending on host
+try{
+	var env = require('./config/env_prod');
+}
+catch(err){
+	var env = require('./config/env_dev');
+}
 
 
 //Body Parser
@@ -29,11 +35,11 @@ app.use(function(req, res, next) {
 });
 
 //Database
-mongoose.connect(config.db);
+mongoose.connect(env.db);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-    console.log("Connected to db at /data/db/");
+    console.log("Connected to db");
 });
 
 
@@ -57,7 +63,10 @@ app.on('close', function() {
 })
 
 //Connection
-app.listen(port, function() {
-    console.log('Listening on http://localhost:' + port);
-    console.log('Stop Server with CTRL + C');
-});
+app.listen(env.port, function(err){
+  if(err){
+    console.log(err);
+  }else{
+    console.log('Listening on ' + env.host + ':' + env.port);
+  }
+})

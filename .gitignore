@@ -37,3 +37,5 @@ node_modules
 .vscode/
 *.DS_Store
 *.txt
+
+/api/config/env_prod.js

@@ -8,7 +8,6 @@
         mainVm.images = [];
         mainVm.newUser = null;
         mainVm.sliderIndex = 0;
-
         //for alert box when email is sent
         mainVm.showAlert = false;
 

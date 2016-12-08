@@ -5,9 +5,10 @@ var app = angular.module('makers', ['ui.router', 'ui.bootstrap', 'angular-jwt'])
 app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
     // defer no route to home route
     $urlRouterProvider.when('', '/');
+
     // defer all other garbage to 404
     $urlRouterProvider.otherwise('/404');
-
+    
     $stateProvider
         .state('home', {
             url: '/',

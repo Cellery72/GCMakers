@@ -36,9 +36,9 @@
                     window.scrollTo(0, 0);
                     break;
                 case 'admin':
-                      $state.go('admin');
-                      window.scrollTo(0, 0);
-                      break;
+                    $state.go('admin');
+                    window.scrollTo(0, 0);
+                    break;
                 case '404':
                     $state.go('404');
                     window.scrollTo(0, 0);

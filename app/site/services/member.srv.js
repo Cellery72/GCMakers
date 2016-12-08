@@ -9,12 +9,14 @@
         self.addMember = addMember;
 
         function addMember(member) {
+
          api.request('/member/add', member, 'PUT')
             .then(function(res,err){
                 if(err){
                     console.log(err);
                 }else{
-                    console.log(res.data.msg);
+                    location.reload();
+                    window.scrollTo(0,0);
                 }
             });
         }

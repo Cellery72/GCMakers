@@ -7,8 +7,8 @@
                 <img class="slider-img slider-hill" name="{{ctrl.images[ctrl.sliderIndex]}}" ng-src="{{ctrl.images[ctrl.sliderIndex].src}}" alt="" />
             </div>
             <div class="slide-text">
-                <h2>Welcome to the official website of the</h2>
-                <img src="assets/images/home/mc.png" alt="Georgian College Logo" width="500px">            </div>
+                <h2 class="pull-right">Welcome to the official website of the</h2>
+                <img src="assets/images/home/mc.png" alt="Georgian College Logo" width="500px" class="pull-right">            </div>
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
                         <p>Go view our about page for information about Makers Club members and execs, the Makers Space, and how to find us!</p>
                     </div>
                     <div class="col-sm-5 text-center wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
-                            <a ng-click="ctrl.$state.go('about')" class="btn btn-common">ABOUT</a>
+                            <a ng-click="ctrl.go('about')" class="btn btn-common">ABOUT</a>
                     </div>
                 </div>
             </div>

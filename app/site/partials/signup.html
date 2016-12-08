@@ -23,21 +23,21 @@
         <div class="col-md-12">
             <div class="contact-form bottom">
                 <h2>Please add yourself to the list!</h2>
-                <form id="main-contact-form" name="contact-form">
+                <form id="main-contact-form" name="memberForm">
                     <div class="form-group">
-                        <input type="text" name="first" class="form-control" required="required" ng-model="ctrl.newMember.firstName" placeholder="First Name">
+                        <input type="text" name="first" class="form-control" required="required" ng-model="ctrl.member.firstName" placeholder="First Name">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="last" class="form-control" required="required" ng-model="ctrl.newMember.lastName" placeholder="Last Name">
+                        <input type="text" name="last" class="form-control" required="required" ng-model="ctrl.member.lastName" placeholder="Last Name">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="program" class="form-control" required="required" ng-model="ctrl.newMember.program" placeholder="Program">
+                        <input type="text" name="program" class="form-control" required="required" ng-model="ctrl.member.program" placeholder="Program">
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control" required="required" placeholder="Georgian Email Address" ng-model="ctrl.newMember.email">
+                        <input type="email" name="email" class="form-control" required="required" placeholder="Georgian Email Address" ng-model="ctrl.member.email">
                     </div>
                     <div class="form-group">
-                        <input type="submit" ng-disabled="contact-form.$nvalid" name="submit" class="btn btn-submit" ng-click="ctrl.addMember(ctrl.newMember)" value="Submit">
+                        <input type="submit" ng-disabled="contact-form.$nvalid" name="submit" class="btn btn-submit" ng-click="ctrl.addMember(ctrl.member)" value="Submit">
                     </div>
                 </form>
 

@@ -3,45 +3,17 @@
 
     app.controller('NavCtrl', NavCtrl);
 
-    function NavCtrl($state, img, api) {
+    function NavCtrl($state, img, api, nav) {
         var navVm = this;
         navVm.meetingRoom = "E212";
         navVm.meetingInfo = "Next Meeting: There are currently no meetings scheduled"
 
-        navVm.go = go;
         navVm.getMeeting = getMeeting();
+        navVm.go = go;
 
-        function go(location) {
-            switch (location) {
-                case 'home':
-                    img.sliderIndex = 0;
-                    $state.go('home');
-                    break;
-                case 'about':
-                    $state.go('about');
-                    break;
-                case 'contact':
-                    $state.go('contact');
-                    break;
-                case 'messageboard':
-                    $state.go('messageboard');
-                    break;
-                case 'gallery':
-                    $state.go('gallery');
-                    break;
-                case 'signup':
-                    $state.go('signup');
-                    break;
-                case 'admin':
-                      $state.go('admin');
-                      break;
-                case '404':
-                    $state.go('404');
-                    break;
-            }
-
+        function go(location){
+            nav.go(location);
         }
-
         function getMeeting() {
             //update meeting time to most upcoming
             api.request('/upcomingMeeting', '', 'GET')

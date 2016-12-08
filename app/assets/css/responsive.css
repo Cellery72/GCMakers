@@ -1,5 +1,8 @@
 /* md */
 @media only screen and (max-width : 1200px) {
+  #home-slider .slide-text>h2{
+  display: none;
+}
 }
 
 /* sm */
@@ -8,6 +11,10 @@
   h1{
     font-size: 25px;
   }
+
+  #home-slider .slide-text>h2{
+  display: none;
+}
 
   #header .navbar-nav.navbar-right li {
     padding: 0;
@@ -47,7 +54,14 @@
   h2{
     font-size:20px;
   }
-
+  #home-slider .slide-text>h2{
+  display: none;
+}
+  #home-slider .slider-hill {
+      position: absolute;
+      max-width: 100%;
+      bottom: 2em;
+  }
   .padding{
     padding: 30px 0;
   }
@@ -172,5 +186,7 @@
 }
 
 @media only screen and (max-width : 480px) {
-
+  #home-slider .slide-text>h2{
+  display: none;
+}
 }

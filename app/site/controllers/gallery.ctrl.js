@@ -8,9 +8,13 @@
         galleryVm.previewSrc = 'assets/images/gallery/img0.jpg';
         galleryVm.images = img.images;
 
-        galleryVm.getImages = getImages();
+
+        galleryVm.getImages = getImages;
         galleryVm.preview = preview;
 
+        if(galleryVm.images == null || galleryVm.images == undefined || galleryVm.images.length == 0){
+            galleryVm.getImages();
+        }
         function getImages(){
 
             galleryVm.images = img.resolveImages();

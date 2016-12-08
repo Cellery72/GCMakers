@@ -3,16 +3,16 @@
 
     app.controller('MainCtrl', MainCtrl);
 
-    function MainCtrl(api, $timeout, img ) {
+    function MainCtrl(api, $timeout, img, nav) {
         var mainVm = this;
         mainVm.images = [];
         mainVm.newUser = null;
         mainVm.sliderIndex = 0;
-
         //for alert box when email is sent
         mainVm.showAlert = false;
 
         mainVm.load = load;
+        mainVm.go = go;
         mainVm.getImages = getImages;
         mainVm.sendEmail = sendEmail;
         mainVm.clearForm = clearForm;
@@ -45,6 +45,12 @@
                 $('.slider-img').fadeIn("slow", function(){
             });
         }
+
+
+        function go(location){
+            nav.go(location);
+        }
+
         // Send Email
         // params - User newUser
         // send post request to server side to send email

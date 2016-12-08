@@ -37,12 +37,16 @@ db.once('open', function () {
 
 
 //routes
-var user_routes = require('./routes/user_routes.js');
-app.use('/', user_routes);
-
 var public_routes = require('./routes/public_routes');
 app.use('/',public_routes);
 
+var member_routes = require('./routes/member_routes');
+app.use('/member/', member_routes);
+
+var user_routes = require('./routes/user_routes.js');
+app.use('/user/', user_routes);
+
+//close connection to db
 app.on('close', function() {
     console.error('dropping db');
     db.db.dropDatabase(function() {

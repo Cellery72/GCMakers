@@ -3,8 +3,9 @@ var gulp = require('gulp'),
     htmlmin = require('gulp-htmlmin'),
     jsmin = require('gulp-jsmin'),
     del = require('del'),
-    nodemon = require('gulp-nodemon');
-    imagemin = require('gulp-imagemin');
+    nodemon = require('gulp-nodemon'),
+    uncss = require('gulp-uncss');
+
 var PATHS = {};
 
 gulp.task('clean', function(done) {
@@ -40,8 +41,11 @@ gulp.task('build', function() {
 
 });
 
-gulp.task('default', () =>
-    gulp.src('app/assets/images/gallery/*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('app/assets/images/gallery'))
-);
+
+gulp.task('uncss', function () {
+    return gulp.src('app/assets/css/**/*')
+        .pipe(uncss({
+            html: ['index.html', 'app/site/partials/**/*.html', 'http://localhost:8080']
+        }))
+        .pipe(gulp.dest('./out'));
+});

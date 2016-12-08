@@ -4,7 +4,8 @@
 
     function ApiService($location, $http) {
         this.http = $http;
-        this.BASE_URL = 'http://localhost:8080';
+
+        this.BASE_URL = 'https://localhost:8080';
 
         //initialize functions
         this.request = request;

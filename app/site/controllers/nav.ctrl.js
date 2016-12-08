@@ -29,6 +29,9 @@
                 case 'gallery':
                     $state.go('gallery');
                     break;
+                case 'signup':
+                    $state.go('signup');
+                    break;
                 case 'admin':
                       $state.go('admin');
                       break;
@@ -47,7 +50,6 @@
                     if (res.data.msg == null) {
                         console.log(res.data.msg);
                     } else {
-                        console.log(res.data)
                         if (res.data.meeting.length > 0) {
                             var date = new Date(Date.parse(res.data.meeting[0].date));
                             navVm.meetingDate = date.toDateString();

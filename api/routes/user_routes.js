@@ -5,10 +5,8 @@ var router = express.Router();
 var jwt = require('jsonwebtoken');
 var nodemailer = require('nodemailer');
 var bcrypt = require('bcryptjs');
-var transporter = nodemailer.createTransport('smtps://afield788%40gmail.com:<password>@smtp.gmail.com');
-
 // GET all Users
-router.get('/users/', function(req, res) {
+router.get('/all', function(req, res) {
     User.find({}, function(err, users) {
         err ? console.log(err) : res.json(users);
     });
@@ -107,7 +105,7 @@ router.post('/login', function(req, res) {
 })
 
     //UPDATE USER
-router.post('/users/:userId', function (req, res) {
+router.post('/:userId', function (req, res) {
     console.log('Updating User: ' + req.params.userId);
     var __user = req.body;
     var update = {
@@ -136,7 +134,7 @@ router.post('/users/:userId', function (req, res) {
 })
 
 //DELETE user
-router.delete('/users/:userId', function (req, res) {
+router.delete('/:userId', function (req, res) {
     console.log('Deleting User: ' + req.params.userId);
 
 
@@ -156,6 +154,10 @@ router.delete('/users/:userId', function (req, res) {
             });
         }
     })
-})
+});
+
+
+//PUT - Add new user
+router.put('/member/')
 
 module.exports = router;

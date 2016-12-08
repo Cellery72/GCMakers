@@ -76,6 +76,22 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
             }
 
         })
+        .state('signup', {
+          url: '/signup',
+          views: {
+            header: {
+              templateUrl: 'site/partials/common/header.html',
+              controller: 'NavCtrl as ctrl'
+            },
+            layout: {
+              templateUrl: 'site/partials/signup.html',
+              controller: 'SignupCtrl as ctrl',
+            },
+            footer: {
+              templateUrl: 'site/partials/common/footer.html',
+            }
+          }
+        })
         .state('login', {
               url: '/login',
               views: {
@@ -85,24 +101,6 @@ app.config(function ($stateProvider, $httpProvider, $urlRouterProvider) {
                   },
                   layout: {
                       templateUrl: 'site/partials/admin/login.html',
-                      controller: 'AdminCtrl as ctrl'
-                  },
-                  footer: {
-                      templateUrl: 'site/partials/common/footer.html',
-                      controller: 'MainCtrl as ctrl'
-                  }
-
-              }
-      })
-      .state('register', {
-              url: '/register',
-              views: {
-                  header: {
-                      templateUrl: 'site/partials/common/header.html',
-                      controller: 'NavCtrl as ctrl'
-                  },
-                  layout: {
-                      templateUrl: 'site/partials/admin/register.html',
                       controller: 'AdminCtrl as ctrl'
                   },
                   footer: {

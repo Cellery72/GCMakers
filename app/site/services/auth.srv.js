@@ -19,7 +19,7 @@
 
         //register
         function register(payload) {
-            api.request('/register', payload, 'PUT')
+            api.request('/user/register', payload, 'PUT')
                 .then(function(res) {
                     //successful response
                     if (res.status == 200) {
@@ -37,14 +37,14 @@
         }
 
         function update(payload){
-            api.request('/update', payload, 'PUT')
+            api.request('/user/update', payload, 'PUT')
             .then(function(res){
 
             });
         }
         //login
         function login(payload) {
-            api.request('/login', payload, 'POST')
+            api.request('/user/login', payload, 'POST')
                 .then(function(res) {
                     localStorage.loginEmail = payload.email;
                     if (res.status == 200) {

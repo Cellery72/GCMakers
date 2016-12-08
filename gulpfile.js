@@ -3,9 +3,12 @@ var gulp = require('gulp'),
     htmlmin = require('gulp-htmlmin'),
     jsmin = require('gulp-jsmin'),
     del = require('del'),
-    nodemon = require('gulp-nodemon');
+    nodemon = require('gulp-nodemon'),
+    uncss = require('gulp-uncss');
+
 
 var PATHS = {};
+
 
 gulp.task('clean', function(done) {
     del(['public'], done);
@@ -24,6 +27,7 @@ gulp.task('dev', function() {
             'NODE_ENV': 'development'
         }
     })
+
 });
 
 gulp.task('prod', function() {
@@ -40,11 +44,26 @@ gulp.task('build', function() {
 
 });
 
-
-gulp.task('uncss', function () {
-    return gulp.src('app/assets/css/**/*')
+//reduce to only used css. Must have project running on specified port in order to work
+gulp.task('uncss', function() {
+    return gulp.src([
+            'app/assets/css/main.css',
+            'app/assets/css/lightbox.css',
+            'app/assets/css/prettyPhoto.css',
+            'app/assets/css/responsive.css'
+        ])
         .pipe(uncss({
-            html: ['index.html', 'app/site/partials/**/*.html', 'http://localhost:8080']
+            html: [
+                'http://localhost:8080/#/',
+                'http://localhost:8080/#/about',
+                'http://localhost:8080/#/gallery',
+                'http://localhost:8080/#/signup',
+                'http://localhost:8080/#/contact',
+                'http://localhost:8080/#/signup',
+                'http://localhost:8080/#/admin',
+                'http://localhost:8080/#/login'
+            ]
         }))
-        .pipe(gulp.dest('./out'));
+        .pipe(gulp.dest('css/'));
+
 });

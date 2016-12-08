@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var config = require('./config/global');
 
+
 //Body Parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
